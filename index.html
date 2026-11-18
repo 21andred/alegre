@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/sala.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=5">
+  <link rel="stylesheet" href="assets/css/style.css?v=6">
 
   <script type="application/ld+json">
   {
@@ -196,24 +196,36 @@
           </div>
           <p class="body" data-i18n="spaces.lead">Ogni ambiente ha il suo ritmo. Scegli il tuo, o lasciati portare dalla serata.</p>
         </div>
+      </div>
 
-        <article class="space">
-          <div class="space__media img-reveal">
-            <picture>
-              <source srcset="assets/img/sala.webp" type="image/webp">
-              <img src="assets/img/sala.jpg" alt="La sala di Alegre: luce calda, parete di spighe illuminate, sedute in legno" loading="lazy">
-            </picture>
+      <!-- Il Ristorante: scena video guidata dallo scroll, disposizione invertita (video a sx, testo a dx) -->
+      <div class="scene scene--reverse" aria-labelledby="scene-r-title">
+        <div class="scene__sticky">
+          <div class="scene__media">
+            <video muted playsinline loop preload="metadata" poster="assets/video/ristorante-poster.jpg" aria-label="Video: i piatti di Alegre condivisi al centro del tavolo">
+              <source src="assets/video/ristorante.mp4" type="video/mp4">
+            </video>
           </div>
-          <div class="space__text reveal">
+          <span class="scene__divider" aria-hidden="true"></span>
+          <div class="scene__text">
             <span class="space__no">i.</span>
-            <h3 data-i18n="space.r.t">Il Ristorante</h3>
-            <p class="body" data-i18n="space.r">Un ambiente sereno ma elevato, dove è nato il nostro concetto di cucina: il Fun Dining. Luce morbida, legno e una parete di spighe che accompagna la cena.</p>
+            <p class="label"><span data-i18n="space.r.t">Il Ristorante</span></p>
+            <h3 class="title" id="scene-r-title" data-i18n="space.r.title">Dove è nato <em>il Fun Dining.</em></h3>
+            <p class="body" data-i18n="space.r">Un ambiente sereno ma elevato, dove è nato il nostro concetto di cucina. Luce morbida, legno e una parete di spighe che accompagna la cena.</p>
+            <p class="body" data-i18n="space.r2">Al centro del tavolo arrivano tanti piatti piccoli da condividere: si assaggia, si passa, si ordina ancora.</p>
             <p class="note">
               <svg viewBox="0 0 40 22" aria-hidden="true"><path d="M2 12c6-6 12 4 18-1s9-7 14-2M30 5l5 4-6 2"/></svg>
               <span data-i18n="space.r.note">Pranzo e cena</span>
             </p>
+            <button class="scene__sound" type="button" aria-pressed="false">
+              <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span data-i18n="scene.soundOn">Attiva l'audio</span>
+            </button>
           </div>
-        </article>
+        </div>
+      </div>
+
+      <div class="wrap">
 
         <article class="space space--flip">
           <div class="space__media img-reveal">
@@ -425,6 +437,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=5"></script>
+  <script src="assets/js/main.js?v=6"></script>
 </body>
 </html>

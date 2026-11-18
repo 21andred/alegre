@@ -45,8 +45,10 @@
       "spaces.title": "Tre anime, <em>un indirizzo.</em>",
       "spaces.lead": "Ogni ambiente ha il suo ritmo. Scegli il tuo, o lasciati portare dalla serata.",
       "space.r.t": "Il Ristorante",
-      "space.r": "Un ambiente sereno ma elevato, dove è nato il nostro concetto di cucina: il Fun Dining. Luce morbida, legno e una parete di spighe che accompagna la cena.",
+      "space.r": "Un ambiente sereno ma elevato, dove è nato il nostro concetto di cucina. Luce morbida, legno e una parete di spighe che accompagna la cena.",
       "space.r.note": "Pranzo e cena",
+      "space.r.title": "Dove è nato <em>il Fun Dining.</em>",
+      "space.r2": "Al centro del tavolo arrivano tanti piatti piccoli da condividere: si assaggia, si passa, si ordina ancora.",
       "space.d.t": "Il Dehor",
       "space.d": "La terrazza dove natura e tecnologia si incontrano. Il bancone è stampato in 3D con materiali recuperati: un dettaglio che racconta il nostro modo di guardare alla sostenibilità.",
       "space.d.note": "Aperitivo all'aperto",
@@ -132,8 +134,10 @@
       "spaces.title": "Three souls, <em>one address.</em>",
       "spaces.lead": "Every room has its own rhythm. Pick yours, or let the evening take you.",
       "space.r.t": "The Restaurant",
-      "space.r": "A serene yet elevated room, where our way of cooking was born: Fun Dining. Soft light, wood and a wall of wheat that sets the mood for dinner.",
+      "space.r": "A serene yet elevated room, where our way of cooking was born. Soft light, wood and a wall of wheat that sets the mood for dinner.",
       "space.r.note": "Lunch and dinner",
+      "space.r.title": "Where Fun Dining <em>was born.</em>",
+      "space.r2": "Lots of small plates land in the middle of the table, to share: you taste, pass them around, order again.",
       "space.d.t": "The Terrace",
       "space.d": "Where nature and technology meet. The bar counter is 3D-printed from reclaimed materials, a detail that speaks to how we think about sustainability.",
       "space.d.note": "Open-air aperitivo",
@@ -300,48 +304,60 @@
      0.02–0.18  la linea divide lo schermo
      0.10–0.26  compare il testo         0.80–0.94  svanisce
      0.20–0.36  compare il video (play)  0.76–0.90  svanisce (pausa) */
-  var scene = document.querySelector(".scene");
-  if (scene) {
-    var video = scene.querySelector("video");
-    var soundBtn = scene.querySelector(".scene__sound");
-    var wasHidden = true;
-    var ramp = function (p, a, b) { return Math.min(1, Math.max(0, (p - a) / (b - a))); };
+  var ramp = function (p, a, b) { return Math.min(1, Math.max(0, (p - a) / (b - a))); };
+  var scenes = Array.prototype.map.call(document.querySelectorAll(".scene"), function (el) {
+    return { el: el, video: el.querySelector("video"), wasHidden: true };
+  });
 
-    var updateScene = function () {
-      var r = scene.getBoundingClientRect();
-      var range = scene.offsetHeight - window.innerHeight;
-      var p = range > 0 ? Math.min(1, Math.max(0, -r.top / range)) : 0;
-      var onScreen = r.bottom > 0 && r.top < window.innerHeight;
-      var split = ramp(p, 0.02, 0.18);
-      var text = Math.min(ramp(p, 0.10, 0.26), 1 - ramp(p, 0.80, 0.94));
-      var vid = Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
-      scene.style.setProperty("--split", split.toFixed(3));
-      scene.style.setProperty("--text", text.toFixed(3));
-      scene.style.setProperty("--video", vid.toFixed(3));
+  function updateScene(sc) {
+    var scene = sc.el, video = sc.video;
+    var r = scene.getBoundingClientRect();
+    var range = scene.offsetHeight - window.innerHeight;
+    var p = range > 0 ? Math.min(1, Math.max(0, -r.top / range)) : 0;
+    var onScreen = r.bottom > 0 && r.top < window.innerHeight;
+    var split = ramp(p, 0.02, 0.18);
+    var text = Math.min(ramp(p, 0.10, 0.26), 1 - ramp(p, 0.80, 0.94));
+    var vid = Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
+    scene.style.setProperty("--split", split.toFixed(3));
+    scene.style.setProperty("--text", text.toFixed(3));
+    scene.style.setProperty("--video", vid.toFixed(3));
 
-      if (!video) return;
+    if (video) {
       if (onScreen && vid > 0.02) {
-        if (wasHidden) { try { video.currentTime = 0; } catch (e) {} wasHidden = false; }
+        if (sc.wasHidden) { try { video.currentTime = 0; } catch (e) {} sc.wasHidden = false; }
         if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
       } else {
         if (!video.paused) video.pause();
-        if (vid === 0) wasHidden = true;
+        if (vid === 0) sc.wasHidden = true;
       }
-    };
+    }
+    // true se la scena occupa tutto lo schermo (fase "ferma")
+    return r.top <= 1 && r.bottom >= window.innerHeight - 1;
+  }
 
+  function updateScenes() {
+    var pinned = false;
+    scenes.forEach(function (sc) { if (updateScene(sc)) pinned = true; });
+    if (header && !document.body.classList.contains("menu-open")) header.classList.toggle("is-hidden", pinned);
+  }
+
+  if (scenes.length) {
     if (reduceMotion) {
-      if (video) { video.controls = true; video.removeAttribute("loop"); }
+      scenes.forEach(function (sc) { if (sc.video) { sc.video.controls = true; sc.video.removeAttribute("loop"); } });
     } else {
       var sceneTick = false;
       window.addEventListener("scroll", function () {
         if (sceneTick) return; sceneTick = true;
-        requestAnimationFrame(function () { updateScene(); sceneTick = false; });
+        requestAnimationFrame(function () { updateScenes(); sceneTick = false; });
       }, { passive: true });
-      window.addEventListener("resize", updateScene);
-      updateScene();
+      window.addEventListener("resize", updateScenes);
+      updateScenes();
     }
 
-    if (soundBtn && video) {
+    scenes.forEach(function (sc) {
+      var soundBtn = sc.el.querySelector(".scene__sound");
+      var video = sc.video;
+      if (!soundBtn || !video) return;
       soundBtn.addEventListener("click", function () {
         video.muted = !video.muted;
         var on = !video.muted;
@@ -351,7 +367,7 @@
         lbl.innerHTML = t(on ? "scene.soundOff" : "scene.soundOn");
         if (on && video.paused && !reduceMotion) video.play();
       });
-    }
+    });
   }
 
   /* ---------- Reveal on scroll ---------- */
