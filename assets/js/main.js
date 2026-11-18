@@ -327,15 +327,21 @@
     return {
       p: range > 0 ? Math.min(1, Math.max(0, -r.top / range)) : 0,
       onScreen: r.bottom > 0 && r.top < vh,
+      near: r.bottom > -vh && r.top < vh * 2.5,
       pinned: r.top <= 1 && r.bottom >= vh - 1
     };
   }
+
+  // Su mobile il video è visibile e parte appena il riquadro entra nello schermo
+  // (niente riquadro nero mentre la scena sale); il testo continua a comparire in dissolvenza.
+  var mobileMQ = window.matchMedia("(max-width: 960px)");
 
   function applyScene(sc, m) {
     var p = m.p;
     var split = ramp(p, 0.02, 0.18);
     var text = Math.min(ramp(p, 0.10, 0.26), 1 - ramp(p, 0.80, 0.94));
-    var vid = Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
+    var vid = mobileMQ.matches ? (m.onScreen ? 1 : 0)
+                               : Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
     var key = split.toFixed(3) + "|" + text.toFixed(3) + "|" + vid.toFixed(3);
     if (key !== sc.last) {
       sc.last = key;
@@ -346,6 +352,8 @@
     }
     var video = sc.video;
     if (!video) return;
+    // precarica il video quando la scena si avvicina, così è pronto quando compare
+    if (m.near && !sc.primed) { sc.primed = true; video.preload = "auto"; try { video.load(); } catch (e) {} }
     if (m.onScreen && vid > 0.02) {
       if (sc.wasHidden) { try { video.currentTime = 0; } catch (e) {} sc.wasHidden = false; }
       if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
@@ -363,8 +371,8 @@
       var m = metrics[i];
       if (m.pinned) pinned = true;
       // le scene lontane dallo schermo vengono aggiornate solo una volta, poi ignorate
-      if (!m.onScreen && sc.idle) return;
-      sc.idle = !m.onScreen;
+      if (!m.near && sc.idle) return;
+      sc.idle = !m.near;
       applyScene(sc, m);
     });
     if (header && pinned !== headerHidden && !document.body.classList.contains("menu-open")) {
