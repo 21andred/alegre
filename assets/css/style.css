@@ -389,6 +389,7 @@ p { margin: 0 0 1.45em; }
   --mw: min(max(calc(100svh * 9 / 16), 38vw), 46vw);
   position: sticky; top: 0; height: 100vh; height: 100svh;
   display: grid; grid-template-columns: 1fr var(--mw);
+  grid-template-rows: minmax(0, 1fr); /* la riga non si allunga mai sulle dimensioni del video */
   overflow: hidden;
 }
 .scene__text {
@@ -411,13 +412,18 @@ p { margin: 0 0 1.45em; }
 }
 
 .scene__media {
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; min-height: 0; height: 100%;
   opacity: var(--video);
   will-change: opacity;
   clip-path: inset(calc((1 - var(--split)) * 50%) 0 calc((1 - var(--split)) * 50%) 0);
 }
+/* REGOLA: quando un video va tagliato, il taglio è sempre uguale sopra e sotto (e a destra e
+   sinistra): il centro del video resta al centro. Video ancorato ai 4 bordi del riquadro,
+   object-position e transform-origin al 50% / 50%. */
 .scene__media video {
+  position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;
+  transform-origin: 50% 50%;
   transform: scale(calc(1.06 - var(--video) * .06));
   will-change: transform;
 }
