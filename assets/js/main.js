@@ -56,6 +56,7 @@
       "space.c.t": "Il Club",
       "space.c": "Uno spazio riservato, dove mixology, musica e le nostre tapas si uniscono tra le sale e i giardini.",
       "space.c.note": "Club privato",
+      "space.c.title": "Quando la cena <em>diventa serata.</em>",
 
       "food.label": "La cucina",
       "food.title": "Creatività <em>in ogni piatto.</em>",
@@ -146,6 +147,7 @@
       "space.c.t": "The Club",
       "space.c": "A private space where mixology, music and our tapas come together across the rooms and gardens.",
       "space.c.note": "Private club",
+      "space.c.title": "When dinner <em>becomes the night.</em>",
 
       "food.label": "The food",
       "food.title": "Creativity <em>on every plate.</em>",

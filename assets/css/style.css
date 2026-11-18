@@ -442,6 +442,8 @@ p { margin: 0 0 1.45em; }
 /* Più aria fra i blocchi di testo */
 .spaces-head { margin-bottom: clamp(70px, 9vw, 130px); }
 #spazi .scene { margin-bottom: clamp(90px, 12vw, 180px); }
+#spazi .scene:last-child { margin-bottom: 0; }
+.scene__text .todo-line { margin: 18px 0 0; }
 
 .scene__sound {
   margin-top: 18px;
@@ -713,7 +715,7 @@ p { margin: 0 0 1.45em; }
     content: ""; position: absolute; inset: 0 0 auto 0; height: 26%; z-index: 1; pointer-events: none;
     background: linear-gradient(180deg, rgba(20,17,14,.7) 0%, rgba(20,17,14,.35) 45%, rgba(20,17,14,0) 100%);
   }
-  .scene__text .space__no, .scene__text .note { display: none; }
+  .scene__text .space__no, .scene__text .note, .scene__text .todo-line { display: none; }
   .scene__text .body + .body { display: none; }
   .scene__text .label { margin-bottom: 14px; }
   .scene__text .title { font-size: clamp(32px, 8.6vw, 46px); margin-bottom: .35em; text-shadow: 0 1px 18px rgba(20,17,14,.5); }
