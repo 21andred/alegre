@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/sala.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=12">
+  <link rel="stylesheet" href="assets/css/style.css?v=13">
 
   <script type="application/ld+json">
   {
@@ -225,25 +225,33 @@
         </div>
       </div>
 
-      <div class="wrap">
-
-        <article class="space space--flip">
-          <div class="space__media img-reveal">
-            <picture>
-              <source srcset="assets/img/dehor.webp" type="image/webp">
-              <img src="assets/img/dehor.jpg" alt="Il dehor di Alegre: pergola scura, piante, bancone in rame" loading="lazy">
-            </picture>
-          </div>
-          <div class="space__text reveal">
+      <!-- Il Dehor: scena video guidata dallo scroll (testo a sx, video a dx) -->
+      <div class="scene" aria-labelledby="scene-d-title">
+        <div class="scene__sticky">
+          <div class="scene__text">
             <span class="space__no">ii.</span>
-            <h3 data-i18n="space.d.t">Il Dehor</h3>
+            <p class="label"><span data-i18n="space.d.t">Il Dehor</span></p>
+            <h3 class="title" id="scene-d-title" data-i18n="space.d.title">Natura e tecnologia, <em>all'aperto.</em></h3>
             <p class="body" data-i18n="space.d">La terrazza dove natura e tecnologia si incontrano. Il bancone è stampato in 3D con materiali recuperati: un dettaglio che racconta il nostro modo di guardare alla sostenibilità.</p>
             <p class="note">
               <svg viewBox="0 0 40 22" aria-hidden="true"><path d="M2 12c6-6 12 4 18-1s9-7 14-2M30 5l5 4-6 2"/></svg>
               <span data-i18n="space.d.note">Aperitivo all'aperto</span>
             </p>
+            <button class="scene__sound" type="button" aria-pressed="false">
+              <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span data-i18n="scene.soundOn">Attiva l'audio</span>
+            </button>
           </div>
-        </article>
+          <span class="scene__divider" aria-hidden="true"></span>
+          <div class="scene__media">
+            <video muted playsinline loop preload="metadata" poster="assets/video/dehor-poster.jpg" aria-label="Video: il dehor di Alegre, tra pergola, tavoli e bancone in rame">
+              <source src="assets/video/dehor.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap">
 
         <article class="space">
           <div class="space__media img-reveal">
@@ -437,6 +445,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=12"></script>
+  <script src="assets/js/main.js?v=13"></script>
 </body>
 </html>
