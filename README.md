@@ -18,18 +18,21 @@ python3 -m http.server 8000   # poi apri http://localhost:8000
 | `assets/js/main.js` | Traduzioni IT/EN, header, menu mobile, animazioni, rendering menu |
 | `assets/js/menu-data.js` | **Dati del menu**: modificare qui piatti, prezzi, allergeni |
 
-## Concept visivo
+## Direzione visiva
 
-"The restaurant as a record": dal legame con MOYSA, il sito usa il linguaggio del disco:
-lati (Side A, B…), tracklist, vinile, equalizzatori. Palette satura (yuzu, hibiscus,
-tomato, basil, indigo) su base crema; titoli in Fraunces, testi in Space Grotesk.
+Lusso caldo e sobrio, con un tratto giocoso. Palette presa da logo e spazi: blu notte
+`#2e3a70` e sabbia `#a58c73` del logo, nero legno, avorio carta, grano, velluto bordeaux
+e rame. Titoli in Instrument Serif, testi in Manrope, etichette in Patrick Hand SC (richiama
+la scrittura a mano della carta e del logo). Il logo è in `assets/img/` come PNG trasparente
+usato in maschera, quindi si ricolora via CSS.
 
 ## Da completare prima della pubblicazione
 
 - [ ] Link del sistema di prenotazione → `BOOKING_URL` in `assets/js/main.js`
 - [ ] Orari, telefono, email, Instagram (segnaposto gialli tratteggiati nella pagina)
-- [ ] Fotografie: piatti, chef, sala, terrazza (oggi illustrazioni segnaposto)
-- [ ] Logo ufficiale in SVG (oggi wordmark tipografico)
+- [ ] Fotografie ad alta risoluzione (le attuali sono ricavate da screenshot, max 1170px) e ritratto dello chef
+- [ ] Logo ufficiale in SVG vettoriale
+- [ ] Modalità di accesso al club
 - [ ] Bio dello chef approvata
 - [ ] Verifica allergeni e indicazioni SG/SL con la cucina (vedi nota in `menu-data.js`)
 - [ ] Traduzione EN delle descrizioni dei piatti
