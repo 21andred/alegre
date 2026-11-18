@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/sala.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=15">
+  <link rel="stylesheet" href="assets/css/style.css?v=16">
 
   <script type="application/ld+json">
   {
@@ -120,7 +120,7 @@
       <div class="wrap">
         <div class="concept">
           <div class="reveal">
-            <p class="label"><span class="n">01</span><span data-i18n="concept.label">Il concept</span></p>
+            <p class="label"><span data-i18n="concept.label">Il concept</span></p>
             <h2 class="title" id="concept-title" data-i18n="concept.title">Non solo un ristorante. <em>Un luogo da <span class="brush">vivere</span>.</em></h2>
           </div>
           <div class="reveal" data-delay="1">
@@ -166,10 +166,16 @@
          La sezione è alta più schermi: il contenuto resta fermo (sticky) mentre si scorre.
          Lo schermo si divide in due, a destra il video compare in dissolvenza e parte da solo,
          continuando a scorrere svanisce e si mette in pausa. -->
-    <section class="scene on-dark" id="serata" aria-labelledby="scene-title">
+    <section class="scene scene--reverse on-dark" id="serata" aria-labelledby="scene-title">
       <div class="scene__sticky">
+        <div class="scene__media">
+          <video muted playsinline loop preload="metadata" poster="assets/video/piatti-poster.jpg" aria-label="Video: i piatti di Alegre condivisi al centro del tavolo">
+            <source src="assets/video/piatti.mp4" type="video/mp4">
+          </video>
+        </div>
+        <span class="scene__divider" aria-hidden="true"></span>
         <div class="scene__text">
-          <p class="label"><span class="n">—</span><span data-i18n="scene.label">Una sera ad Alegre</span></p>
+          <p class="label"><span data-i18n="scene.label">Una sera ad Alegre</span></p>
           <h2 class="title" id="scene-title" data-i18n="scene.title">Si comincia a tavola. <em>Poi, si vedrà.</em></h2>
           <p class="body" data-i18n="scene.body">Un brindisi che si allunga, un piatto che passa di mano in mano, la musica che cresce piano. Ad Alegre la cena non ha un orario di fine: ha un ritmo. E a un certo punto, senza accorgertene, sei già dentro la serata.</p>
           <button class="scene__sound" type="button" aria-pressed="false">
@@ -177,27 +183,11 @@
             <span data-i18n="scene.soundOn">Attiva l'audio</span>
           </button>
         </div>
-        <span class="scene__divider" aria-hidden="true"></span>
-        <div class="scene__media">
-          <video muted playsinline loop preload="metadata" poster="assets/video/piatti-poster.jpg" aria-label="Video: i piatti di Alegre condivisi al centro del tavolo">
-            <source src="assets/video/piatti.mp4" type="video/mp4">
-          </video>
-        </div>
       </div>
     </section>
 
     <!-- ================= SPAZI ================= -->
-    <section class="section bg-night on-dark" id="spazi" aria-labelledby="spazi-title">
-      <div class="wrap">
-        <div class="spaces-head reveal">
-          <div>
-            <p class="label"><span class="n">02</span><span data-i18n="spaces.label">Gli spazi</span></p>
-            <h2 class="title" id="spazi-title" data-i18n="spaces.title">Tre anime, <em>un indirizzo.</em></h2>
-          </div>
-          <p class="body" data-i18n="spaces.lead">Ogni ambiente ha il suo ritmo. Scegli il tuo, o lasciati portare dalla serata.</p>
-        </div>
-      </div>
-
+    <section class="section bg-night on-dark" id="spazi" aria-label="Gli spazi">
       <!-- Il Ristorante: scena video guidata dallo scroll, disposizione invertita (video a sx, testo a dx) -->
       <div class="scene scene--reverse" aria-labelledby="scene-r-title">
         <div class="scene__sticky">
@@ -208,7 +198,6 @@
           </div>
           <span class="scene__divider" aria-hidden="true"></span>
           <div class="scene__text">
-            <span class="space__no">i.</span>
             <p class="label"><span data-i18n="space.r.t">Il Ristorante</span></p>
             <h3 class="title" id="scene-r-title" data-i18n="space.r.title">Dove è nato <em>il Fun Dining.</em></h3>
             <p class="body" data-i18n="space.r">Un ambiente sereno ma elevato, dove è nato il nostro concetto di cucina. Luce morbida, legno e una parete di spighe che accompagna la cena.</p>
@@ -229,7 +218,6 @@
       <div class="scene" aria-labelledby="scene-d-title">
         <div class="scene__sticky">
           <div class="scene__text">
-            <span class="space__no">ii.</span>
             <p class="label"><span data-i18n="space.d.t">Il Dehor</span></p>
             <h3 class="title" id="scene-d-title" data-i18n="space.d.title">Natura e tecnologia, <em>all'aperto.</em></h3>
             <p class="body" data-i18n="space.d">La terrazza dove natura e tecnologia si incontrano. Il bancone è stampato in 3D con materiali recuperati: un dettaglio che racconta il nostro modo di guardare alla sostenibilità.</p>
@@ -261,7 +249,6 @@
           </div>
           <span class="scene__divider" aria-hidden="true"></span>
           <div class="scene__text">
-            <span class="space__no">iii.</span>
             <p class="label"><span data-i18n="space.c.t">Il Club</span></p>
             <h3 class="title" id="scene-c-title" data-i18n="space.c.title">Quando la cena <em>diventa serata.</em></h3>
             <p class="body" data-i18n="space.c">Uno spazio riservato, dove mixology, musica e le nostre tapas si uniscono tra le sale e i giardini.</p>
@@ -283,7 +270,7 @@
     <section class="section bg-navy on-dark" id="food" aria-labelledby="food-title">
       <div class="wrap food-grid">
         <div class="sticky reveal">
-          <p class="label"><span class="n">03</span><span data-i18n="food.label">La cucina</span></p>
+          <p class="label"><span data-i18n="food.label">La cucina</span></p>
           <h2 class="title" id="food-title" data-i18n="food.title">Creatività <em>in ogni piatto.</em></h2>
           <p class="body" data-i18n="food.lead">Un viaggio senza confini: culture diverse, combinazioni inattese, una visione riconoscibile. Piatti piccoli da condividere e portate da gustare con calma.</p>
           <div class="food-note">
@@ -326,7 +313,7 @@
           </picture>
         </div>
         <div class="reveal" data-delay="1">
-          <p class="label"><span class="n">04</span><span data-i18n="chef.label">Lo chef</span></p>
+          <p class="label"><span data-i18n="chef.label">Lo chef</span></p>
           <blockquote class="quote" data-i18n="chef.quote">Culture diverse, combinazioni inattese, una sola visione.</blockquote>
           <p class="body" data-i18n="chef.body">Esperienze internazionali e un percorso fuori dagli schemi. La cucina di Matteo Gritti mette in dialogo tecniche e ingredienti di mondi lontani con sapori che riconosci al primo assaggio.</p>
           <p class="signature">Matteo Gritti <small>Executive chef</small></p>
@@ -345,7 +332,7 @@
       </div>
       <div class="wrap">
         <div class="moysa__text reveal">
-          <p class="label"><span class="n">05</span>MOYSA</p>
+          <p class="label">MOYSA</p>
           <h2 class="title" id="moysa-title" data-i18n="moysa.title">Born inside <em>MOYSA.</em></h2>
           <p class="body" data-i18n="moysa.body">Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano: un luogo dove si incontrano artisti e produttori e dove si sperimenta. Lo stesso spirito arriva in tavola, con ritmo, improvvisazione e un pizzico di imprevedibilità.</p>
           <div class="moysa__tags">
@@ -361,7 +348,7 @@
     <section class="section" id="momenti" aria-labelledby="momenti-title">
       <div class="wrap">
         <div class="reveal">
-          <p class="label"><span class="n">06</span><span data-i18n="moments.label">I momenti</span></p>
+          <p class="label"><span data-i18n="moments.label">I momenti</span></p>
           <h2 class="title" id="momenti-title" data-i18n="moments.title">Dal giorno <em>alla sera.</em></h2>
         </div>
         <div class="moments">
@@ -452,6 +439,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=15"></script>
+  <script src="assets/js/main.js?v=16"></script>
 </body>
 </html>

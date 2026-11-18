@@ -441,6 +441,7 @@ p { margin: 0 0 1.45em; }
 
 /* Più aria fra i blocchi di testo */
 .spaces-head { margin-bottom: clamp(70px, 9vw, 130px); }
+#spazi { padding-top: clamp(90px, 12vw, 180px); }
 #spazi .scene { margin-bottom: clamp(90px, 12vw, 180px); }
 #spazi .scene:last-child { margin-bottom: 0; }
 .scene__text .todo-line { margin: 18px 0 0; }
