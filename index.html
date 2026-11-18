@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/sala.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=16">
+  <link rel="stylesheet" href="assets/css/style.css?v=17">
 
   <script type="application/ld+json">
   {
@@ -166,14 +166,8 @@
          La sezione è alta più schermi: il contenuto resta fermo (sticky) mentre si scorre.
          Lo schermo si divide in due, a destra il video compare in dissolvenza e parte da solo,
          continuando a scorrere svanisce e si mette in pausa. -->
-    <section class="scene scene--reverse on-dark" id="serata" aria-labelledby="scene-title">
+    <section class="scene on-dark" id="serata" aria-labelledby="scene-title">
       <div class="scene__sticky">
-        <div class="scene__media">
-          <video muted playsinline loop preload="metadata" poster="assets/video/piatti-poster.jpg" aria-label="Video: i piatti di Alegre condivisi al centro del tavolo">
-            <source src="assets/video/piatti.mp4" type="video/mp4">
-          </video>
-        </div>
-        <span class="scene__divider" aria-hidden="true"></span>
         <div class="scene__text">
           <p class="label"><span data-i18n="scene.label">Una sera ad Alegre</span></p>
           <h2 class="title" id="scene-title" data-i18n="scene.title">Si comincia a tavola. <em>Poi, si vedrà.</em></h2>
@@ -182,6 +176,12 @@
             <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
             <span data-i18n="scene.soundOn">Attiva l'audio</span>
           </button>
+        </div>
+        <span class="scene__divider" aria-hidden="true"></span>
+        <div class="scene__media">
+          <video muted playsinline loop preload="metadata" poster="assets/video/piatti-poster.jpg" aria-label="Video: i piatti di Alegre condivisi al centro del tavolo">
+            <source src="assets/video/piatti.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
@@ -439,6 +439,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=16"></script>
+  <script src="assets/js/main.js?v=17"></script>
 </body>
 </html>
