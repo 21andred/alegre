@@ -693,14 +693,18 @@ p { margin: 0 0 1.45em; }
   }
   .scene__text, .scene--reverse .scene__text {
     position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
-    padding: 0 var(--gutter) calc(84px + env(safe-area-inset-bottom));
+    padding: 0 var(--gutter) calc(80px + env(safe-area-inset-bottom));
   }
   .scene__text .space__no, .scene__text .note { display: none; }
   .scene__text .body + .body { display: none; }
   .scene__text .label { margin-bottom: 14px; }
   .scene__text .title { font-size: clamp(32px, 8.6vw, 46px); margin-bottom: .35em; text-shadow: 0 1px 18px rgba(20,17,14,.5); }
   .scene__text .body { font-size: 15px; line-height: 1.6; margin-bottom: .4em; color: rgba(242,236,226,.82); }
-  .scene__sound { margin-top: 2px; }
+  /* Pulsante audio: solo icona, in alto a destra del blocco di testo, così le scritte scendono */
+  .scene__sound { position: absolute; right: var(--gutter); top: -6px; margin: 0; padding: 10px; border: 1px solid rgba(214,184,138,.45); border-radius: 50%; }
+  .scene__sound .eq { height: 14px; }
+  .scene__sound [data-i18n] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .scene__text .body { margin-bottom: 0; }
   .scene__divider, .scene--reverse .scene__divider { display: none; }
   /* Su telefono la sfocatura dietro l'header è costosa: colore pieno */
   .site-header.is-scrolled { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--ivory); }
