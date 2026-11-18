@@ -1,0 +1,16 @@
+# Configurazione Netlify: sito statico, nessuna build.
+[build]
+  publish = "."
+  command = ""
+
+# Anteprima: chiede ai motori di ricerca di non indicizzare il sito.
+# Da rimuovere quando il sito andrà online sul dominio definitivo.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
