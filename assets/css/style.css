@@ -383,8 +383,13 @@ p { margin: 0 0 1.1em; }
   background: var(--night);
 }
 .scene__sticky {
+  /* Larghezza della colonna video = altezza disponibile in 9:16 (circa 1/3 dello schermo),
+     così il video verticale si vede intero, senza tagli. 68px = altezza dell'header. */
+  --head: 68px;
+  --mw: min(calc((100svh - var(--head)) * 9 / 16), 42vw);
   position: sticky; top: 0; height: 100vh; height: 100svh;
-  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: var(--head);
+  display: grid; grid-template-columns: 1fr var(--mw);
   overflow: hidden;
 }
 .scene__text {
@@ -393,11 +398,11 @@ p { margin: 0 0 1.1em; }
   opacity: var(--text);
   transform: translateY(calc((1 - var(--text)) * 30px));
 }
-.scene__text .title { font-size: clamp(40px, 4.6vw, 76px); }
-.scene__text .body { max-width: 40ch; }
+.scene__text .title { font-size: clamp(44px, 5.4vw, 96px); max-width: 17ch; }
+.scene__text .body { max-width: 48ch; font-size: 17px; }
 
 .scene__divider {
-  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  position: absolute; right: var(--mw); top: var(--head); bottom: 0; width: 1px;
   background: var(--wheat); opacity: .55;
   transform-origin: top; transform: scaleY(var(--split));
 }
@@ -408,13 +413,13 @@ p { margin: 0 0 1.1em; }
   clip-path: inset(calc((1 - var(--split)) * 50%) 0 calc((1 - var(--split)) * 50%) 0);
 }
 .scene__media video {
-  width: 100%; height: 100%; object-fit: cover; display: block;
+  width: 100%; height: 100%; object-fit: contain; background: var(--night); display: block;
   transform: scale(calc(1.08 - var(--video) * .08));
   filter: saturate(.92);
 }
 .scene__media::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(90deg, rgba(20,17,14,.35), transparent 30%);
+  background: none;
 }
 
 .scene__sound {
@@ -663,7 +668,8 @@ p { margin: 0 0 1.1em; }
 
   /* Su schermi stretti la divisione diventa orizzontale: video sopra, testo sotto */
   .scene { height: 300vh; }
-  .scene__sticky { grid-template-columns: 1fr; grid-template-rows: 50% 50%; }
+  .scene__sticky { grid-template-columns: 1fr; grid-template-rows: 50% 50%; padding-top: 0; }
+  .scene__media video { object-fit: cover; }
   .scene__media { grid-row: 1; clip-path: inset(calc((1 - var(--split)) * 100%) 0 0 0); }
   .scene__text { grid-row: 2; align-self: start; padding: 26px var(--gutter) 90px; }
   .scene__text .label { margin-bottom: 12px; }
