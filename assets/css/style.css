@@ -690,16 +690,26 @@ p { margin: 0 0 1.45em; }
   /* Su schermi stretti la divisione diventa orizzontale: video sopra, testo sotto */
   /* Mobile: video a tutto schermo, testo in basso sopra una sfumatura scura */
   .scene { height: 210vh; }
-  .scene__sticky, .scene--reverse .scene__sticky { display: block; }
+  .scene__sticky, .scene--reverse .scene__sticky { display: block; height: 100vh; height: 100dvh; }
   .scene__media { position: absolute; inset: 0; clip-path: none; }
   .scene__media video { object-fit: cover; transform: scale(calc(1.04 - var(--video) * .04)); }
   .scene__media::after {
     content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(0deg, rgba(20,17,14,.96) 0%, rgba(20,17,14,.86) 34%, rgba(20,17,14,.5) 54%, rgba(20,17,14,0) 74%);
+    background: linear-gradient(0deg, rgba(20,17,14,.96) 0%, rgba(20,17,14,.84) 28%, rgba(20,17,14,.45) 46%, rgba(20,17,14,0) 64%);
   }
+  /* Testo diviso in due: etichetta in alto a sx, audio in alto a dx, blocco titolo+testo in basso */
   .scene__text, .scene--reverse .scene__text {
-    position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
-    padding: 0 var(--gutter) calc(80px + env(safe-area-inset-bottom));
+    position: absolute; inset: 0; z-index: 1; align-self: stretch; justify-self: stretch;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 var(--gutter) calc(68px + 18px + env(safe-area-inset-bottom));
+  }
+  .scene__text .label {
+    position: absolute; left: var(--gutter); top: calc(26px + env(safe-area-inset-top));
+    margin: 0; text-shadow: 0 1px 12px rgba(20,17,14,.6);
+  }
+  .scene__media::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 26%; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(20,17,14,.7) 0%, rgba(20,17,14,.35) 45%, rgba(20,17,14,0) 100%);
   }
   .scene__text .space__no, .scene__text .note { display: none; }
   .scene__text .body + .body { display: none; }
@@ -707,7 +717,7 @@ p { margin: 0 0 1.45em; }
   .scene__text .title { font-size: clamp(32px, 8.6vw, 46px); margin-bottom: .35em; text-shadow: 0 1px 18px rgba(20,17,14,.5); }
   .scene__text .body { font-size: 15px; line-height: 1.6; margin-bottom: .4em; color: rgba(242,236,226,.82); }
   /* Pulsante audio: solo icona, in alto a destra del blocco di testo, così le scritte scendono */
-  .scene__sound { position: absolute; right: var(--gutter); top: -6px; margin: 0; padding: 10px; border: 1px solid rgba(214,184,138,.45); border-radius: 50%; }
+  .scene__sound { position: absolute; right: var(--gutter); top: calc(14px + env(safe-area-inset-top)); margin: 0; padding: 10px; border: 1px solid rgba(214,184,138,.45); border-radius: 50%; background: rgba(20,17,14,.25); }
   .scene__sound .eq { height: 14px; }
   .scene__sound [data-i18n] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .scene__text .body { margin-bottom: 0; }
