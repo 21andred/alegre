@@ -1,163 +1,180 @@
 /* =========================================================
-   ALEGRE — script principale
+   ALEGRE MILANO — script principale
    ========================================================= */
 (function () {
   "use strict";
 
   /* ---------- Configurazione ---------- */
-  // Inserire qui il link del sistema di prenotazione effettivo
-  // (es. TheFork, Sevenrooms, OpenTable, Plateform…). Se vuoto, i pulsanti
-  // "Prenota" portano alla sezione contatti della homepage.
+  // Link del sistema di prenotazione effettivo (TheFork, Sevenrooms, ecc.).
+  // Se vuoto, i pulsanti "Prenota" portano alla sezione contatti.
   var BOOKING_URL = "";
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Traduzioni ---------- */
   var I18N = {
     it: {
       "skip": "Vai al contenuto",
-      "nav.concept": "Concept", "nav.food": "Food", "nav.space": "Space",
-      "nav.experiences": "Experiences", "nav.menu": "Menu", "nav.contact": "Contatti",
-      "cta.book": "Prenota un tavolo", "cta.discover": "Scopri Alegre", "cta.menu": "Esplora il menu",
-      "cta.menu.short": "Menu", "cta.home": "Home",
-      "cta.fullmenu": "Ascolta tutto l'album: il menu completo →",
-      "hero.claim": "A <em>different</em> kind of dining experience.",
+      "nav.concept": "Concept", "nav.space": "Spazi", "nav.food": "Cucina",
+      "nav.menu": "Menu", "nav.contact": "Contatti",
+      "cta.book": "Prenota", "cta.bookTable": "Prenota un tavolo", "cta.menu": "Scopri il menu",
+      "cta.fullmenu": "Il menu completo",
+      "hero.claim": "A different kind of dining experience.",
+      "hero.scroll": "Scopri",
 
-      "concept.eyebrow": "Side A · The concept",
-      "concept.title": "Not just a restaurant. <em>A place to experience.</em>",
-      "concept.lead": "Fun dining: la cura del fine dining, senza le sue regole. Qualità, scoperta e convivialità, nello stesso piatto.",
-      "concept.body": "Alegre nasce dentro MOYSA, un hub musicale e studio di registrazione milanese. Qui la cucina è il cuore, mentre musica, design e persone ne allargano il significato. È un posto per pranzare, fare aperitivo o restare a cena, senza formalità.",
-      "pillar.food": "Una cucina senza confini: riferimenti internazionali, sapori riconoscibili, combinazioni inattese.",
-      "pillar.experience": "Fun dining: curato, ma non rigido. Coinvolgente, ma mai artificioso.",
-      "pillar.music": "Il legame con MOYSA: la musica è nel nostro DNA, fin dal primo giorno.",
-      "pillar.space": "Materiali, vegetazione e una terrazza dove natura e tecnologia si incontrano.",
-      "pillar.moments": "Pranzo, aperitivo, cena: ogni momento della giornata ha il suo ritmo.",
+      "concept.label": "Il concept",
+      "concept.title": "Non solo un ristorante. <em>Un luogo da <span class=\"brush\">vivere</span>.</em>",
+      "concept.fun": "Fun dining è",
+      "rot.1": "curiosità.", "rot.2": "convivialità.", "rot.3": "musica.", "rot.4": "sorpresa.", "rot.5": "leggerezza.",
+      "concept.body": "La cura e la precisione della grande cucina, senza la sua rigidità. Ad Alegre si condivide, si assaggia, si resta un po' di più. Un ambiente sereno ma elevato, nato dentro MOYSA, dove la tavola incontra la musica e il design.",
+      "pillar.food.t": "Una cucina senza confini",
+      "pillar.food": "Riferimenti internazionali e sapori riconoscibili, in combinazioni inattese.",
+      "pillar.exp.t": "Curato, mai rigido",
+      "pillar.exp": "Qualità, scoperta e convivialità nello stesso gesto.",
+      "pillar.music.t": "Nato dentro MOYSA",
+      "pillar.music": "Un hub musicale e uno studio di registrazione come casa.",
+      "pillar.space.t": "Natura e materia",
+      "pillar.space": "Legno, spighe, luce calda e una terrazza tra verde e tecnologia.",
 
-      "food.eyebrow": "Side B · The food",
-      "food.title": "Creativity <em>on every plate.</em>",
-      "food.lead": "A journey without borders. Culture diverse, combinazioni inattese, una visione riconoscibile.",
+      "spaces.label": "Gli spazi",
+      "spaces.title": "Tre anime, <em>un indirizzo.</em>",
+      "spaces.lead": "Ogni ambiente ha il suo ritmo. Scegli il tuo, o lasciati portare dalla serata.",
+      "space.r.t": "Il Ristorante",
+      "space.r": "Un ambiente sereno ma elevato, dove è nato il nostro concetto di cucina: il Fun Dining. Luce morbida, legno e una parete di spighe che accompagna la cena.",
+      "space.r.note": "Pranzo e cena",
+      "space.d.t": "Il Dehor",
+      "space.d": "La terrazza dove natura e tecnologia si incontrano. Il bancone è stampato in 3D con materiali recuperati: un dettaglio che racconta il nostro modo di guardare alla sostenibilità.",
+      "space.d.note": "Aperitivo all'aperto",
+      "space.c.t": "Il Club",
+      "space.c": "Uno spazio riservato, dove mixology, musica e le nostre tapas si uniscono tra le sale e i giardini.",
+      "space.c.note": "Club privato",
+
+      "food.label": "La cucina",
+      "food.title": "Creatività <em>in ogni piatto.</em>",
+      "food.lead": "Un viaggio senza confini: culture diverse, combinazioni inattese, una visione riconoscibile. Piatti piccoli da condividere e portate da gustare con calma.",
       "cat.piccoli": "Piatti piccoli", "cat.grandi": "Piatti grandi", "cat.dolci": "Dolci",
-      "dish.pollo": "Un ingrediente familiare, trasformato: dolce, acido e tostato insieme.",
-      "dish.gnocchi": "Una preparazione che conosci, con ingredienti dal carattere deciso.",
-      "dish.crocchette": "Nere fuori, filanti dentro. Il primo assaggio da condividere.",
-      "dish.pannacotta": "Un finale fatto di profumi e contrasti: floreale, fresco, tostato.",
 
-      "chef.eyebrow": "The chef",
-      "chef.quote": "“Different cultures, unexpected combinations, one distinctive vision.”",
-      "chef.body": "Esperienze internazionali e un percorso fuori dagli schemi. La cucina di Matteo mette in dialogo tecniche e ingredienti di mondi diversi con sapori che riconosci al primo assaggio.",
+      "chef.label": "Lo chef",
+      "chef.ph": "Ritratto in arrivo",
+      "chef.quote": "Culture diverse, combinazioni inattese, una sola visione.",
+      "chef.body": "Esperienze internazionali e un percorso fuori dagli schemi. La cucina di Matteo Gritti mette in dialogo tecniche e ingredienti di mondi lontani con sapori che riconosci al primo assaggio.",
 
-      "space.eyebrow": "Side C · The space",
-      "space.title": "Designed <em>to inspire.</em>",
-      "space.lead": "Un ambiente moderno e una terrazza in cui verde, materiali e tecnologia convivono. Da guardare con calma, tra un piatto e l'altro.",
-      "space.terrace": "La terrazza", "space.room": "La sala", "space.materials": "Materiali", "space.details": "Dettagli",
-
-      "moysa.eyebrow": "Side D · The sound",
       "moysa.title": "Born inside <em>MOYSA.</em>",
-      "moysa.lead": "Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano.",
-      "moysa.body": "Un luogo dove si creano dischi, si incontrano artisti e produttori, si sperimenta. Lo stesso spirito arriva in tavola: improvvisazione, ritmo e un pizzico di imprevedibilità.",
-      "moysa.chip2": "Studio di registrazione", "moysa.chip3": "Aperto a tutti",
+      "moysa.body": "Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano: un luogo dove si incontrano artisti e produttori e dove si sperimenta. Lo stesso spirito arriva in tavola, con ritmo, improvvisazione e un pizzico di imprevedibilità.",
+      "moysa.tag2": "Studio di registrazione",
 
-      "exp.eyebrow": "Side E · Experiences",
-      "exp.title": "One place, <em>three rhythms.</em>",
-      "exp.lunch.time": "Mezzogiorno", "exp.aperitivo.time": "Al tramonto", "exp.dinner.time": "La sera",
-      "exp.lunch.body": "Piatti piccoli da condividere, insalatone e portate veloci, anche per una pausa di lavoro.",
-      "exp.aperitivo.body": "In terrazza, quando la città rallenta. Un drink, qualcosa da assaggiare, buona musica.",
-      "exp.dinner.body": "Il fun dining al completo: dal primo piatto piccolo all'ultimo dolce, il menu suona dall'inizio alla fine.",
+      "moments.label": "I momenti",
+      "moments.title": "Dal giorno <em>alla sera.</em>",
+      "moments.lunch.time": "Mezzogiorno", "moments.lunch": "Pranzo",
+      "moments.lunch.body": "Piatti piccoli da condividere, insalatone e portate per una pausa che vale il viaggio.",
+      "moments.aperitivo.time": "Al tramonto",
+      "moments.aperitivo.body": "In dehor, quando la città rallenta: un cocktail, qualcosa da assaggiare, la musica giusta.",
+      "moments.dinner.time": "La sera", "moments.dinner": "Cena",
+      "moments.dinner.body": "Il fun dining al completo, dal primo assaggio all'ultimo dolce. E poi, magari, il club.",
 
-      "book.eyebrow": "Encore",
-      "book.title": "Your table <em>is waiting.</em>",
-      "book.lead": "Prenota online in pochi secondi, oppure passa a trovarci in Via Watt.",
+      "book.title": "Il tuo tavolo <em>ti aspetta.</em>",
+      "book.lead": "Prenota online in pochi secondi, oppure scrivici per eventi e serate private.",
       "info.where": "Dove", "info.when": "Quando", "info.contact": "Contatti",
-      "info.directions": "Indicazioni →", "info.services": "Pranzo · Aperitivo · Cena",
+      "info.directions": "Indicazioni", "info.services": "Pranzo · Aperitivo · Cena",
+      "footer.explore": "Esplora", "footer.inside": "dentro MOYSA",
 
-      "todo.bio": "Biografia completa da validare con lo chef",
-      "todo.hours": "Orari e servizi attivi da confermare (colazione inclusa?)",
+      "todo.club": "Modalità di accesso al club da confermare",
+      "todo.bio": "Biografia e ruolo da validare con lo chef",
+      "todo.hours": "Orari e servizi attivi da confermare",
       "todo.hoursShort": "Orari da inserire",
-      "todo.contacts": "Telefono · email · Instagram da inserire",
-      "todo.booking": "Sistema di prenotazione da collegare",
+      "todo.contacts": "Telefono, email e sistema di prenotazione da inserire",
 
-      "menu.eyebrow": "The full album · tracklist",
-      "menu.title": "The <em>menu.</em>",
-      "menu.lead": "Sei lati, un solo disco. Ordina tanti piatti piccoli da condividere, oppure vai dritto alle portate grandi.",
+      "menu.label": "La carta",
+      "menu.title": "Il <em>menu.</em>",
+      "menu.lead": "Tanti piatti piccoli da condividere al centro del tavolo, oppure una portata grande tutta per te. Le regole, qui, le scegli tu.",
       "filter.sg": "Senza glutine", "filter.sl": "Senza lattosio",
       "menu.empty": "Nessun piatto corrisponde ai filtri selezionati.",
-      "menu.side": "Lato",
-      "allergens.eyebrow": "Liner notes",
-      "allergens.title": "Allergeni <em>&amp; note.</em>",
-      "allergens.note": "SG: senza glutine · SL: senza lattosio · * materia prima surgelata all'origine. Per allergie e intolleranze chiedi sempre al nostro staff prima di ordinare: ti aiuteremo a scegliere.",
-      "badge.all": "Allergeni"
+      "menu.allergens": "Allergeni",
+      "allergens.label": "Note",
+      "allergens.title": "Allergeni <em>&amp; intolleranze.</em>",
+      "allergens.note": "SG: senza glutine · SL: senza lattosio · * materia prima surgelata all'origine. In caso di allergie o intolleranze chiedi sempre al nostro staff prima di ordinare: ti aiuteremo a scegliere."
     },
 
     en: {
       "skip": "Skip to content",
-      "nav.concept": "Concept", "nav.food": "Food", "nav.space": "Space",
-      "nav.experiences": "Experiences", "nav.menu": "Menu", "nav.contact": "Contact",
-      "cta.book": "Book a table", "cta.discover": "Discover Alegre", "cta.menu": "Explore the menu",
-      "cta.menu.short": "Menu", "cta.home": "Home",
-      "cta.fullmenu": "Play the whole album: full menu →",
-      "hero.claim": "A <em>different</em> kind of dining experience.",
+      "nav.concept": "Concept", "nav.space": "Spaces", "nav.food": "Food",
+      "nav.menu": "Menu", "nav.contact": "Contact",
+      "cta.book": "Book", "cta.bookTable": "Book a table", "cta.menu": "Explore the menu",
+      "cta.fullmenu": "The full menu",
+      "hero.claim": "A different kind of dining experience.",
+      "hero.scroll": "Discover",
 
-      "concept.eyebrow": "Side A · The concept",
-      "concept.title": "Not just a restaurant. <em>A place to experience.</em>",
-      "concept.lead": "Fun dining: all the care of fine dining, none of its rules. Quality, discovery and conviviality on the same plate.",
-      "concept.body": "Alegre was born inside MOYSA, a music hub and recording studio in Milan. Food is the heart of it, while music, design and people widen its meaning. Come for lunch, stay for aperitivo, linger over dinner, no formalities.",
-      "pillar.food": "A cuisine without borders: international references, familiar flavours, unexpected combinations.",
-      "pillar.experience": "Fun dining: carefully crafted, never stiff. Engaging, never contrived.",
-      "pillar.music": "Our bond with MOYSA: music has been in our DNA since day one.",
-      "pillar.space": "Materials, greenery and a terrace where nature and technology meet.",
-      "pillar.moments": "Lunch, aperitivo, dinner: every time of day has its own rhythm.",
+      "concept.label": "The concept",
+      "concept.title": "Not just a restaurant. <em>A place to <span class=\"brush\">experience</span>.</em>",
+      "concept.fun": "Fun dining is",
+      "rot.1": "curiosity.", "rot.2": "conviviality.", "rot.3": "music.", "rot.4": "surprise.", "rot.5": "lightness.",
+      "concept.body": "All the care and precision of serious cooking, without the stiffness. At Alegre you share, you taste, you stay a little longer. A serene yet elevated space, born inside MOYSA, where the table meets music and design.",
+      "pillar.food.t": "A cuisine without borders",
+      "pillar.food": "International references and familiar flavours, in unexpected combinations.",
+      "pillar.exp.t": "Crafted, never stiff",
+      "pillar.exp": "Quality, discovery and conviviality in the same gesture.",
+      "pillar.music.t": "Born inside MOYSA",
+      "pillar.music": "A music hub and recording studio we call home.",
+      "pillar.space.t": "Nature and texture",
+      "pillar.space": "Wood, dried grasses, warm light and a terrace between greenery and technology.",
 
-      "food.eyebrow": "Side B · The food",
+      "spaces.label": "The spaces",
+      "spaces.title": "Three souls, <em>one address.</em>",
+      "spaces.lead": "Every room has its own rhythm. Pick yours, or let the evening take you.",
+      "space.r.t": "The Restaurant",
+      "space.r": "A serene yet elevated room, where our way of cooking was born: Fun Dining. Soft light, wood and a wall of wheat that sets the mood for dinner.",
+      "space.r.note": "Lunch and dinner",
+      "space.d.t": "The Terrace",
+      "space.d": "Where nature and technology meet. The bar counter is 3D-printed from reclaimed materials, a detail that speaks to how we think about sustainability.",
+      "space.d.note": "Open-air aperitivo",
+      "space.c.t": "The Club",
+      "space.c": "A private space where mixology, music and our tapas come together across the rooms and gardens.",
+      "space.c.note": "Private club",
+
+      "food.label": "The food",
       "food.title": "Creativity <em>on every plate.</em>",
-      "food.lead": "A journey without borders. Different cultures, unexpected combinations, one distinctive vision.",
+      "food.lead": "A journey without borders: different cultures, unexpected combinations, one distinctive vision. Small plates to share and larger dishes to savour.",
       "cat.piccoli": "Small plates", "cat.grandi": "Large plates", "cat.dolci": "Desserts",
-      "dish.pollo": "A familiar ingredient, transformed: sweet, sour and toasty all at once.",
-      "dish.gnocchi": "A dish you know, with ingredients of bold character.",
-      "dish.crocchette": "Black outside, molten inside. The first bite to share.",
-      "dish.pannacotta": "A finale of scents and contrasts: floral, fresh, toasted.",
 
-      "chef.eyebrow": "The chef",
-      "chef.quote": "“Different cultures, unexpected combinations, one distinctive vision.”",
-      "chef.body": "International experience and an unconventional path. Matteo's cooking brings techniques and ingredients from different worlds into conversation with flavours you recognise from the first bite.",
+      "chef.label": "The chef",
+      "chef.ph": "Portrait coming soon",
+      "chef.quote": "Different cultures, unexpected combinations, one distinctive vision.",
+      "chef.body": "International experience and an unconventional path. Matteo Gritti's cooking brings techniques and ingredients from distant worlds into conversation with flavours you recognise from the first bite.",
 
-      "space.eyebrow": "Side C · The space",
-      "space.title": "Designed <em>to inspire.</em>",
-      "space.lead": "A modern room and a terrace where greenery, materials and technology live together. Take it in slowly, between one plate and the next.",
-      "space.terrace": "The terrace", "space.room": "The room", "space.materials": "Materials", "space.details": "Details",
-
-      "moysa.eyebrow": "Side D · The sound",
       "moysa.title": "Born inside <em>MOYSA.</em>",
-      "moysa.lead": "Alegre lives inside MOYSA, a music hub and recording studio in Milan.",
-      "moysa.body": "A place where records are made, artists and producers meet, ideas get tested. The same spirit reaches the table: improvisation, rhythm and a touch of the unexpected.",
-      "moysa.chip2": "Recording studio", "moysa.chip3": "Open to everyone",
+      "moysa.body": "Alegre lives inside MOYSA, a music hub and recording studio in Milan: a place where artists and producers meet and ideas get tested. The same spirit reaches the table, with rhythm, improvisation and a touch of the unexpected.",
+      "moysa.tag2": "Recording studio",
 
-      "exp.eyebrow": "Side E · Experiences",
-      "exp.title": "One place, <em>three rhythms.</em>",
-      "exp.lunch.time": "Midday", "exp.aperitivo.time": "At sunset", "exp.dinner.time": "Evening",
-      "exp.lunch.body": "Small plates to share, big salads and quicker courses, perfect for a work break too.",
-      "exp.aperitivo.body": "On the terrace, as the city slows down. A drink, something to nibble, good music.",
-      "exp.dinner.body": "The full fun dining experience: from the first small plate to the last dessert, the menu plays start to finish.",
+      "moments.label": "Moments",
+      "moments.title": "From day <em>to night.</em>",
+      "moments.lunch.time": "Midday", "moments.lunch": "Lunch",
+      "moments.lunch.body": "Small plates to share, big salads and dishes that make a lunch break worth the trip.",
+      "moments.aperitivo.time": "At sunset",
+      "moments.aperitivo.body": "On the terrace as the city slows down: a cocktail, something to nibble, the right music.",
+      "moments.dinner.time": "Evening", "moments.dinner": "Dinner",
+      "moments.dinner.body": "The full fun dining experience, from the first bite to the last dessert. And then, perhaps, the club.",
 
-      "book.eyebrow": "Encore",
       "book.title": "Your table <em>is waiting.</em>",
-      "book.lead": "Book online in seconds, or come and find us in Via Watt.",
+      "book.lead": "Book online in seconds, or get in touch for events and private evenings.",
       "info.where": "Where", "info.when": "When", "info.contact": "Contact",
-      "info.directions": "Directions →", "info.services": "Lunch · Aperitivo · Dinner",
+      "info.directions": "Directions", "info.services": "Lunch · Aperitivo · Dinner",
+      "footer.explore": "Explore", "footer.inside": "inside MOYSA",
 
-      "todo.bio": "Full bio to be approved by the chef",
-      "todo.hours": "Opening hours and services to be confirmed (breakfast too?)",
+      "todo.club": "Club access to be confirmed",
+      "todo.bio": "Bio and title to be approved by the chef",
+      "todo.hours": "Opening hours and services to be confirmed",
       "todo.hoursShort": "Opening hours TBC",
-      "todo.contacts": "Phone · email · Instagram TBC",
-      "todo.booking": "Booking system to be connected",
+      "todo.contacts": "Phone, email and booking system TBC",
 
-      "menu.eyebrow": "The full album · tracklist",
+      "menu.label": "The menu",
       "menu.title": "The <em>menu.</em>",
-      "menu.lead": "Six sides, one record. Order lots of small plates to share, or go straight for the large ones.",
+      "menu.lead": "Lots of small plates to share in the middle of the table, or one large dish all to yourself. Here, you make the rules.",
       "filter.sg": "Gluten free", "filter.sl": "Lactose free",
       "menu.empty": "No dishes match the selected filters.",
-      "menu.side": "Side",
-      "allergens.eyebrow": "Liner notes",
-      "allergens.title": "Allergens <em>&amp; notes.</em>",
-      "allergens.note": "SG: gluten free · SL: lactose free · * raw ingredient frozen at source. If you have allergies or intolerances, please always ask our staff before ordering: we'll help you choose.",
-      "badge.all": "Allergens"
+      "menu.allergens": "Allergens",
+      "allergens.label": "Notes",
+      "allergens.title": "Allergens <em>&amp; intolerances.</em>",
+      "allergens.note": "SG: gluten free · SL: lactose free · * raw ingredient frozen at source. If you have allergies or intolerances, please always ask our staff before ordering: we'll help you choose."
     }
   };
 
@@ -189,14 +206,22 @@
     b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang")); });
   });
 
-  /* ---------- Header ---------- */
+  /* ---------- Header + barra prenotazione ---------- */
   var header = document.querySelector(".site-header");
+  var bookBar = document.querySelector(".book-bar");
   var isMenuPage = document.body.classList.contains("page-menu");
+  var hero = document.querySelector(".hero");
+
   function onScroll() {
-    if (!header || isMenuPage) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 40);
+    var y = window.scrollY;
+    if (header && !isMenuPage) {
+      var limit = hero ? hero.offsetHeight - 90 : 40;
+      header.classList.toggle("is-scrolled", y > limit);
+    }
+    if (bookBar && !isMenuPage) bookBar.classList.toggle("is-visible", y > window.innerHeight * 0.6);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
   onScroll();
 
   /* ---------- Menu mobile ---------- */
@@ -220,15 +245,55 @@
     });
   }
 
+  /* ---------- Luce calda che segue il cursore (hero) ---------- */
+  var glow = document.querySelector(".hero__glow");
+  if (hero && glow && !reduceMotion) {
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      glow.style.setProperty("--gx", ((e.clientX - r.left) / r.width * 100) + "%");
+      glow.style.setProperty("--gy", ((e.clientY - r.top) / r.height * 100) + "%");
+    });
+  }
+
+  /* ---------- Parola che ruota ---------- */
+  var rot = document.querySelector(".rotator");
+  if (rot && !reduceMotion) {
+    var idx = 0;
+    setInterval(function () {
+      var words = rot.querySelectorAll("span");
+      words[idx].classList.remove("is-on");
+      idx = (idx + 1) % words.length;
+      words[idx].classList.add("is-on");
+    }, 2200);
+  }
+
+  /* ---------- Parallasse leggera ---------- */
+  var par = document.querySelector("[data-parallax]");
+  if (par && !reduceMotion) {
+    var parSection = par.closest("section");
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () {
+        var r = parSection.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) {
+          var p = (r.top + r.height) / (window.innerHeight + r.height);
+          par.style.transform = "translateY(" + ((p - 0.5) * 12) + "%)";
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
   /* ---------- Reveal on scroll ---------- */
-  function observeReveals(root) {
-    var els = (root || document).querySelectorAll(".reveal:not(.is-in)");
+  function observeReveals() {
+    var els = document.querySelectorAll(".reveal:not(.is-in), .img-reveal:not(.is-in)");
     if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("is-in"); }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
     els.forEach(function (el) { io.observe(el); });
   }
 
@@ -236,7 +301,7 @@
   var filters = { sg: false, sl: false };
 
   function fmtPrice(p) {
-    var s = Number.isInteger(p) ? String(p) : p.toFixed(2).replace(/0$/, "");
+    var s = Number.isInteger(p) ? String(p) : p.toFixed(1);
     return (lang === "it" ? s.replace(".", ",") : s) + " €";
   }
   function esc(s) {
@@ -250,24 +315,23 @@
     if (!root || !data) return;
 
     tabs.innerHTML = data.sections.map(function (s) {
-      return '<a class="pill" href="#' + s.id + '"><b>' + s.side + "</b>" + esc(s.title[lang]) + "</a>";
+      return '<a href="#' + s.id + '">' + esc(s.title[lang]) + "</a>";
     }).join("");
 
     var html = "";
     data.sections.forEach(function (s) {
-      var n = 0;
+      var visible = 0;
       var items = s.items.map(function (it) {
-        n++;
         var show = (!filters.sg || it.sg) && (!filters.sl || it.sl);
+        if (show) visible++;
         var meta = "";
-        if (it.sg) meta += '<span class="badge badge--sg">SG</span>';
-        if (it.sl) meta += '<span class="badge badge--sl">SL</span>';
+        if (it.sg) meta += '<span class="tag">SG</span>';
+        if (it.sl) meta += '<span class="tag">SL</span>';
         if (it.all && it.all.length) {
           var names = it.all.map(function (a) { return data.allergens[a][lang]; }).join(", ");
-          meta += '<span class="badge badge--all" title="' + esc(names) + '">' + t("badge.all") + " " + it.all.join(" · ") + "</span>";
+          meta += '<span class="all" title="' + esc(names) + '">' + t("menu.allergens") + " " + it.all.join(" · ") + "</span>";
         }
         return '<li class="menu-item"' + (show ? "" : " hidden") + ">" +
-          '<span class="menu-item__no">' + String(n).padStart(2, "0") + "</span>" +
           '<h3 class="menu-item__name">' + esc(it.name) + (it.frozen ? "<sup>*</sup>" : "") + "</h3>" +
           '<span class="menu-item__price">' + fmtPrice(it.price) + "</span>" +
           (it.desc ? '<p class="menu-item__desc">' + esc(it.desc) + "</p>" : "") +
@@ -275,14 +339,11 @@
           "</li>";
       }).join("");
 
-      var visible = s.items.some(function (it) { return (!filters.sg || it.sg) && (!filters.sl || it.sl); });
-
-      html += '<section class="menu-section" id="' + s.id + '" data-color="' + s.color + '" aria-labelledby="t-' + s.id + '">' +
+      html += '<section class="menu-section" id="' + s.id + '" aria-labelledby="t-' + s.id + '">' +
         '<div class="wrap">' +
         '<div class="menu-section__head">' +
-        '<div class="side-disc" aria-hidden="true">' + s.side + "</div>" +
         '<h2 class="menu-section__title" id="t-' + s.id + '">' + esc(s.title[lang]) + "</h2>" +
-        (s.note ? '<p class="menu-section__note">' + esc(s.note[lang]) + "</p>" : "<p class=\"menu-section__note\">" + t("menu.side") + " " + s.side + "</p>") +
+        (s.note ? '<p class="menu-section__note">' + esc(s.note[lang]) + "</p>" : "") +
         "</div>" +
         '<ul class="menu-list">' + items + (visible ? "" : '<li class="menu-empty">' + t("menu.empty") + "</li>") + "</ul>" +
         "</div></section>";
@@ -295,7 +356,8 @@
         return "<li><b>" + k + "</b>" + esc(data.allergens[k][lang]) + "</li>";
       }).join("");
     }
-    highlightTab(true);
+    lastActive = null;
+    highlightTab();
   }
 
   document.querySelectorAll("[data-filter]").forEach(function (b) {
@@ -308,20 +370,20 @@
   });
 
   var lastActive = null;
-  function highlightTab(force) {
-    var tabs = document.querySelectorAll("#menu-tabs .pill");
+  function highlightTab() {
+    var tabs = document.querySelectorAll("#menu-tabs a");
     if (!tabs.length) return;
     var current = null;
     document.querySelectorAll(".menu-section").forEach(function (sec) {
-      if (sec.getBoundingClientRect().top < 200) current = sec.id;
+      if (sec.getBoundingClientRect().top < 220) current = sec.id;
     });
-    if (current === lastActive && force !== true) return;
+    if (current === lastActive) return;
     lastActive = current;
     tabs.forEach(function (tab) {
       var on = tab.getAttribute("href") === "#" + current;
       tab.classList.toggle("is-active", on);
       if (on && tab.parentElement.scrollWidth > tab.parentElement.clientWidth) {
-        tab.parentElement.scrollTo({ left: tab.offsetLeft - 16, behavior: "smooth" });
+        tab.parentElement.scrollTo({ left: tab.offsetLeft - 20, behavior: "smooth" });
       }
     });
   }
