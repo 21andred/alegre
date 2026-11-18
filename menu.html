@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Menu — Alegre · Fun Dining Milano</title>
+  <meta name="description" content="Il menu di Alegre: piatti piccoli da condividere, piatti grandi, insalatone, dolci e bevande. Opzioni senza glutine e senza lattosio. Via Giacomo Watt 32, Milano.">
+  <meta name="theme-color" content="#ffd23a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23ffd23a'/%3E%3Ctext x='50' y='72' font-family='Georgia' font-style='italic' font-weight='700' font-size='70' text-anchor='middle' fill='%2317120e'%3Ea%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-menu">
+  <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
+
+  <header class="site-header is-scrolled" id="top">
+    <div class="wrap">
+      <a class="logo" href="index.html" aria-label="Alegre, home">alegre<span class="dot"></span></a>
+      <nav class="nav" aria-label="Principale">
+        <a href="index.html#concept" data-i18n="nav.concept">Concept</a>
+        <a href="index.html#food" data-i18n="nav.food">Food</a>
+        <a href="index.html#space" data-i18n="nav.space">Space</a>
+        <a href="index.html#experiences" data-i18n="nav.experiences">Experiences</a>
+        <a href="menu.html" aria-current="page" data-i18n="nav.menu">Menu</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Lingua / Language">
+          <button type="button" data-lang="it" aria-pressed="true">IT</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--pink" href="index.html#prenota" data-booking data-i18n="cta.book">Prenota un tavolo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Apri il menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
+    <a href="index.html#concept"><small>01</small><span data-i18n="nav.concept">Concept</span></a>
+    <a href="index.html#food"><small>02</small><span data-i18n="nav.food">Food</span></a>
+    <a href="index.html#space"><small>03</small><span data-i18n="nav.space">Space</span></a>
+    <a href="index.html#experiences"><small>04</small><span data-i18n="nav.experiences">Experiences</span></a>
+    <a href="menu.html"><small>05</small><span data-i18n="nav.menu">Menu</span></a>
+    <a href="index.html#prenota"><small>06</small><span data-i18n="nav.contact">Contatti</span></a>
+  </nav>
+
+  <div class="book-bar">
+    <a class="btn btn--paper" href="index.html" data-i18n="cta.home">Home</a>
+    <a class="btn btn--pink" href="index.html#prenota" data-booking data-i18n="cta.book">Prenota un tavolo</a>
+  </div>
+
+  <main id="main">
+    <section class="menu-hero">
+      <div class="vinyl-mini" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="menu.eyebrow">The full album · tracklist</p>
+        <div class="menu-hero__row">
+          <h1 class="display" data-i18n="menu.title">The <em>menu.</em></h1>
+          <p class="lead" data-i18n="menu.lead">Sei lati, un solo disco. Ordina tanti piatti piccoli da condividere, oppure vai dritto alle portate grandi.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="menu-bar">
+      <div class="wrap">
+        <nav class="menu-tabs" id="menu-tabs" aria-label="Sezioni del menu"></nav>
+        <div class="menu-filters" role="group" aria-label="Filtri">
+          <button class="pill" type="button" data-filter="sg" aria-pressed="false"><b>SG</b><span data-i18n="filter.sg">Senza glutine</span></button>
+          <button class="pill" type="button" data-filter="sl" aria-pressed="false"><b>SL</b><span data-i18n="filter.sl">Senza lattosio</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="menu-root"></div>
+
+    <section class="allergen-legend" aria-labelledby="allergen-title">
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="allergens.eyebrow">Liner notes</p>
+        <h2 class="h2" id="allergen-title" data-i18n="allergens.title">Allergeni <em>&amp; note.</em></h2>
+        <ol id="allergen-list"></ol>
+        <p class="small" data-i18n="allergens.note">SG: senza glutine · SL: senza lattosio · * materia prima surgelata all'origine. Per allergie e intolleranze chiedi sempre al nostro staff prima di ordinare: ti aiuteremo a scegliere.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <nav class="footer-links" aria-label="Footer">
+          <a href="index.html#concept" data-i18n="nav.concept">Concept</a>
+          <a href="index.html#food" data-i18n="nav.food">Food</a>
+          <a href="index.html#space" data-i18n="nav.space">Space</a>
+          <a href="index.html#experiences" data-i18n="nav.experiences">Experiences</a>
+          <a href="menu.html" data-i18n="nav.menu">Menu</a>
+        </nav>
+        <p style="margin:0">Via Giacomo Watt 32 · Milano</p>
+      </div>
+      <p class="footer-word" aria-hidden="true">alegre</p>
+      <div class="footer-bottom">
+        <span>Beyond dining. Beyond expectations.</span>
+        <span>© <span data-year>2026</span> Alegre</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
