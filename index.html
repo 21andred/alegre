@@ -162,6 +162,30 @@
       </div>
     </section>
 
+    <!-- ================= SCENA VIDEO (a sorpresa, guidata dallo scroll) =================
+         La sezione è alta più schermi: il contenuto resta fermo (sticky) mentre si scorre.
+         Lo schermo si divide in due, a destra il video compare in dissolvenza e parte da solo,
+         continuando a scorrere svanisce e si mette in pausa. -->
+    <section class="scene on-dark" id="serata" aria-labelledby="scene-title">
+      <div class="scene__sticky">
+        <div class="scene__text">
+          <p class="label"><span class="n">—</span><span data-i18n="scene.label">Una sera ad Alegre</span></p>
+          <h2 class="title" id="scene-title" data-i18n="scene.title">Si comincia a tavola. <em>Poi, si vedrà.</em></h2>
+          <p class="body" data-i18n="scene.body">Un brindisi che si allunga, un piatto che passa di mano in mano, la musica che cresce piano. Ad Alegre la cena non ha un orario di fine: ha un ritmo. E a un certo punto, senza accorgertene, sei già dentro la serata.</p>
+          <button class="scene__sound" type="button" aria-pressed="false">
+            <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span data-i18n="scene.soundOn">Attiva l'audio</span>
+          </button>
+        </div>
+        <span class="scene__divider" aria-hidden="true"></span>
+        <div class="scene__media">
+          <video muted playsinline loop preload="metadata" poster="assets/video/serata-poster.jpg" aria-label="Video: una serata ad Alegre, tra cena, brindisi, cocktail e musica">
+            <source src="assets/video/serata.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= SPAZI ================= -->
     <section class="section bg-night on-dark" id="spazi" aria-labelledby="spazi-title">
       <div class="wrap">

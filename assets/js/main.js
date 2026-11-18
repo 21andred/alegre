@@ -36,6 +36,11 @@
       "pillar.space.t": "Natura e materia",
       "pillar.space": "Legno, spighe, luce calda e una terrazza tra verde e tecnologia.",
 
+      "scene.label": "Una sera ad Alegre",
+      "scene.title": "Si comincia a tavola. <em>Poi, si vedrà.</em>",
+      "scene.body": "Un brindisi che si allunga, un piatto che passa di mano in mano, la musica che cresce piano. Ad Alegre la cena non ha un orario di fine: ha un ritmo. E a un certo punto, senza accorgertene, sei già dentro la serata.",
+      "scene.soundOn": "Attiva l'audio", "scene.soundOff": "Disattiva l'audio",
+
       "spaces.label": "Gli spazi",
       "spaces.title": "Tre anime, <em>un indirizzo.</em>",
       "spaces.lead": "Ogni ambiente ha il suo ritmo. Scegli il tuo, o lasciati portare dalla serata.",
@@ -117,6 +122,11 @@
       "pillar.music": "A music hub and recording studio we call home.",
       "pillar.space.t": "Nature and texture",
       "pillar.space": "Wood, dried grasses, warm light and a terrace between greenery and technology.",
+
+      "scene.label": "An evening at Alegre",
+      "scene.title": "It starts at the table. <em>Then, we'll see.</em>",
+      "scene.body": "A toast that lasts a little longer, a plate passed from hand to hand, music slowly rising. At Alegre dinner has no closing time, it has a rhythm. And at some point, without noticing, you're already part of the night.",
+      "scene.soundOn": "Sound on", "scene.soundOff": "Sound off",
 
       "spaces.label": "The spaces",
       "spaces.title": "Three souls, <em>one address.</em>",
@@ -283,6 +293,65 @@
         ticking = false;
       });
     }, { passive: true });
+  }
+
+  /* ---------- Scena video guidata dallo scroll ----------
+     Fasi (progresso 0→1 della sezione):
+     0.02–0.18  la linea divide lo schermo
+     0.10–0.26  compare il testo         0.80–0.94  svanisce
+     0.20–0.36  compare il video (play)  0.76–0.90  svanisce (pausa) */
+  var scene = document.querySelector(".scene");
+  if (scene) {
+    var video = scene.querySelector("video");
+    var soundBtn = scene.querySelector(".scene__sound");
+    var wasHidden = true;
+    var ramp = function (p, a, b) { return Math.min(1, Math.max(0, (p - a) / (b - a))); };
+
+    var updateScene = function () {
+      var r = scene.getBoundingClientRect();
+      var range = scene.offsetHeight - window.innerHeight;
+      var p = range > 0 ? Math.min(1, Math.max(0, -r.top / range)) : 0;
+      var onScreen = r.bottom > 0 && r.top < window.innerHeight;
+      var split = ramp(p, 0.02, 0.18);
+      var text = Math.min(ramp(p, 0.10, 0.26), 1 - ramp(p, 0.80, 0.94));
+      var vid = Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
+      scene.style.setProperty("--split", split.toFixed(3));
+      scene.style.setProperty("--text", text.toFixed(3));
+      scene.style.setProperty("--video", vid.toFixed(3));
+
+      if (!video) return;
+      if (onScreen && vid > 0.02) {
+        if (wasHidden) { try { video.currentTime = 0; } catch (e) {} wasHidden = false; }
+        if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      } else {
+        if (!video.paused) video.pause();
+        if (vid === 0) wasHidden = true;
+      }
+    };
+
+    if (reduceMotion) {
+      if (video) { video.controls = true; video.removeAttribute("loop"); }
+    } else {
+      var sceneTick = false;
+      window.addEventListener("scroll", function () {
+        if (sceneTick) return; sceneTick = true;
+        requestAnimationFrame(function () { updateScene(); sceneTick = false; });
+      }, { passive: true });
+      window.addEventListener("resize", updateScene);
+      updateScene();
+    }
+
+    if (soundBtn && video) {
+      soundBtn.addEventListener("click", function () {
+        video.muted = !video.muted;
+        var on = !video.muted;
+        soundBtn.setAttribute("aria-pressed", String(on));
+        var lbl = soundBtn.querySelector("[data-i18n]");
+        lbl.setAttribute("data-i18n", on ? "scene.soundOff" : "scene.soundOn");
+        lbl.innerHTML = t(on ? "scene.soundOff" : "scene.soundOn");
+        if (on && video.paused && !reduceMotion) video.play();
+      });
+    }
   }
 
   /* ---------- Reveal on scroll ---------- */

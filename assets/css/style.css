@@ -374,6 +374,58 @@ p { margin: 0 0 1.1em; }
 .pillar h3 { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.1; margin: 0 0 12px; }
 .pillar p { font-size: 15px; color: var(--muted); margin: 0; }
 
+/* ---------- Scena video guidata dallo scroll ---------- */
+/* JS imposta --split (0→1), --text e --video (opacità 0→1→0) */
+
+.scene {
+  --split: 0; --text: 0; --video: 0;
+  position: relative; height: 340vh;
+  background: var(--night);
+}
+.scene__sticky {
+  position: sticky; top: 0; height: 100vh; height: 100svh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+.scene__text {
+  align-self: center;
+  padding: 0 clamp(28px, 6vw, 110px) 0 max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  opacity: var(--text);
+  transform: translateY(calc((1 - var(--text)) * 30px));
+}
+.scene__text .title { font-size: clamp(40px, 4.6vw, 76px); }
+.scene__text .body { max-width: 40ch; }
+
+.scene__divider {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: var(--wheat); opacity: .55;
+  transform-origin: top; transform: scaleY(var(--split));
+}
+
+.scene__media {
+  position: relative; overflow: hidden;
+  opacity: var(--video);
+  clip-path: inset(calc((1 - var(--split)) * 50%) 0 calc((1 - var(--split)) * 50%) 0);
+}
+.scene__media video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transform: scale(calc(1.08 - var(--video) * .08));
+  filter: saturate(.92);
+}
+.scene__media::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(20,17,14,.35), transparent 30%);
+}
+
+.scene__sound {
+  margin-top: 18px;
+  display: inline-flex; align-items: center; gap: 12px;
+  background: none; border: 0; padding: 8px 0; cursor: pointer;
+  font-family: var(--hand); font-size: 14px; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--wheat);
+}
+.scene__sound[aria-pressed="false"] .eq i { animation-play-state: paused; height: 30%; }
+
 /* ---------- Spazi ---------- */
 
 .spaces-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; flex-wrap: wrap; margin-bottom: clamp(60px, 8vw, 120px); }
@@ -608,6 +660,18 @@ p { margin: 0 0 1.1em; }
   .brand { width: 100px; }
 
   .concept, .food-grid, .chef { grid-template-columns: 1fr; }
+
+  /* Su schermi stretti la divisione diventa orizzontale: video sopra, testo sotto */
+  .scene { height: 300vh; }
+  .scene__sticky { grid-template-columns: 1fr; grid-template-rows: 50% 50%; }
+  .scene__media { grid-row: 1; clip-path: inset(calc((1 - var(--split)) * 100%) 0 0 0); }
+  .scene__text { grid-row: 2; align-self: start; padding: 26px var(--gutter) 90px; }
+  .scene__text .label { margin-bottom: 12px; }
+  .scene__text .title { font-size: clamp(30px, 8vw, 44px); margin-bottom: .3em; }
+  .scene__text .body { font-size: 14.5px; line-height: 1.55; margin-bottom: .6em; }
+  .scene__sound { margin-top: 4px; }
+  .scene__divider { left: 0; right: 0; top: 50%; bottom: auto; width: auto; height: 1px; transform-origin: center; transform: scaleX(var(--split)); }
+  .scene__media::after { background: linear-gradient(0deg, rgba(20,17,14,.45), transparent 30%); }
   .food-grid .sticky { position: static; }
   .space, .space--flip { grid-template-columns: 1fr; gap: 36px; }
   .space__media, .space--flip .space__media { grid-column: 1; grid-row: 1; aspect-ratio: 4 / 4.4; }
@@ -645,4 +709,6 @@ p { margin: 0 0 1.1em; }
   .reveal { opacity: 1; transform: none; }
   .hero__logo { clip-path: none; }
   .hero__claim, .hero__ctas { opacity: 1; }
+  .scene { height: auto; --split: 1 !important; --text: 1 !important; --video: 1 !important; }
+  .scene__sticky { position: relative; min-height: 100vh; }
 }
