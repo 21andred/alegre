@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/sala.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=14">
+  <link rel="stylesheet" href="assets/css/style.css?v=15">
 
   <script type="application/ld+json">
   {
@@ -319,9 +319,11 @@
     <!-- ================= CHEF ================= -->
     <section class="section bg-paper" id="chef" aria-labelledby="chef-title">
       <div class="wrap chef">
-        <div class="chef__portrait img-reveal" role="img" aria-label="Ritratto dello chef (in arrivo)">
-          <span class="logo-mark"></span>
-          <span class="ph" data-i18n="chef.ph">Ritratto in arrivo</span>
+        <div class="chef__portrait img-reveal">
+          <picture>
+            <source srcset="assets/img/chef.webp" type="image/webp">
+            <img src="assets/img/chef.jpg" alt="Ritratto dello chef Matteo Gritti, sorridente, con la maglietta Alegre Milano" loading="lazy" width="1440" height="1800">
+          </picture>
         </div>
         <div class="reveal" data-delay="1">
           <p class="label"><span class="n">04</span><span data-i18n="chef.label">Lo chef</span></p>
@@ -450,6 +452,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=14"></script>
+  <script src="assets/js/main.js?v=15"></script>
 </body>
 </html>

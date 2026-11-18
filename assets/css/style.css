@@ -503,17 +503,12 @@ p { margin: 0 0 1.45em; }
 
 .chef { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(48px, 8vw, 140px); align-items: center; }
 .chef__portrait {
-  aspect-ratio: 4 / 5; background: var(--sand); position: relative; overflow: hidden;
-  display: grid; place-items: center; color: var(--ivory);
+  aspect-ratio: 4 / 5; background: var(--night); position: relative; overflow: hidden;
+  --reveal-bg: var(--paper);
 }
-.chef__portrait::before {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(255,255,255,.18), transparent 70%), linear-gradient(180deg, transparent 50%, rgba(20,17,14,.25));
-}
-.chef__portrait .logo-mark { width: 52%; opacity: .5; position: relative; }
-.chef__portrait .ph {
-  position: absolute; left: 22px; bottom: 20px;
-  font-family: var(--hand); font-size: 13px; letter-spacing: .22em; text-transform: uppercase;
+.chef__portrait picture, .chef__portrait img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 50%;
 }
 .quote {
   font-family: var(--serif); font-style: italic; font-size: clamp(28px, 3vw, 44px); line-height: 1.15;
