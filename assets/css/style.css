@@ -691,7 +691,9 @@ p { margin: 0 0 1.45em; }
   /* Mobile: video a tutto schermo, testo in basso sopra una sfumatura scura */
   .scene { height: 210vh; }
   .scene__sticky, .scene--reverse .scene__sticky { display: block; height: 100vh; height: 100dvh; }
-  .scene__media { position: absolute; inset: 0; clip-path: none; }
+  .scene__media { position: absolute; inset: 0; clip-path: none; opacity: 0; transition: opacity 1s var(--ease); }
+  .scene.is-live .scene__media { opacity: 1; }
+  .scene__text { transition: opacity .35s linear; }
   .scene__media video { object-fit: cover; transform: scale(calc(1.04 - var(--video) * .04)); }
   .scene__media::after {
     content: ""; position: absolute; inset: 0; pointer-events: none;

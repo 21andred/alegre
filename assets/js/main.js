@@ -338,10 +338,12 @@
 
   function applyScene(sc, m) {
     var p = m.p;
+    var mobile = mobileMQ.matches;
     var split = ramp(p, 0.02, 0.18);
-    var text = Math.min(ramp(p, 0.10, 0.26), 1 - ramp(p, 0.80, 0.94));
-    var vid = mobileMQ.matches ? (m.onScreen ? 1 : 0)
-                               : Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
+    // Mobile: il testo compare e poi resta, uscendo dallo schermo insieme al video.
+    var text = mobile ? ramp(p, 0.02, 0.14)
+                      : Math.min(ramp(p, 0.10, 0.26), 1 - ramp(p, 0.80, 0.94));
+    var vid = mobile ? 1 : Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
     var key = split.toFixed(3) + "|" + text.toFixed(3) + "|" + vid.toFixed(3);
     if (key !== sc.last) {
       sc.last = key;
@@ -354,6 +356,27 @@
     if (!video) return;
     // precarica il video quando la scena si avvicina, così è pronto quando compare
     if (m.near && !sc.primed) { sc.primed = true; video.preload = "auto"; try { video.load(); } catch (e) {} }
+
+    // Mobile: 1 secondo di nero dopo l'ingresso della scena, poi il video compare in dissolvenza e parte.
+    if (mobile) {
+      if (m.onScreen) {
+        if (!sc.live && !sc.timer) {
+          sc.timer = setTimeout(function () {
+            sc.timer = null; sc.live = true;
+            try { video.currentTime = 0; } catch (e) {}
+            var pr = video.play(); if (pr && pr.catch) pr.catch(function () {});
+            sc.el.classList.add("is-live");
+          }, 1000);
+        }
+      } else {
+        if (sc.timer) { clearTimeout(sc.timer); sc.timer = null; }
+        if (sc.live) { sc.live = false; sc.el.classList.remove("is-live"); }
+        if (!video.paused) video.pause();
+      }
+      return;
+    }
+    if (sc.live || sc.timer) { clearTimeout(sc.timer); sc.timer = null; sc.live = false; sc.el.classList.remove("is-live"); }
+
     if (m.onScreen && vid > 0.02) {
       if (sc.wasHidden) { try { video.currentTime = 0; } catch (e) {} sc.wasHidden = false; }
       if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
