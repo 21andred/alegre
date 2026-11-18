@@ -437,6 +437,28 @@
     });
   }
 
+  /* ---------- Piatti in cerchio: movimento leggero allo scorrimento ---------- */
+  function initPlates() {
+    if (reduceMotion) return;
+    var tick = false;
+    function update() {
+      var vh = window.innerHeight;
+      var els = document.querySelectorAll("[data-speed]");
+      var reads = [];
+      els.forEach(function (el) { reads.push(el.getBoundingClientRect()); });
+      els.forEach(function (el, i) {
+        var r = reads[i];
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var off = (r.top + r.height / 2 - vh / 2) * parseFloat(el.getAttribute("data-speed"));
+        el.style.setProperty("--py", off.toFixed(1) + "px");
+      });
+      tick = false;
+    }
+    window.addEventListener("scroll", function () { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
   /* ---------- Reveal on scroll ---------- */
   function observeReveals() {
     var els = document.querySelectorAll(".reveal:not(.is-in), .img-reveal:not(.is-in)");
@@ -493,9 +515,14 @@
 
       html += '<section class="menu-section" id="' + s.id + '" aria-labelledby="t-' + s.id + '">' +
         '<div class="wrap">' +
-        '<div class="menu-section__head">' +
+        '<div class="menu-section__head' + (s.photo ? " has-plate" : "") + '">' +
+        '<div class="menu-section__heading">' +
         '<h2 class="menu-section__title" id="t-' + s.id + '">' + esc(s.title[lang]) + "</h2>" +
         (s.note ? '<p class="menu-section__note">' + esc(s.note[lang]) + "</p>" : "") +
+        "</div>" +
+        (s.photo ? '<figure class="plate plate--' + s.photo.size + '" data-speed="' + s.photo.speed + '">' +
+          '<picture><source srcset="assets/img/piatti/' + s.photo.src + '.webp" type="image/webp">' +
+          '<img src="assets/img/piatti/' + s.photo.src + '.jpg" alt="' + esc(s.photo.alt[lang]) + '" width="900" height="900" loading="lazy"></picture></figure>' : "") +
         "</div>" +
         '<ul class="menu-list">' + items + (visible ? "" : '<li class="menu-empty">' + t("menu.empty") + "</li>") + "</ul>" +
         "</div></section>";
@@ -546,4 +573,5 @@
 
   applyLang(lang);
   observeReveals();
+  if (document.querySelector("[data-speed]")) initPlates();
 })();

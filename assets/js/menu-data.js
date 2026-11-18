@@ -60,6 +60,7 @@ window.ALEGRE_MENU = {
     {
       id: "grandi",
       side: "B",
+      photo: { src: "carne", size: "l", speed: 0.08, alt: { it: "Piatto di carne con salse colorate a strisce e una quenelle", en: "Meat dish with colourful striped sauces and a quenelle" } },
       color: "tomato",
       title: { it: "Piatti grandi", en: "Large plates" },
       note: { it: "Le portate principali: mare, terra e contaminazioni.", en: "Main courses: sea, land and everything in between." },
@@ -81,6 +82,7 @@ window.ALEGRE_MENU = {
     {
       id: "insalatone",
       side: "C",
+      photo: { src: "zucca", size: "s", speed: -0.06, alt: { it: "Zucca arrosto con cavolo nero, formaggio fresco e semi di zucca", en: "Roast pumpkin with cavolo nero, fresh cheese and pumpkin seeds" } },
       color: "basil",
       title: { it: "Insalatone", en: "Big salads" },
       note: { it: "Fresche, piene, colorate.", en: "Fresh, generous, colourful." },
@@ -94,6 +96,7 @@ window.ALEGRE_MENU = {
     {
       id: "dolci",
       side: "D",
+      photo: { src: "dolce-riso", size: "m", speed: 0.06, alt: { it: "Dolce di riso cremoso con una spirale di salsa ai frutti rossi", en: "Creamy rice pudding with a swirl of red berry sauce" } },
       color: "hibiscus",
       title: { it: "Dolci", en: "Desserts" },
       note: { it: "Il finale, con un ultimo colpo di scena.", en: "The finale, with one last twist." },
