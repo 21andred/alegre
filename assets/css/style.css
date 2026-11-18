@@ -379,7 +379,7 @@ p { margin: 0 0 1.45em; }
 
 .scene {
   --split: 0; --text: 0; --video: 0;
-  position: relative; height: 340vh;
+  position: relative; height: 250vh;
   background: var(--night);
 }
 .scene__sticky {
@@ -396,6 +396,7 @@ p { margin: 0 0 1.45em; }
   padding: 0 clamp(36px, 6vw, 120px) 0 max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
   opacity: var(--text);
   transform: translateY(calc((1 - var(--text)) * 30px));
+  will-change: opacity, transform;
 }
 .scene__text .label { margin-bottom: 36px; }
 .scene__text .title { font-size: clamp(42px, 4.8vw, 88px); max-width: 15ch; margin-bottom: .7em; }
@@ -412,12 +413,13 @@ p { margin: 0 0 1.45em; }
 .scene__media {
   position: relative; overflow: hidden;
   opacity: var(--video);
+  will-change: opacity;
   clip-path: inset(calc((1 - var(--split)) * 50%) 0 calc((1 - var(--split)) * 50%) 0);
 }
 .scene__media video {
   width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;
   transform: scale(calc(1.06 - var(--video) * .06));
-  filter: saturate(.92);
+  will-change: transform;
 }
 
 /* Variante invertita: video a sinistra, testo a destra */
@@ -680,19 +682,29 @@ p { margin: 0 0 1.45em; }
   .concept, .food-grid, .chef { grid-template-columns: 1fr; }
 
   /* Su schermi stretti la divisione diventa orizzontale: video sopra, testo sotto */
-  .scene { height: 300vh; }
-  .scene__sticky, .scene--reverse .scene__sticky { grid-template-columns: 1fr; grid-template-rows: 56% 44%; }
-  .scene__media video { object-fit: cover; }
-  .scene__media { grid-row: 1; clip-path: inset(calc((1 - var(--split)) * 100%) 0 0 0); }
-  .scene__text, .scene--reverse .scene__text { grid-row: 2; align-self: start; padding: 24px var(--gutter) 90px; }
-  .scene__text .space__no { display: none; }
-  .scene__text .note { display: none; }
-  .scene--reverse .scene__text .body + .body { display: none; }
+  /* Mobile: video a tutto schermo, testo in basso sopra una sfumatura scura */
+  .scene { height: 210vh; }
+  .scene__sticky, .scene--reverse .scene__sticky { display: block; }
+  .scene__media { position: absolute; inset: 0; clip-path: none; }
+  .scene__media video { object-fit: cover; transform: scale(calc(1.04 - var(--video) * .04)); }
+  .scene__media::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(0deg, rgba(20,17,14,.96) 0%, rgba(20,17,14,.86) 34%, rgba(20,17,14,.5) 54%, rgba(20,17,14,0) 74%);
+  }
+  .scene__text, .scene--reverse .scene__text {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+    padding: 0 var(--gutter) calc(84px + env(safe-area-inset-bottom));
+  }
+  .scene__text .space__no, .scene__text .note { display: none; }
+  .scene__text .body + .body { display: none; }
   .scene__text .label { margin-bottom: 14px; }
-  .scene__text .title { font-size: clamp(30px, 8vw, 44px); margin-bottom: .4em; }
-  .scene__text .body { font-size: 14.5px; line-height: 1.55; margin-bottom: .6em; }
-  .scene__sound { margin-top: 4px; }
-  .scene__divider, .scene--reverse .scene__divider { left: 0; right: 0; top: 56%; bottom: auto; width: auto; height: 1px; transform-origin: center; transform: scaleX(var(--split)); }
+  .scene__text .title { font-size: clamp(32px, 8.6vw, 46px); margin-bottom: .35em; text-shadow: 0 1px 18px rgba(20,17,14,.5); }
+  .scene__text .body { font-size: 15px; line-height: 1.6; margin-bottom: .4em; color: rgba(242,236,226,.82); }
+  .scene__sound { margin-top: 2px; }
+  .scene__divider, .scene--reverse .scene__divider { display: none; }
+  /* Su telefono la sfocatura dietro l'header è costosa: colore pieno */
+  .site-header.is-scrolled { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--ivory); }
+  .menu-bar { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--paper); }
   .food-grid .sticky { position: static; }
   .space, .space--flip { grid-template-columns: 1fr; gap: 36px; }
   .space__media, .space--flip .space__media { grid-column: 1; grid-row: 1; aspect-ratio: 4 / 4.4; }

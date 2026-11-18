@@ -226,16 +226,26 @@
   var isMenuPage = document.body.classList.contains("page-menu");
   var hero = document.querySelector(".hero");
 
+  // Soglie calcolate solo al caricamento e al ridimensionamento, non a ogni scroll
+  var headerLimit = 40, barLimit = 400, lastScrolled = null, lastBar = null;
+  function measureHeader() {
+    headerLimit = hero ? hero.offsetHeight - 90 : 40;
+    barLimit = window.innerHeight * 0.6;
+  }
   function onScroll() {
     var y = window.scrollY;
     if (header && !isMenuPage) {
-      var limit = hero ? hero.offsetHeight - 90 : 40;
-      header.classList.toggle("is-scrolled", y > limit);
+      var sc = y > headerLimit;
+      if (sc !== lastScrolled) { lastScrolled = sc; header.classList.toggle("is-scrolled", sc); }
     }
-    if (bookBar && !isMenuPage) bookBar.classList.toggle("is-visible", y > window.innerHeight * 0.6);
+    if (bookBar && !isMenuPage) {
+      var bv = y > barLimit;
+      if (bv !== lastBar) { lastBar = bv; bookBar.classList.toggle("is-visible", bv); }
+    }
   }
+  measureHeader();
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
+  window.addEventListener("resize", function () { measureHeader(); onScroll(); });
   onScroll();
 
   /* ---------- Menu mobile ---------- */
@@ -309,36 +319,58 @@
     return { el: el, video: el.querySelector("video"), wasHidden: true };
   });
 
-  function updateScene(sc) {
-    var scene = sc.el, video = sc.video;
-    var r = scene.getBoundingClientRect();
-    var range = scene.offsetHeight - window.innerHeight;
-    var p = range > 0 ? Math.min(1, Math.max(0, -r.top / range)) : 0;
-    var onScreen = r.bottom > 0 && r.top < window.innerHeight;
+  // Lettura di tutte le posizioni prima, scrittura degli stili poi (evita ricalcoli di layout).
+  function measureScene(sc) {
+    var r = sc.el.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var range = sc.el.offsetHeight - vh;
+    return {
+      p: range > 0 ? Math.min(1, Math.max(0, -r.top / range)) : 0,
+      onScreen: r.bottom > 0 && r.top < vh,
+      pinned: r.top <= 1 && r.bottom >= vh - 1
+    };
+  }
+
+  function applyScene(sc, m) {
+    var p = m.p;
     var split = ramp(p, 0.02, 0.18);
     var text = Math.min(ramp(p, 0.10, 0.26), 1 - ramp(p, 0.80, 0.94));
     var vid = Math.min(ramp(p, 0.20, 0.36), 1 - ramp(p, 0.76, 0.90));
-    scene.style.setProperty("--split", split.toFixed(3));
-    scene.style.setProperty("--text", text.toFixed(3));
-    scene.style.setProperty("--video", vid.toFixed(3));
-
-    if (video) {
-      if (onScreen && vid > 0.02) {
-        if (sc.wasHidden) { try { video.currentTime = 0; } catch (e) {} sc.wasHidden = false; }
-        if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
-      } else {
-        if (!video.paused) video.pause();
-        if (vid === 0) sc.wasHidden = true;
-      }
+    var key = split.toFixed(3) + "|" + text.toFixed(3) + "|" + vid.toFixed(3);
+    if (key !== sc.last) {
+      sc.last = key;
+      var st = sc.el.style;
+      st.setProperty("--split", split.toFixed(3));
+      st.setProperty("--text", text.toFixed(3));
+      st.setProperty("--video", vid.toFixed(3));
     }
-    // true se la scena occupa tutto lo schermo (fase "ferma")
-    return r.top <= 1 && r.bottom >= window.innerHeight - 1;
+    var video = sc.video;
+    if (!video) return;
+    if (m.onScreen && vid > 0.02) {
+      if (sc.wasHidden) { try { video.currentTime = 0; } catch (e) {} sc.wasHidden = false; }
+      if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); }
+    } else {
+      if (!video.paused) video.pause();
+      if (vid === 0) sc.wasHidden = true;
+    }
   }
 
+  var headerHidden = false;
   function updateScenes() {
+    var metrics = scenes.map(measureScene);
     var pinned = false;
-    scenes.forEach(function (sc) { if (updateScene(sc)) pinned = true; });
-    if (header && !document.body.classList.contains("menu-open")) header.classList.toggle("is-hidden", pinned);
+    scenes.forEach(function (sc, i) {
+      var m = metrics[i];
+      if (m.pinned) pinned = true;
+      // le scene lontane dallo schermo vengono aggiornate solo una volta, poi ignorate
+      if (!m.onScreen && sc.idle) return;
+      sc.idle = !m.onScreen;
+      applyScene(sc, m);
+    });
+    if (header && pinned !== headerHidden && !document.body.classList.contains("menu-open")) {
+      headerHidden = pinned;
+      header.classList.toggle("is-hidden", pinned);
+    }
   }
 
   if (scenes.length) {
