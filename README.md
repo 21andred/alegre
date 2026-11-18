@@ -36,3 +36,8 @@ usato in maschera, quindi si ricolora via CSS.
 - [ ] Bio dello chef approvata
 - [ ] Verifica allergeni e indicazioni SG/SL con la cucina (vedi nota in `menu-data.js`)
 - [ ] Traduzione EN delle descrizioni dei piatti
+
+## Aggiornamenti e cache
+
+Dopo ogni modifica a CSS o JS incrementare il numero `?v=` nei link di `index.html` e `menu.html`
+(es. `style.css?v=5` → `?v=6`), così i browser scaricano subito la versione nuova.
