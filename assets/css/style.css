@@ -23,9 +23,10 @@
   --line: rgba(20, 17, 14, .14);
   --line-light: rgba(242, 236, 226, .18);
 
-  /* Serif dei titoli. Per tornare a Instrument Serif: cambiare qui e nel link Google Fonts delle pagine
-     (family=Instrument+Serif:ital@0;1) */
-  --serif: "Cormorant", "Cormorant Garamond", Georgia, serif;
+  /* Serif dei titoli (in prova: Bodoni Moda). Alternative già provate, da cambiare qui e nel link Google Fonts delle pagine:
+     Instrument Serif  -> family=Instrument+Serif:ital@0;1
+     Cormorant         -> family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500 */
+  --serif: "Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
   --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --hand: "Patrick Hand SC", "Patrick Hand", "Comic Neue", cursive;
 
@@ -964,14 +965,25 @@ p { margin: 0 0 1.45em; }
 body.reel-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .reel, .reel__video, .reel__caption { transition: none; } }
 
-/* ---------- Adattamenti per Cormorant ---------- */
+/* ---------- Adattamenti per Bodoni Moda ---------- */
+/* Bodoni è più largo e contrastato: pesi regolari, interlinea un po' più ampia, corpi leggermente ridotti */
 .title, .lede, .quote, .space h3, .moment h3, .dish-row h3, .pillar h3, .info-card p, .info-card address,
 .menu-item__price, .menu-section__note, .menu-item__desc, .artist-list li, .client-grid li, .steps h3,
-.cat-area h3, .reel__name, .cat-marquee__track span, .mobile-nav a, .space__no, .footer-bottom em, .fun-line { font-weight: 500; }
-.title em, .lede em, .quote, .reel__name, .cat-marquee__track span, .menu-item__desc { font-weight: 400; }
-.title { letter-spacing: -.01em; line-height: 1; }
-.lede { font-size: clamp(24px, 2.2vw, 33px); }
-.menu-item__desc { font-size: 20px; }
+.cat-area h3, .cat-trio__item h3, .reel__name, .cat-marquee__track span, .mobile-nav a, .space__no, .footer-bottom em, .fun-line {
+  font-weight: 400; font-optical-sizing: auto;
+}
+.title { letter-spacing: -.025em; line-height: 1.04; font-size: clamp(38px, 5.4vw, 84px); }
+.title em, .cat-trio__item h3 em { font-weight: 400; }
+.lede { font-size: clamp(20px, 1.8vw, 27px); line-height: 1.4; }
+.quote { font-size: clamp(24px, 2.6vw, 38px); }
+.menu-item__desc { font-size: 17.5px; }
+.menu-item__price { font-size: 21px; }
+.artist-list li { font-size: clamp(38px, 6vw, 100px); letter-spacing: -.03em; }
+.client-grid li { font-size: clamp(19px, 1.6vw, 27px); }
+.scene__text .title { font-size: clamp(38px, 4.4vw, 80px); }
+.cat-hero .title { font-size: clamp(46px, 7.2vw, 118px); }
+.menu-hero .title { font-size: clamp(56px, 9.5vw, 150px); }
+.booking .title { font-size: clamp(42px, 6.4vw, 104px); }
 
 /* ---------- Catering: più aria, sezioni nette ---------- */
 .theme-night .section { padding: clamp(120px, 15vw, 230px) 0; }
@@ -989,7 +1001,7 @@ body.reel-open { overflow: hidden; }
 .cat-trio__item:first-child { border-left: 0; padding-left: 0; }
 .cat-trio__item .label { color: var(--wheat); margin-bottom: 26px; }
 .cat-trio__item .label::after { display: none; }
-.cat-trio__item h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 2.6vw, 42px); line-height: 1.05; margin: 0 0 auto; padding-bottom: 40px; }
+.cat-trio__item h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 2.6vw, 42px); line-height: 1.05; margin: 0 0 auto; padding-bottom: 40px; }
 .cat-trio__item h3 em { color: var(--wheat); font-weight: 400; }
 .cat-trio__item--main h3 { font-size: clamp(40px, 3.8vw, 62px); }
 .cat-keys { font-family: var(--hand); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: rgba(242,236,226,.6); margin: 0; }
