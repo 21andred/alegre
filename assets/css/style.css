@@ -23,7 +23,9 @@
   --line: rgba(20, 17, 14, .14);
   --line-light: rgba(242, 236, 226, .18);
 
-  --serif: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+  /* Serif dei titoli. Per tornare a Instrument Serif: cambiare qui e nel link Google Fonts delle pagine
+     (family=Instrument+Serif:ital@0;1) */
+  --serif: "Cormorant", "Cormorant Garamond", Georgia, serif;
   --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --hand: "Patrick Hand SC", "Patrick Hand", "Comic Neue", cursive;
 
@@ -782,7 +784,7 @@ p { margin: 0 0 1.45em; }
   background: linear-gradient(90deg, rgba(20,17,14,.95) 0%, rgba(20,17,14,.75) 50%, rgba(92,26,34,.35) 100%), linear-gradient(0deg, rgba(20,17,14,.9), transparent 45%);
 }
 .cat-hero__inner { margin-top: auto; margin-bottom: auto; padding-bottom: 40px; }
-.cat-hero .title { font-size: clamp(52px, 8.4vw, 136px); max-width: 12ch; }
+.cat-hero .title { font-size: clamp(52px, 8.4vw, 136px); max-width: 15ch; }
 .cat-hero .lede { color: rgba(242,236,226,.8); max-width: 34ch; }
 .cat-hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
 
@@ -961,3 +963,47 @@ p { margin: 0 0 1.45em; }
 .reel__close span + span { transform: rotate(-45deg); }
 body.reel-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .reel, .reel__video, .reel__caption { transition: none; } }
+
+/* ---------- Adattamenti per Cormorant ---------- */
+.title, .lede, .quote, .space h3, .moment h3, .dish-row h3, .pillar h3, .info-card p, .info-card address,
+.menu-item__price, .menu-section__note, .menu-item__desc, .artist-list li, .client-grid li, .steps h3,
+.cat-area h3, .reel__name, .cat-marquee__track span, .mobile-nav a, .space__no, .footer-bottom em, .fun-line { font-weight: 500; }
+.title em, .lede em, .quote, .reel__name, .cat-marquee__track span, .menu-item__desc { font-weight: 400; }
+.title { letter-spacing: -.01em; line-height: 1; }
+.lede { font-size: clamp(24px, 2.2vw, 33px); }
+.menu-item__desc { font-size: 20px; }
+
+/* ---------- Catering: più aria, sezioni nette ---------- */
+.theme-night .section { padding: clamp(120px, 15vw, 230px) 0; }
+.theme-night .section + .section { border-top: 1px solid var(--line-light); }
+.theme-night .section .title { margin-bottom: 0; }
+.theme-night .concept { align-items: center; }
+.theme-night .concept .lede { color: rgba(242,236,226,.78); max-width: 26ch; margin: 0; }
+.theme-night .cat-hero .lede { max-width: 30ch; }
+
+.cat-trio {
+  display: grid; grid-template-columns: 1.3fr 1fr 1fr;
+  margin-top: clamp(70px, 9vw, 130px); border-top: 1px solid var(--line-light);
+}
+.cat-trio__item { padding: clamp(40px, 4vw, 60px) clamp(24px, 3vw, 44px) 10px; border-left: 1px solid var(--line-light); display: flex; flex-direction: column; }
+.cat-trio__item:first-child { border-left: 0; padding-left: 0; }
+.cat-trio__item .label { color: var(--wheat); margin-bottom: 26px; }
+.cat-trio__item .label::after { display: none; }
+.cat-trio__item h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 2.6vw, 42px); line-height: 1.05; margin: 0 0 auto; padding-bottom: 40px; }
+.cat-trio__item h3 em { color: var(--wheat); font-weight: 400; }
+.cat-trio__item--main h3 { font-size: clamp(40px, 3.8vw, 62px); }
+.cat-keys { font-family: var(--hand); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: rgba(242,236,226,.6); margin: 0; }
+
+.theme-night .steps { margin-top: clamp(60px, 7vw, 100px); }
+.theme-night .steps li { padding-top: 40px; }
+.theme-night .steps h3 { font-size: clamp(30px, 2.6vw, 40px); }
+.theme-night .steps p { font-size: 16px; }
+.theme-night .artist-list { margin-top: clamp(60px, 7vw, 100px); }
+.theme-night .client-grid { margin-top: clamp(60px, 7vw, 100px); }
+
+@media (max-width: 960px) {
+  .cat-trio { grid-template-columns: 1fr; }
+  .cat-trio__item, .cat-trio__item:first-child { border-left: 0; padding: 44px 0; border-bottom: 1px solid var(--line-light); }
+  .cat-trio__item h3 { padding-bottom: 22px; }
+  .theme-night .concept { gap: 34px; }
+}
