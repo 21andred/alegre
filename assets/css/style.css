@@ -387,7 +387,7 @@ p { margin: 0 0 1.45em; }
      della larghezza, al massimo il 46%. Taglio sopra/sotto minimo. L'header si nasconde
      mentre la scena è attiva, così il video usa tutta l'altezza. */
   --mw: min(max(calc(100svh * 9 / 16), 38vw), 46vw);
-  position: sticky; top: 0; height: 100vh; height: 100svh;
+  position: sticky; top: 0; height: 100vh; height: 100dvh; /* dvh: segue la barra del browser che compare/scompare (tablet, telefoni) */
   display: grid; grid-template-columns: 1fr var(--mw);
   grid-template-rows: minmax(0, 1fr); /* la riga non si allunga mai sulle dimensioni del video */
   overflow: hidden;
