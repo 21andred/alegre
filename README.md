@@ -13,6 +13,8 @@ python3 -m http.server 8000   # poi apri http://localhost:8000
 | File | Contenuto |
 |---|---|
 | `index.html` | Homepage: Hero · Concept · Food · Chef · Space · MOYSA · Experiences · Prenota |
+| `catering.html` | Catering: artisti e concerti, eventi e presentazioni, aziende; modulo preventivo (Netlify Forms) |
+| `grazie.html` | Pagina di conferma dopo l'invio del modulo |
 | `menu.html` | Menu completo con sezioni, filtri SG/SL e legenda allergeni |
 | `assets/css/style.css` | Sistema visivo (palette, tipografia, componenti, responsive) |
 | `assets/js/main.js` | Traduzioni IT/EN, header, menu mobile, animazioni, rendering menu |
@@ -41,3 +43,9 @@ usato in maschera, quindi si ricolora via CSS.
 
 Dopo ogni modifica a CSS o JS incrementare il numero `?v=` nei link di `index.html` e `menu.html`
 (es. `style.css?v=5` → `?v=6`), così i browser scaricano subito la versione nuova.
+
+## Modulo preventivo (catering)
+
+Il modulo in `catering.html` usa **Netlify Forms** (`data-netlify="true"`). Su Netlify:
+Project configuration → Forms → abilitare *Form detection*, poi rifare un deploy.
+Le richieste compaiono nella sezione Forms; da lì si attivano le notifiche email.
