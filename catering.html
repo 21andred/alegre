@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=23">
+  <link rel="stylesheet" href="assets/css/style.css?v=24">
 </head>
-<body class="page-catering">
+<body class="page-catering theme-night">
   <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
 
   <header class="site-header">
@@ -83,7 +83,7 @@
     </section>
 
     <!-- ================= INTRO ================= -->
-    <section class="section" aria-labelledby="cat-intro-title">
+    <section class="section on-dark" aria-labelledby="cat-intro-title">
       <div class="wrap concept">
         <div class="reveal">
           <p class="label"><span data-i18n="cat.intro.label">Perché Alegre</span></p>
@@ -141,7 +141,7 @@
     </section>
 
     <!-- ================= ARTISTI ================= -->
-    <section class="section cat-artists" id="artisti" aria-labelledby="cat-artists-title">
+    <section class="section on-dark cat-artists" id="artisti" aria-labelledby="cat-artists-title">
       <div class="wrap">
         <div class="reveal">
           <p class="label"><span data-i18n="cat.art.label">Abbiamo cucinato per</span></p>
@@ -150,7 +150,7 @@
         </div>
         <ul class="artist-list">
           <li class="reveal">Taylor Swift</li>
-          <li class="reveal">Sfera Ebbasta</li>
+          <li class="reveal"><button class="artist-btn" type="button" data-reel="assets/video/sfera-ebbasta.mp4" data-poster="assets/video/sfera-ebbasta-poster.jpg" aria-haspopup="dialog"><span class="artist-name">Sfera Ebbasta</span><span class="artist-play" aria-hidden="true"></span></button></li>
           <li class="reveal">Max Pezzali</li>
           <li class="reveal">Zucchero</li>
           <li class="reveal">Club Dogo</li>
@@ -161,7 +161,7 @@
     </section>
 
     <!-- ================= AZIENDE (da completare) ================= -->
-    <section class="section bg-paper" aria-labelledby="cat-clients-title">
+    <section class="section on-dark cat-clients" aria-labelledby="cat-clients-title">
       <div class="wrap">
         <div class="reveal">
           <p class="label"><span data-i18n="cat.cli.label">Eventi e aziende</span></p>
@@ -183,7 +183,7 @@
     </section>
 
     <!-- ================= COME LAVORIAMO ================= -->
-    <section class="section" aria-labelledby="cat-steps-title">
+    <section class="section on-dark" aria-labelledby="cat-steps-title">
       <div class="wrap">
         <div class="reveal">
           <p class="label"><span data-i18n="cat.steps.label">Come lavoriamo</span></p>
@@ -235,6 +235,16 @@
         </form>
       </div>
     </section>
+
+    <!-- Reel: si apre al clic sul nome di un artista; il nome "scende" nella parte bassa del video -->
+    <div class="reel" id="reel" role="dialog" aria-modal="true" aria-label="Video" hidden>
+      <div class="reel__frame">
+        <video class="reel__video" playsinline preload="none"></video>
+        <p class="reel__caption"><span class="reel__name"></span><span class="reel__venue" data-i18n="cat.art.venue">Concerti allo Stadio San Siro, Milano</span></p>
+        <button class="reel__sound" type="button" aria-pressed="true"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sr-only" data-i18n="scene.soundOff">Disattiva l'audio</span></button>
+      </div>
+      <button class="reel__close" type="button" aria-label="Chiudi"><span></span><span></span></button>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -268,6 +278,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=23"></script>
+  <script src="assets/js/main.js?v=24"></script>
 </body>
 </html>
