@@ -1250,3 +1250,17 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 @media (prefers-reduced-motion: reduce) { .hero__book { opacity: 1; } }
 .hero--intro .hero__inner { position: relative; }
 .hero--intro .hero__claim { position: absolute; left: 0; right: 0; top: 100%; margin: 28px auto 0; }
+
+/* ---------- HOME: Prenota a destra (desktop), grigio medio; logo più in alto su mobile ---------- */
+/* Grigio medio = nero legno schiarito col bianco (resta dentro la palette) */
+.btn--pill { background: color-mix(in srgb, var(--night) 55%, var(--white)); color: var(--white); }
+.hero__book {
+  justify-content: flex-end;
+  left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  right: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+}
+@media (max-width: 760px) {
+  .hero__book { justify-content: center; }
+  .hero--intro { place-items: start center; }
+  .hero--intro .hero__inner { margin-top: 26svh; }
+}
