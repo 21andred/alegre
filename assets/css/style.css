@@ -1034,56 +1034,57 @@ body.reel-open { overflow: hidden; }
 .page-moysa .moysa .wrap { padding-top: 180px; }
 
 /* =========================================================
-   CUCINA: blu, bianco e rosa anguria
+   CUCINA: blu, bianco e sabbia
+   --accent: grano (sfondi e accenti su blu)  --accent-ink: sabbia (accenti su bianco)
    ========================================================= */
-.theme-cucina { --pink: #f45d74; --pink-soft: #ffd3da; background: #fff; }
-.btn--pink { background: var(--pink); border-color: var(--pink); color: #fff; }
-.btn--pink::before { background: #fff; }
-.btn--pink:hover span { color: var(--navy); }
+.theme-cucina { --accent: var(--wheat); --accent-ink: var(--sand); background: #fff; }
+.btn--accent { background: var(--accent); border-color: var(--accent); color: var(--navy); }
+.btn--accent::before { background: #fff; }
+.btn--accent:hover span { color: var(--navy); }
 
-/* Apertura: blu pieno con cerchi rosa */
+/* Apertura: blu pieno con cerchi sabbia */
 .cuc-hero { background: var(--navy); }
 .cuc-hero::before { display: none; }
-.cuc-hero .title em { color: var(--pink); }
+.cuc-hero .title em { color: var(--accent); }
 .cuc-hero .lede { color: rgba(255,255,255,.82); }
 .cuc-dot { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
-.cuc-dot--a { width: clamp(260px, 38vw, 620px); aspect-ratio: 1; background: var(--pink); right: -8vw; top: -10vw; animation: cucFloat 16s ease-in-out infinite; }
-.cuc-dot--b { width: clamp(90px, 11vw, 170px); aspect-ratio: 1; border: 1.5px solid var(--pink); right: 30vw; bottom: 16%; animation: cucFloat 12s ease-in-out infinite reverse; }
+.cuc-dot--a { width: clamp(260px, 38vw, 620px); aspect-ratio: 1; background: var(--accent); right: -8vw; top: -10vw; animation: cucFloat 16s ease-in-out infinite; }
+.cuc-dot--b { width: clamp(90px, 11vw, 170px); aspect-ratio: 1; border: 1.5px solid var(--accent); right: 30vw; bottom: 16%; animation: cucFloat 12s ease-in-out infinite reverse; }
 @keyframes cucFloat { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-2vw, 2vw); } }
 
-/* Piatti signature: fondo bianco, testo blu, accenti rosa */
+/* Piatti signature: fondo bianco, testo blu, accenti sabbia */
 .cuc-dishes { background: #fff; color: var(--navy); }
-.cuc-dishes .title em { color: var(--pink); }
+.cuc-dishes .title em { color: var(--accent-ink); }
 .cuc-dishes .label { color: var(--navy); }
 .cuc-dishes .dish-list { border-top-color: rgba(46,58,112,.2); }
 .cuc-dishes .dish-row { border-bottom-color: rgba(46,58,112,.2); }
-.cuc-dishes .dish-row::before { color: var(--pink); }
+.cuc-dishes .dish-row::before { color: var(--accent-ink); }
 .cuc-dishes .dish-row .cat { color: rgba(46,58,112,.55); }
 .cuc-dishes .dish-row p { color: rgba(46,58,112,.75); }
-.cuc-dishes .dish-row:hover h3 { color: var(--pink); }
+.cuc-dishes .dish-row:hover h3 { color: var(--accent-ink); }
 
-/* Chef: fondo rosa anguria */
-.cuc-chef { background: var(--pink); color: var(--navy); }
+/* Chef: fondo grano */
+.cuc-chef { background: var(--accent); color: var(--navy); }
 .cuc-chef .label, .cuc-chef .signature { color: var(--navy); }
-.cuc-chef .body, .cuc-chef .signature small { color: rgba(46,58,112,.8); }
+.cuc-chef .body, .cuc-chef .signature small { color: rgba(46,58,112,.85); }
 .cuc-chef .quote::before { color: #fff; }
 .cuc-chef .todo { color: var(--navy); }
-.cuc-chef .chef__portrait { --reveal-bg: var(--pink); }
+.cuc-chef .chef__portrait { --reveal-bg: var(--accent); }
 
 /* Chiusura: blu */
 .cuc-cta { background: var(--navy); color: #fff; text-align: center; }
 .cuc-cta .title { font-size: clamp(44px, 6.4vw, 104px); margin: 0 0 44px; }
-.cuc-cta .title em { color: var(--pink); }
+.cuc-cta .title em { color: var(--accent); }
 
-/* Barra in alto sulla pagina cucina */
+/* Barra in alto e fondo pagina */
 .theme-cucina .site-header.is-scrolled { background: rgba(255,255,255,.94); color: var(--navy); border-bottom-color: rgba(46,58,112,.15); }
-.theme-cucina .site-header .btn--solid { background: var(--pink); border-color: var(--pink); color: #fff; }
+.theme-cucina .site-header .btn--solid { background: var(--accent); border-color: var(--accent); color: var(--navy); }
 .theme-cucina .site-header .btn--solid::before { background: var(--navy); }
 .theme-cucina .site-header .btn--solid:hover span { color: #fff; }
 .theme-cucina .book-bar { background: var(--navy); }
-.theme-cucina .book-bar .btn--solid { background: var(--pink); border-color: var(--pink); color: #fff; }
+.theme-cucina .book-bar .btn--solid { background: var(--accent); border-color: var(--accent); color: var(--navy); }
 .theme-cucina .site-footer { background: var(--navy); }
-.theme-cucina .site-footer .logo-full, .theme-cucina .site-footer h4 { color: var(--pink); }
+.theme-cucina .site-footer .logo-full, .theme-cucina .site-footer h4 { color: var(--accent); }
 @media (max-width: 600px) {
   .cuc-dot--b { display: none; }
   .cuc-dot--a { width: 210px; right: -70px; top: -50px; }
@@ -1168,3 +1169,20 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 }
 @media (max-width: 600px) { .orbit__dot { font-size: 12px; letter-spacing: .1em; } }
 @media (prefers-reduced-motion: reduce) { .hero__video { display: none; } }
+
+/* ---------- HOME: voci intorno al logo senza cerchi, un solo carattere (scritto a mano) ---------- */
+.orbit__dot {
+  width: auto; aspect-ratio: auto; border: 0; border-radius: 0; background: none; padding: 8px 4px;
+  font-family: var(--hand); font-size: clamp(15px, 1.3vw, 19px); letter-spacing: .22em; color: var(--night);
+  text-shadow: 0 0 14px rgba(255,255,255,.9);
+}
+.orbit__dot::after {
+  content: ""; position: absolute; left: 4px; right: 4px; bottom: 2px; height: 1px; background: currentColor;
+  transform: scaleX(0); transition: transform .4s var(--ease);
+}
+.orbit__dot:hover, .orbit__dot:focus-visible { background: none; color: #7d6650; }
+.orbit__dot:hover::after, .orbit__dot:focus-visible::after { transform: scaleX(1); }
+.hero--intro .hero__claim { font-family: var(--hand); font-style: normal; font-size: clamp(16px, 1.4vw, 20px); letter-spacing: .24em; text-transform: uppercase; color: #7d6650; }
+.hero--intro .btn, .home-intro .site-header:not(.is-scrolled) .lang-toggle { font-family: var(--hand); font-weight: 400; letter-spacing: .22em; }
+.hero--intro .btn { font-size: 15px; }
+@media (max-width: 600px) { .orbit__dot { font-size: 14px; letter-spacing: .14em; } }
