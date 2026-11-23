@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=42">
+  <link rel="stylesheet" href="assets/css/style.css?v=43">
 </head>
 <body class="page-menu">
   <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
@@ -68,8 +68,15 @@
       </div>
     </section>
 
-    <!-- Foto della sala a tutta larghezza (taglio centrato) -->
-    <figure class="menu-band img-reveal"><picture><source srcset="assets/img/sala-tavoli.webp" type="image/webp"><img src="assets/img/sala-tavoli.jpg" alt="La sala di Alegre: parete di spighe illuminate, lampade intrecciate e tavoli apparecchiati" loading="lazy"></picture></figure>
+    <!-- La carta del ristorante: ritagli centrati sulla scritta "Welcome to the fine/fun dining" -->
+    <figure class="menu-band img-reveal">
+      <picture>
+        <source media="(max-width: 700px)" srcset="assets/img/menu-carta-mob.webp" type="image/webp">
+        <source media="(max-width: 700px)" srcset="assets/img/menu-carta-mob.jpg">
+        <source srcset="assets/img/menu-carta-wide.webp" type="image/webp">
+        <img src="assets/img/menu-carta-wide.jpg" alt="La carta di Alegre aperta: «Welcome to the fine dining», con «fine» cancellato e corretto a mano in «fun»" loading="lazy">
+      </picture>
+    </figure>
 
     <div class="menu-bar">
       <div class="wrap">
@@ -125,7 +132,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/menu-data.js?v=42"></script>
-  <script src="assets/js/main.js?v=42"></script>
+  <script src="assets/js/menu-data.js?v=43"></script>
+  <script src="assets/js/main.js?v=43"></script>
 </body>
 </html>
