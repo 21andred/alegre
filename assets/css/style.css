@@ -1143,3 +1143,22 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 .home-intro .site-header:not(.is-scrolled) .brand { opacity: 0; pointer-events: none; }
 .home-intro .site-header:not(.is-scrolled) .header-actions .btn { display: none; }
 .home-intro .site-header:not(.is-scrolled) .nav a { text-shadow: 0 0 12px rgba(255,255,255,.9); }
+
+/* ---------- CUCINA: galleria piatti sfalsata ---------- */
+.cuc-gallery { background: #fff; padding: 0 0 clamp(110px, 13vw, 200px); }
+.cuc-gallery__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 28px); align-items: start; }
+.cuc-shot { margin: 0; aspect-ratio: 4 / 5; position: relative; --reveal-bg: #fff; }
+.cuc-shot img, .cuc-shot picture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.cuc-shot--1 { margin-top: 0; }
+.cuc-shot--2 { margin-top: clamp(40px, 7vw, 120px); }
+.cuc-shot--3 { margin-top: clamp(16px, 2.5vw, 40px); }
+.cuc-shot--4 { margin-top: clamp(60px, 10vw, 170px); }
+@media (max-width: 760px) {
+  .cuc-gallery__grid { grid-template-columns: 1fr 1fr; }
+  .cuc-shot--3 { margin-top: -40px; }
+  .cuc-shot--4 { margin-top: 30px; }
+}
+
+/* ---------- MENU: fascia con la foto della sala ---------- */
+.menu-band { margin: 0; position: relative; z-index: 1; height: clamp(300px, 56vh, 620px); --reveal-bg: var(--ivory); }
+.menu-band img, .menu-band picture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
