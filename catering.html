@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=44">
+  <link rel="stylesheet" href="assets/css/style.css?v=46">
 </head>
 <body class="page-catering theme-night">
   <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
@@ -139,45 +139,16 @@
       </div>
     </section>
 
-    <!-- ================= TRE AMBITI ================= -->
-    <section class="section on-dark cat-areas" aria-labelledby="cat-areas-title">
+    <!-- ================= COME LAVORIAMO (compatto, con icone) ================= -->
+    <section class="section on-dark cat-steps" aria-labelledby="cat-steps-title">
       <div class="wrap">
-        <div class="reveal">
-          <p class="label"><span data-i18n="cat.areas.label">Cosa facciamo</span></p>
-          <h2 class="title" id="cat-areas-title" data-i18n="cat.areas.title">Tre modi di portare <em>Alegre altrove.</em></h2>
-        </div>
-        <div class="cat-trio">
-          <article class="cat-trio__item cat-trio__item--main reveal">
-            <p class="label"><span data-i18n="cat.a.label">Artisti e concerti</span></p>
-            <h3 data-i18n="cat.a.title">Dove c'è un palco, <em>c'è la nostra cucina.</em></h3>
-            <p class="cat-keys" data-i18n="cat.a.keys">Concerti · Tour · Stadi · Crew</p>
-          </article>
-          <article class="cat-trio__item reveal" data-delay="1">
-            <p class="label"><span data-i18n="cat.b.label">Eventi</span></p>
-            <h3 data-i18n="cat.b.title">Quando il cibo <em>è parte dell'evento.</em></h3>
-            <p class="cat-keys" data-i18n="cat.b.keys">Stampa · Party privati · MOYSA</p>
-          </article>
-          <article class="cat-trio__item reveal" data-delay="2">
-            <p class="label"><span data-i18n="cat.c.label">Aziende</span></p>
-            <h3 data-i18n="cat.c.title">Su misura, <em>anche per il corporate.</em></h3>
-            <p class="cat-keys" data-i18n="cat.c.keys">Cene · Brand · Incontri</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= COME LAVORIAMO ================= -->
-    <section class="section on-dark" aria-labelledby="cat-steps-title">
-      <div class="wrap">
-        <div class="reveal">
-          <p class="label"><span data-i18n="cat.steps.label">Come lavoriamo</span></p>
-          <h2 class="title" id="cat-steps-title" data-i18n="cat.steps.title">Dalla prima telefonata <em>all'ultimo piatto.</em></h2>
-        </div>
-        <ol class="steps">
-          <li class="reveal"><h3 data-i18n="cat.s1.t">Ascolto</h3><p data-i18n="cat.s1">Ci racconti l'evento.</p></li>
-          <li class="reveal" data-delay="1"><h3 data-i18n="cat.s2.t">Proposta</h3><p data-i18n="cat.s2">Un menu su misura, per ogni esigenza.</p></li>
-          <li class="reveal" data-delay="2"><h3 data-i18n="cat.s3.t">Organizzazione</h3><p data-i18n="cat.s3">Logistica, tempi e servizio.</p></li>
-          <li class="reveal" data-delay="3"><h3 data-i18n="cat.s4.t">Servizio</h3><p data-i18n="cat.s4">Al resto pensiamo noi.</p></li>
+        <p class="label reveal"><span data-i18n="cat.steps.label">Come lavoriamo</span></p>
+        <h2 class="title reveal" id="cat-steps-title" data-i18n="cat.steps.title">Dalla prima telefonata <em>all'ultimo piatto.</em></h2>
+        <ol class="steps steps--icons">
+          <li class="reveal"><svg class="step-ico" viewBox="0 0 52 52" aria-hidden="true"><path d="M12 30c0-9 6-16 14-16s14 7 14 16"/><rect x="8" y="28" width="8" height="12" rx="3"/><rect x="36" y="28" width="8" height="12" rx="3"/></svg><div><h3 data-i18n="cat.s1.t">Ascolto</h3><p data-i18n="cat.s1">Ci racconti l'evento.</p></div></li>
+          <li class="reveal" data-delay="1"><svg class="step-ico" viewBox="0 0 52 52" aria-hidden="true"><rect x="13" y="8" width="26" height="36" rx="2"/><path d="M19 18h14M19 25h14M19 32h9"/></svg><div><h3 data-i18n="cat.s2.t">Proposta</h3><p data-i18n="cat.s2">Un menu su misura, per ogni esigenza.</p></div></li>
+          <li class="reveal" data-delay="2"><svg class="step-ico" viewBox="0 0 52 52" aria-hidden="true"><rect x="8" y="12" width="36" height="30" rx="2"/><path d="M8 21h36M17 8v8M35 8v8M16 29h5M24 29h5M32 29h5M16 35h5"/></svg><div><h3 data-i18n="cat.s3.t">Organizzazione</h3><p data-i18n="cat.s3">Logistica, tempi e servizio.</p></div></li>
+          <li class="reveal" data-delay="3"><svg class="step-ico" viewBox="0 0 52 52" aria-hidden="true"><path d="M8 36h36M11 36a15 15 0 0 1 30 0M26 21v-3M23 18h6"/><path d="M6 41h40"/></svg><div><h3 data-i18n="cat.s4.t">Servizio</h3><p data-i18n="cat.s4">Al resto pensiamo noi.</p></div></li>
         </ol>
       </div>
     </section>
@@ -263,6 +234,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=44"></script>
+  <script src="assets/js/main.js?v=46"></script>
 </body>
 </html>
