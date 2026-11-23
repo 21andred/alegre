@@ -1013,3 +1013,78 @@ body.reel-open { overflow: hidden; }
 .client-grid--logos li:hover .client-logo { opacity: 1; transform: scale(1.05); }
 .client-grid--logos li:hover { font-style: normal; }
 @media (max-width: 600px) { .client-grid--logos li { --k: .72; min-height: 104px; } }
+
+/* =========================================================
+   PAGINE INTERNE: apertura comune
+   ========================================================= */
+.page-hero {
+  position: relative; min-height: 78svh; display: flex; align-items: flex-end;
+  background: var(--night); color: var(--ivory); overflow: hidden; isolation: isolate;
+  padding: 160px 0 clamp(60px, 8vw, 110px);
+}
+.page-hero__bg { position: absolute; inset: 0; z-index: -2; }
+.page-hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transform: scale(1.06); animation: heroZoom 14s var(--ease-out) forwards; }
+.page-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(20,17,14,.9) 0%, rgba(20,17,14,.45) 55%, rgba(20,17,14,.55) 100%); }
+.page-hero .title { font-size: clamp(50px, 8vw, 132px); max-width: 14ch; margin: 0; }
+.page-hero .title em { color: var(--wheat); }
+.page-hero .lede { margin: 34px 0 0; max-width: 36ch; }
+.page-hero .label { color: var(--ivory); }
+.concept--solo { grid-template-columns: 1fr; max-width: 760px; }
+.page-hero--moysa { min-height: 100svh; }
+.page-moysa .moysa .wrap { padding-top: 180px; }
+
+/* =========================================================
+   CUCINA: blu, bianco e rosa anguria
+   ========================================================= */
+.theme-cucina { --pink: #f45d74; --pink-soft: #ffd3da; background: #fff; }
+.btn--pink { background: var(--pink); border-color: var(--pink); color: #fff; }
+.btn--pink::before { background: #fff; }
+.btn--pink:hover span { color: var(--navy); }
+
+/* Apertura: blu pieno con cerchi rosa */
+.cuc-hero { background: var(--navy); }
+.cuc-hero::before { display: none; }
+.cuc-hero .title em { color: var(--pink); }
+.cuc-hero .lede { color: rgba(255,255,255,.82); }
+.cuc-dot { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
+.cuc-dot--a { width: clamp(260px, 38vw, 620px); aspect-ratio: 1; background: var(--pink); right: -8vw; top: -10vw; animation: cucFloat 16s ease-in-out infinite; }
+.cuc-dot--b { width: clamp(90px, 11vw, 170px); aspect-ratio: 1; border: 1.5px solid var(--pink); right: 30vw; bottom: 16%; animation: cucFloat 12s ease-in-out infinite reverse; }
+@keyframes cucFloat { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-2vw, 2vw); } }
+
+/* Piatti signature: fondo bianco, testo blu, accenti rosa */
+.cuc-dishes { background: #fff; color: var(--navy); }
+.cuc-dishes .title em { color: var(--pink); }
+.cuc-dishes .label { color: var(--navy); }
+.cuc-dishes .dish-list { border-top-color: rgba(46,58,112,.2); }
+.cuc-dishes .dish-row { border-bottom-color: rgba(46,58,112,.2); }
+.cuc-dishes .dish-row::before { color: var(--pink); }
+.cuc-dishes .dish-row .cat { color: rgba(46,58,112,.55); }
+.cuc-dishes .dish-row p { color: rgba(46,58,112,.75); }
+.cuc-dishes .dish-row:hover h3 { color: var(--pink); }
+
+/* Chef: fondo rosa anguria */
+.cuc-chef { background: var(--pink); color: var(--navy); }
+.cuc-chef .label, .cuc-chef .signature { color: var(--navy); }
+.cuc-chef .body, .cuc-chef .signature small { color: rgba(46,58,112,.8); }
+.cuc-chef .quote::before { color: #fff; }
+.cuc-chef .todo { color: var(--navy); }
+.cuc-chef .chef__portrait { --reveal-bg: var(--pink); }
+
+/* Chiusura: blu */
+.cuc-cta { background: var(--navy); color: #fff; text-align: center; }
+.cuc-cta .title { font-size: clamp(44px, 6.4vw, 104px); margin: 0 0 44px; }
+.cuc-cta .title em { color: var(--pink); }
+
+/* Barra in alto sulla pagina cucina */
+.theme-cucina .site-header.is-scrolled { background: rgba(255,255,255,.94); color: var(--navy); border-bottom-color: rgba(46,58,112,.15); }
+.theme-cucina .site-header .btn--solid { background: var(--pink); border-color: var(--pink); color: #fff; }
+.theme-cucina .site-header .btn--solid::before { background: var(--navy); }
+.theme-cucina .site-header .btn--solid:hover span { color: #fff; }
+.theme-cucina .book-bar { background: var(--navy); }
+.theme-cucina .book-bar .btn--solid { background: var(--pink); border-color: var(--pink); color: #fff; }
+.theme-cucina .site-footer { background: var(--navy); }
+.theme-cucina .site-footer .logo-full, .theme-cucina .site-footer h4 { color: var(--pink); }
+@media (max-width: 600px) {
+  .cuc-dot--b { display: none; }
+  .cuc-dot--a { width: 210px; right: -70px; top: -50px; }
+}

@@ -12,7 +12,10 @@ python3 -m http.server 8000   # poi apri http://localhost:8000
 
 | File | Contenuto |
 |---|---|
-| `index.html` | Homepage: Hero · Concept · Food · Chef · Space · MOYSA · Experiences · Prenota |
+| `index.html` | Homepage: apertura · scene video degli spazi · richiamo catering · prenota |
+| `concept.html` | Concept: fun dining, pilastri, momenti della giornata |
+| `cucina.html` | Cucina: piatti signature e chef (palette blu, bianco, rosa anguria) |
+| `moysa.html` | MOYSA: il legame con l'hub musicale |
 | `catering.html` | Catering: artisti e concerti, eventi e presentazioni, aziende; modulo preventivo (Netlify Forms) |
 | `grazie.html` | Pagina di conferma dopo l'invio del modulo |
 | `menu.html` | Menu completo con sezioni, filtri SG/SL e legenda allergeni |

@@ -18,6 +18,9 @@
       "cat.b.keys": "Stampa · Party privati · MOYSA",
       "cat.a.keys": "Concerti · Tour · Stadi · Crew",
       "skip": "Vai al contenuto",
+      "cuc.sig.label": "Signature",
+      "cuc.sig.title": "Cinque piatti <em>per cominciare.</em>",
+      "cuc.cta.title": "La carta completa <em>ti aspetta.</em>",
       "cat.cta.short": "Preventivo",
       "cat.title": "Dal nostro tavolo <em>al backstage.</em>",
       "cat.lead": "Cuciniamo ogni giorno per artisti e crew dentro MOYSA. Quando la musica va in tour, veniamo con lei.",
@@ -170,6 +173,9 @@
       "cat.b.keys": "Press · Private parties · MOYSA",
       "cat.a.keys": "Concerts · Tours · Stadiums · Crew",
       "skip": "Skip to content",
+      "cuc.sig.label": "Signature",
+      "cuc.sig.title": "Five dishes <em>to start with.</em>",
+      "cuc.cta.title": "The full menu <em>is waiting.</em>",
       "cat.cta.short": "Quote",
       "cat.title": "From our table <em>to the backstage.</em>",
       "cat.lead": "Every day we cook for artists and crews inside MOYSA. When the music goes on tour, we go with it.",
@@ -350,7 +356,7 @@
   var header = document.querySelector(".site-header");
   var bookBar = document.querySelector(".book-bar");
   var isMenuPage = document.body.classList.contains("page-menu");
-  var hero = document.querySelector(".hero, .cat-hero");
+  var hero = document.querySelector(".hero, .cat-hero, .page-hero, .page-hero--moysa");
 
   // Soglie calcolate solo al caricamento e al ridimensionamento, non a ogni scroll
   var headerLimit = 40, barLimit = 400, lastScrolled = null, lastBar = null;

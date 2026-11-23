@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/sala.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=30">
+  <link rel="stylesheet" href="assets/css/style.css?v=32">
 
   <script type="application/ld+json">
   {
@@ -51,11 +51,11 @@
     <div class="wrap">
       <a class="brand" href="index.html" aria-label="Alegre Milano, home"><span class="logo-mark"></span></a>
       <nav class="nav" aria-label="Principale">
-        <a href="#concept" data-i18n="nav.concept">Concept</a>
-        <a href="#spazi" data-i18n="nav.space">Spazi</a>
-        <a href="#food" data-i18n="nav.food">Cucina</a>
-                <a href="menu.html" data-i18n="nav.menu">Menu</a>
+        <a href="concept.html" data-i18n="nav.concept">Concept</a>
+        <a href="cucina.html" data-i18n="nav.food">Cucina</a>
+        <a href="menu.html" data-i18n="nav.menu">Menu</a>
         <a href="catering.html">Catering</a>
+        <a href="moysa.html">MOYSA</a>
       </nav>
       <div class="header-actions">
         <div class="lang-toggle" role="group" aria-label="Lingua / Language">
@@ -71,12 +71,13 @@
   </header>
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
-    <a href="#concept"><small>01</small><span data-i18n="nav.concept">Concept</span></a>
-    <a href="#spazi"><small>02</small><span data-i18n="nav.space">Spazi</span></a>
-    <a href="#food"><small>03</small><span data-i18n="nav.food">Cucina</span></a>
-    <a href="catering.html"><small>04</small><span>Catering</span></a>
-    <a href="menu.html"><small>05</small><span data-i18n="nav.menu">Menu</span></a>
-    <a href="#prenota"><small>06</small><span data-i18n="nav.contact">Contatti</span></a>
+    <a href="index.html"><small>01</small><span>Home</span></a>
+    <a href="concept.html"><small>02</small><span data-i18n="nav.concept">Concept</span></a>
+    <a href="cucina.html"><small>03</small><span data-i18n="nav.food">Cucina</span></a>
+    <a href="menu.html"><small>04</small><span data-i18n="nav.menu">Menu</span></a>
+    <a href="catering.html"><small>05</small><span>Catering</span></a>
+    <a href="moysa.html"><small>06</small><span>MOYSA</span></a>
+    <a href="index.html#prenota"><small>07</small><span data-i18n="nav.contact">Contatti</span></a>
     <p class="mobile-meta">Via Giacomo Watt 32 · Milano</p>
   </nav>
 
@@ -109,55 +110,8 @@
       <div class="hero__foot">
         <div class="wrap">
           <span class="hide-sm">Fun dining</span>
-          <a class="scroll" href="#concept"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Scopri</span></a>
+          <a class="scroll" href="#serata"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Scopri</span></a>
           <span class="hide-sm">Via Watt 32</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CONCEPT ================= -->
-    <section class="section" id="concept" aria-labelledby="concept-title">
-      <div class="wrap">
-        <div class="concept">
-          <div class="reveal">
-            <p class="label"><span data-i18n="concept.label">Il concept</span></p>
-            <h2 class="title" id="concept-title" data-i18n="concept.title">Non solo un ristorante. <em>Un luogo da <span class="brush">vivere</span>.</em></h2>
-          </div>
-          <div class="reveal" data-delay="1">
-            <p class="fun-line"><span data-i18n="concept.fun">Fun dining è</span>
-              <span class="rotator" aria-live="off">
-                <span class="is-on" data-i18n="rot.1">curiosità.</span>
-                <span data-i18n="rot.2">convivialità.</span>
-                <span data-i18n="rot.3">musica.</span>
-                <span data-i18n="rot.4">sorpresa.</span>
-                <span data-i18n="rot.5">leggerezza.</span>
-              </span>
-            </p>
-            <p class="body" data-i18n="concept.body">La cura e la precisione della grande cucina, senza la sua rigidità. Ad Alegre si condivide, si assaggia, si resta un po' di più. Un ambiente sereno ma elevato, nato dentro MOYSA, dove la tavola incontra la musica e il design.</p>
-          </div>
-        </div>
-
-        <div class="pillars">
-          <div class="pillar reveal">
-            <p class="label">Food</p>
-            <h3 data-i18n="pillar.food.t">Una cucina senza confini</h3>
-            <p data-i18n="pillar.food">Riferimenti internazionali e sapori riconoscibili, in combinazioni inattese.</p>
-          </div>
-          <div class="pillar reveal" data-delay="1">
-            <p class="label">Experience</p>
-            <h3 data-i18n="pillar.exp.t">Curato, mai rigido</h3>
-            <p data-i18n="pillar.exp">Qualità, scoperta e convivialità nello stesso gesto.</p>
-          </div>
-          <div class="pillar reveal" data-delay="2">
-            <p class="label">Music</p>
-            <h3 data-i18n="pillar.music.t">Nato dentro MOYSA</h3>
-            <p data-i18n="pillar.music">Un hub musicale e uno studio di registrazione come casa.</p>
-          </div>
-          <div class="pillar reveal" data-delay="3">
-            <p class="label">Space</p>
-            <h3 data-i18n="pillar.space.t">Natura e materia</h3>
-            <p data-i18n="pillar.space">Legno, spighe, luce calda e una terrazza tra verde e tecnologia.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -266,115 +220,6 @@
       </div>
     </section>
 
-    <!-- ================= FOOD ================= -->
-    <section class="section bg-navy on-dark" id="food" aria-labelledby="food-title">
-      <div class="wrap food-grid">
-        <div class="sticky reveal">
-          <p class="label"><span data-i18n="food.label">La cucina</span></p>
-          <h2 class="title" id="food-title" data-i18n="food.title">Creatività <em>in ogni piatto.</em></h2>
-          <p class="body" data-i18n="food.lead">Un viaggio senza confini: culture diverse, combinazioni inattese, una visione riconoscibile. Piatti piccoli da condividere e portate da gustare con calma.</p>
-          <div class="food-note">
-            <a class="btn btn--light" href="menu.html"><span data-i18n="cta.fullmenu">Il menu completo</span><i class="arrow"></i></a>
-          </div>
-        </div>
-
-        <ol class="dish-list">
-          <li class="dish-row reveal" tabindex="0">
-            <h3>Pollo al tamarindo</h3><span class="cat" data-i18n="cat.grandi">Piatti grandi</span>
-            <p>Alioli di barbabietola · burro al tamarindo · amaranto soffiato</p>
-          </li>
-          <li class="dish-row reveal" tabindex="0">
-            <h3>Gnocchi viola &amp; Pata Negra</h3><span class="cat" data-i18n="cat.grandi">Piatti grandi</span>
-            <p>Gnocchi di patata viola dolce · fonduta di gorgonzola · pata negra croccante</p>
-          </li>
-          <li class="dish-row reveal" tabindex="0">
-            <h3>Crocchette di Parmigiano al nero di carbone</h3><span class="cat" data-i18n="cat.piccoli">Piatti piccoli</span>
-            <p>Maionese di pomodoro · polvere di pomodoro</p>
-          </li>
-          <li class="dish-row reveal" tabindex="0">
-            <h3>Risotto allo yuzu</h3><span class="cat" data-i18n="cat.grandi">Piatti grandi</span>
-            <p>Stracciatella · nocciole · olio al basilico</p>
-          </li>
-          <li class="dish-row reveal" tabindex="0">
-            <h3>Panna cotta all'hibiscus</h3><span class="cat" data-i18n="cat.dolci">Dolci</span>
-            <p>Infuso all'hibiscus · nocciole · menta · vaniglia</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ================= CHEF ================= -->
-    <section class="section bg-paper" id="chef" aria-labelledby="chef-title">
-      <div class="wrap chef">
-        <div class="chef__portrait img-reveal">
-          <picture>
-            <source srcset="assets/img/chef.webp" type="image/webp">
-            <img src="assets/img/chef.jpg" alt="Ritratto dello chef Matteo Gritti, sorridente, con la maglietta Alegre Milano" loading="lazy" width="1440" height="1800">
-          </picture>
-        </div>
-        <div class="reveal" data-delay="1">
-          <p class="label"><span data-i18n="chef.label">Lo chef</span></p>
-          <blockquote class="quote" data-i18n="chef.quote">Culture diverse, combinazioni inattese, una sola visione.</blockquote>
-          <p class="body" data-i18n="chef.body">Esperienze internazionali e un percorso fuori dagli schemi. La cucina di Matteo Gritti mette in dialogo tecniche e ingredienti di mondi lontani con sapori che riconosci al primo assaggio.</p>
-          <p class="signature">Matteo Gritti <small>Executive chef</small></p>
-          <p><span class="todo" data-i18n="todo.bio">Biografia e ruolo da validare con lo chef</span></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= MOYSA ================= -->
-    <section class="moysa on-dark" id="moysa" aria-labelledby="moysa-title">
-      <div class="moysa__bg" aria-hidden="true">
-        <picture>
-          <source srcset="assets/img/club.webp" type="image/webp">
-          <img src="assets/img/club.jpg" alt="" loading="lazy" data-parallax>
-        </picture>
-      </div>
-      <div class="wrap">
-        <div class="moysa__text reveal">
-          <p class="label">MOYSA</p>
-          <h2 class="title" id="moysa-title" data-i18n="moysa.title">Born inside <em>MOYSA.</em></h2>
-          <p class="body" data-i18n="moysa.body">Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano: un luogo dove si incontrano artisti e produttori e dove si sperimenta. Lo stesso spirito arriva in tavola, con ritmo, improvvisazione e un pizzico di imprevedibilità.</p>
-          <div class="moysa__tags">
-            <span><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Music hub</span>
-            <span data-i18n="moysa.tag2">Studio di registrazione</span>
-            <span>Mixology</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= MOMENTI ================= -->
-    <section class="section" id="momenti" aria-labelledby="momenti-title">
-      <div class="wrap">
-        <div class="reveal">
-          <p class="label"><span data-i18n="moments.label">I momenti</span></p>
-          <h2 class="title" id="momenti-title" data-i18n="moments.title">Dal giorno <em>alla sera.</em></h2>
-        </div>
-        <div class="moments">
-          <article class="moment reveal">
-            <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="7"/><path d="M20 4v5M20 31v5M4 20h5M31 20h5M8.7 8.7l3.5 3.5M27.8 27.8l3.5 3.5M31.3 8.7l-3.5 3.5M12.2 27.8l-3.5 3.5"/></svg>
-            <span class="time" data-i18n="moments.lunch.time">Mezzogiorno</span>
-            <h3 data-i18n="moments.lunch">Pranzo</h3>
-            <p data-i18n="moments.lunch.body">Piatti piccoli da condividere, insalatone e portate per una pausa che vale il viaggio.</p>
-          </article>
-          <article class="moment reveal" data-delay="1">
-            <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M9 7h22L20 21zM20 21v12M13 34h14"/><circle cx="28" cy="10" r="3"/></svg>
-            <span class="time" data-i18n="moments.aperitivo.time">Al tramonto</span>
-            <h3>Aperitivo</h3>
-            <p data-i18n="moments.aperitivo.body">In dehor, quando la città rallenta: un cocktail, qualcosa da assaggiare, la musica giusta.</p>
-          </article>
-          <article class="moment reveal" data-delay="2">
-            <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M26 6a14 14 0 1 0 8 22A12 12 0 0 1 26 6z"/></svg>
-            <span class="time" data-i18n="moments.dinner.time">La sera</span>
-            <h3 data-i18n="moments.dinner">Cena</h3>
-            <p data-i18n="moments.dinner.body">Il fun dining al completo, dal primo assaggio all'ultimo dolce. E poi, magari, il club.</p>
-          </article>
-        </div>
-        <p style="margin-top:28px"><span class="todo" data-i18n="todo.hours">Orari e servizi attivi da confermare</span></p>
-      </div>
-    </section>
-
     <!-- ================= CATERING (richiamo alla pagina dedicata) ================= -->
     <section class="section bg-night on-dark home-cat" aria-labelledby="home-cat-title">
       <div class="wrap concept">
@@ -429,11 +274,11 @@
         <div>
           <h4 data-i18n="footer.explore">Esplora</h4>
           <ul>
-            <li><a href="#concept" data-i18n="nav.concept">Concept</a></li>
-            <li><a href="#spazi" data-i18n="nav.space">Spazi</a></li>
-            <li><a href="#food" data-i18n="nav.food">Cucina</a></li>
+            <li><a href="concept.html" data-i18n="nav.concept">Concept</a></li>
+            <li><a href="cucina.html" data-i18n="nav.food">Cucina</a></li>
             <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="catering.html">Catering</a></li>
+            <li><a href="moysa.html">MOYSA</a></li>
           </ul>
         </div>
         <div>
@@ -454,6 +299,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=30"></script>
+  <script src="assets/js/main.js?v=32"></script>
 </body>
 </html>
