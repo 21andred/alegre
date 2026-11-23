@@ -634,46 +634,47 @@
   }
 
   /* ---------- "Concept" e "Scopri": aprono la scena video in automatico ----------
-     1) la pagina si porta all'inizio della scena (schermo ancora vuoto);
-     2) poi scorre da sola, lentamente, fino a scena aperta: si vedono la linea che scende,
-        il testo e il video che compaiono, senza che l'utente debba scorrere.
-     Se l'utente tocca o usa la rotella durante l'animazione, l'animazione si interrompe. */
+     I link puntano a index.html?s=concept (non a #concept: con l'ancora alcuni browser mobili
+     saltavano da soli alla sezione e interferivano con l'animazione).
+     1) la pagina si porta all'inizio della scena; 2) poi scorre da sola fino a scena aperta,
+     così si vedono la linea, il testo e il video senza dover scorrere.
+     Se l'utente tocca o usa la rotella, l'animazione si ferma. */
   var conceptScene = document.getElementById("concept");
   var autoAnim = null;
+  var root = document.documentElement;
+  function setY(y) { root.style.scrollBehavior = "auto"; window.scrollTo(0, y); }
   function sceneStart() { return conceptScene.getBoundingClientRect().top + window.scrollY; }
   function sceneOpen() { return sceneStart() + (conceptScene.offsetHeight - window.innerHeight) * 0.45; }
-  function stopAuto() { if (autoAnim) { cancelAnimationFrame(autoAnim); autoAnim = null; } }
-  function animateScroll(from, to, ms, done) {
-    stopAuto();
-    var t0 = performance.now();
+  function stopAuto() { if (autoAnim) { cancelAnimationFrame(autoAnim); autoAnim = null; } root.style.scrollBehavior = ""; }
+  function animateScroll(to, ms, done) {
+    if (autoAnim) cancelAnimationFrame(autoAnim);
+    var from = window.scrollY, t0 = performance.now();
     var ease = function (x) { return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; };
     var step = function (now) {
       var k = Math.min(1, (now - t0) / ms);
-      window.scrollTo({ top: from + (to - from) * ease(k), behavior: "instant" });
-      if (k < 1) autoAnim = requestAnimationFrame(step); else { autoAnim = null; if (done) done(); }
+      setY(from + (to - from) * ease(k));
+      if (k < 1) autoAnim = requestAnimationFrame(step);
+      else { autoAnim = null; root.style.scrollBehavior = ""; if (done) done(); }
     };
     autoAnim = requestAnimationFrame(step);
   }
-  function playConcept(fromStart) {
-    if (reduceMotion) { window.scrollTo({ top: sceneOpen(), behavior: "auto" }); return; }
-    var start = sceneStart();
-    var reveal = function () { animateScroll(window.scrollY, sceneOpen(), 2800); };
-    if (fromStart || Math.abs(window.scrollY - start) < 4) { window.scrollTo({ top: start, behavior: "instant" }); setTimeout(reveal, 250); }
-    else animateScroll(window.scrollY, start, Math.min(1200, 400 + Math.abs(window.scrollY - start) / 3), function () { setTimeout(reveal, 200); });
+  function playConcept(jump) {
+    if (reduceMotion) { setY(sceneOpen()); root.style.scrollBehavior = ""; return; }
+    var reveal = function () { setTimeout(function () { animateScroll(sceneOpen(), 2800); }, 250); };
+    if (jump) { setY(sceneStart()); reveal(); }
+    else animateScroll(sceneStart(), Math.min(1200, 400 + Math.abs(window.scrollY - sceneStart()) / 3), reveal);
   }
   if (conceptScene && conceptScene.classList.contains("scene")) {
-    ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, stopAuto, { passive: true }); });
-    document.querySelectorAll('a[href="#concept"], a[href="index.html#concept"]').forEach(function (a) {
-      a.addEventListener("click", function (e) {
-        e.preventDefault();
-        setMenu(false);
-        if (location.hash !== "#concept") history.pushState(null, "", "#concept");
-        playConcept(false);
-      });
+    ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, function () { if (autoAnim) stopAuto(); }, { passive: true }); });
+    document.querySelectorAll('a[href="index.html?s=concept"]').forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); setMenu(false); playConcept(false); });
     });
-    if (location.hash === "#concept") {
+    var params = new URLSearchParams(location.search);
+    if (params.get("s") === "concept") {
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-      window.addEventListener("load", function () { setTimeout(function () { playConcept(true); }, 80); });
+      history.replaceState(null, "", location.pathname);
+      var go = function () { setTimeout(function () { playConcept(true); }, 150); };
+      if (document.readyState === "complete") go(); else window.addEventListener("load", go);
     }
   }
 

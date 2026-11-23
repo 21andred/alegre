@@ -1110,3 +1110,39 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 @media (prefers-reduced-motion: reduce) { .hero--intro .hero__logo { opacity: 1; } }
 .cat-corp .lede { margin: 0 0 26px; }
 .cat-corp .cat-keys { margin: 0 0 40px; line-height: 2; }
+
+/* ---------- HOME: voci del sito in cerchio intorno al logo ---------- */
+.orbit { position: relative; width: min(1000px, 94vw); height: clamp(360px, 50vw, 560px); margin: 0 auto; display: grid; place-items: center; }
+.orbit .hero__logo { width: min(540px, 58vw); margin: 0; }
+.orbit__nav { position: absolute; inset: 0; pointer-events: none; }
+.orbit__dot {
+  position: absolute; transform: translate(-50%, -50%);
+  width: clamp(72px, 7.6vw, 104px); aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  border: 1px solid var(--sand); background: #fff; color: var(--night);
+  font-family: var(--sans); font-size: clamp(10px, .85vw, 12px); font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  text-decoration: none; pointer-events: auto;
+  opacity: 0; animation: dotIn .55s var(--ease-out) forwards; animation-delay: calc(1.1s + var(--i) * .09s);
+  transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+.orbit__dot:hover, .orbit__dot:focus-visible { background: var(--sand); color: #fff; border-color: var(--sand); }
+@keyframes dotIn { from { opacity: 0; transform: translate(-50%, -50%) scale(.85); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+.hero--intro .hero__inner { padding-top: 70px; padding-bottom: 120px; }
+.hero--intro .hero__claim { margin: 18px auto 34px; }
+.hero--intro .hero__ctas { animation-delay: 1.6s; }
+.btn--big { height: 62px; padding: 0 44px; font-size: 13px; }
+
+/* In apertura la barra in alto mostra solo la lingua: le voci sono nei cerchi */
+.home-intro .site-header:not(.is-scrolled) .nav,
+.home-intro .site-header:not(.is-scrolled) .header-actions .btn,
+.home-intro .site-header:not(.is-scrolled) .menu-toggle { opacity: 0; visibility: hidden; }
+.home-intro .site-header .nav, .home-intro .site-header .header-actions .btn, .home-intro .site-header .menu-toggle { transition: opacity .4s var(--ease), visibility .4s; }
+.home-intro .site-header:not(.is-scrolled) .header-actions .btn, .home-intro .site-header:not(.is-scrolled) .menu-toggle { display: none; }
+@media (max-width: 960px) { .home-intro .site-header:not(.is-scrolled) .menu-toggle { display: none; } }
+@media (max-width: 600px) {
+  .orbit { height: 380px; width: 100%; }
+  .orbit .hero__logo { width: 48vw; }
+  .orbit__dot { width: 70px; font-size: 9.5px; letter-spacing: .1em; }
+  .hero--intro .hero__ctas .btn { width: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .orbit__dot { opacity: 1; animation: none; } }

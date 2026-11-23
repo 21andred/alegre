@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=35">
+  <link rel="stylesheet" href="assets/css/style.css?v=38">
 
   <script type="application/ld+json">
   {
@@ -50,7 +50,7 @@
     <div class="wrap">
       <a class="brand" href="index.html" aria-label="Alegre Milano, home"><span class="logo-mark"></span></a>
       <nav class="nav" aria-label="Principale">
-        <a href="index.html#concept" data-i18n="nav.concept">Concept</a>
+        <a href="index.html?s=concept" data-i18n="nav.concept">Concept</a>
         <a href="cucina.html" data-i18n="nav.food">Cucina</a>
         <a href="menu.html" data-i18n="nav.menu">Menu</a>
         <a href="catering.html">Catering</a>
@@ -71,7 +71,7 @@
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
     <a href="index.html"><small>01</small><span>Home</span></a>
-    <a href="index.html#concept"><small>02</small><span data-i18n="nav.concept">Concept</span></a>
+    <a href="index.html?s=concept"><small>02</small><span data-i18n="nav.concept">Concept</span></a>
     <a href="cucina.html"><small>03</small><span data-i18n="nav.food">Cucina</span></a>
     <a href="menu.html"><small>04</small><span data-i18n="nav.menu">Menu</span></a>
     <a href="catering.html"><small>05</small><span>Catering</span></a>
@@ -92,18 +92,27 @@
     <section class="hero hero--intro" aria-labelledby="hero-title">
 
       <div class="hero__inner">
-        <h1 id="hero-title" class="hero__logo"><span class="logo-full" role="img" aria-label="Alegre Milano"></span></h1>
+        <!-- Logo con le voci del sito disposte intorno, in cerchio ed equidistanti -->
+        <div class="orbit">
+          <h1 id="hero-title" class="hero__logo"><span class="logo-full" role="img" aria-label="Alegre Milano"></span></h1>
+          <nav class="orbit__nav" aria-label="Principale">
+            <a class="orbit__dot" style="--i:0;left:50%;top:9%" href="index.html?s=concept" data-i18n="nav.concept">Concept</a>
+            <a class="orbit__dot" style="--i:1;left:91%;top:37%" href="cucina.html" data-i18n="nav.food">Cucina</a>
+            <a class="orbit__dot" style="--i:2;left:75%;top:84%" href="menu.html" data-i18n="nav.menu">Menu</a>
+            <a class="orbit__dot" style="--i:3;left:25%;top:84%" href="catering.html">Catering</a>
+            <a class="orbit__dot" style="--i:4;left:9%;top:37%" href="moysa.html">MOYSA</a>
+          </nav>
+        </div>
         <p class="hero__claim" data-i18n="hero.claim">A different kind of dining experience.</p>
         <div class="hero__ctas">
-          <a class="btn btn--solid" href="#prenota" data-booking><span data-i18n="cta.bookTable">Prenota un tavolo</span></a>
-          <a class="btn btn--dark" href="menu.html"><span data-i18n="cta.menu">Scopri il menu</span></a>
+          <a class="btn btn--solid btn--big" href="#prenota" data-booking><span data-i18n="cta.bookTable">Prenota un tavolo</span><i class="arrow"></i></a>
         </div>
       </div>
 
       <div class="hero__foot">
         <div class="wrap">
           <span class="hide-sm">Fun dining</span>
-          <a class="scroll" href="#concept"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Scopri</span></a>
+          <a class="scroll" href="index.html?s=concept"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Scopri</span></a>
           <span class="hide-sm">Via Watt 32</span>
         </div>
       </div>
@@ -298,7 +307,7 @@
         <div>
           <h4 data-i18n="footer.explore">Esplora</h4>
           <ul>
-            <li><a href="index.html#concept" data-i18n="nav.concept">Concept</a></li>
+            <li><a href="index.html?s=concept" data-i18n="nav.concept">Concept</a></li>
             <li><a href="cucina.html" data-i18n="nav.food">Cucina</a></li>
             <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
             <li><a href="catering.html">Catering</a></li>
@@ -323,6 +332,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=35"></script>
+  <script src="assets/js/main.js?v=38"></script>
 </body>
 </html>
