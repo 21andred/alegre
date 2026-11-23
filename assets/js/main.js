@@ -18,6 +18,10 @@
       "cat.b.keys": "Stampa · Party privati · MOYSA",
       "cat.a.keys": "Concerti · Tour · Stadi · Crew",
       "skip": "Vai al contenuto",
+      "cat.corp.label": "Per le aziende",
+      "cat.corp.title": "Feste aziendali <em>con il ritmo di Alegre.</em>",
+      "cat.corp.body": "La cucina e l'atmosfera delle nostre serate, portate nel tuo evento o accolte negli spazi di MOYSA.",
+      "cat.corp.keys": "Feste aziendali · Cene di gala · Lanci di prodotto · Eventi per brand",
       "cuc.sig.label": "Signature",
       "cuc.sig.title": "Cinque piatti <em>per cominciare.</em>",
       "cuc.cta.title": "La carta completa <em>ti aspetta.</em>",
@@ -173,6 +177,10 @@
       "cat.b.keys": "Press · Private parties · MOYSA",
       "cat.a.keys": "Concerts · Tours · Stadiums · Crew",
       "skip": "Skip to content",
+      "cat.corp.label": "For companies",
+      "cat.corp.title": "Corporate parties <em>with Alegre's rhythm.</em>",
+      "cat.corp.body": "The food and atmosphere of our evenings, brought to your event or hosted in the MOYSA spaces.",
+      "cat.corp.keys": "Corporate parties · Gala dinners · Product launches · Brand events",
       "cuc.sig.label": "Signature",
       "cuc.sig.title": "Five dishes <em>to start with.</em>",
       "cuc.cta.title": "The full menu <em>is waiting.</em>",
@@ -623,6 +631,30 @@
     rSound.addEventListener("click", function () { setSound(rv.muted); if (rv.paused) rv.play(); });
     rv.addEventListener("ended", closeReel);
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeReel(); });
+  }
+
+  /* ---------- "Concept" e "Scopri": portano direttamente alla scena video già aperta ----------
+     Invece di fermarsi all'inizio della scena (schermo ancora vuoto), si scorre fino al punto
+     in cui testo e video sono già visibili. */
+  var conceptScene = document.getElementById("concept");
+  function conceptTarget() {
+    var range = conceptScene.offsetHeight - window.innerHeight;
+    return conceptScene.getBoundingClientRect().top + window.scrollY + range * 0.45;
+  }
+  if (conceptScene && conceptScene.classList.contains("scene")) {
+    document.querySelectorAll('a[href="#concept"], a[href="index.html#concept"]').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        setMenu(false);
+        if (location.hash !== "#concept") history.pushState(null, "", "#concept");
+        window.scrollTo({ top: conceptTarget(), behavior: reduceMotion ? "auto" : "smooth" });
+      });
+    });
+    if (location.hash === "#concept") {
+      window.addEventListener("load", function () {
+        setTimeout(function () { window.scrollTo({ top: conceptTarget(), behavior: "auto" }); }, 60);
+      });
+    }
   }
 
   /* ---------- Reveal on scroll ---------- */

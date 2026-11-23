@@ -1088,3 +1088,25 @@ body.reel-open { overflow: hidden; }
   .cuc-dot--b { display: none; }
   .cuc-dot--a { width: 210px; right: -70px; top: -50px; }
 }
+
+/* =========================================================
+   HOME: apertura temporanea (fondo bianco, logo sabbia in dissolvenza)
+   ========================================================= */
+.hero--intro { background: #fff; color: var(--night); }
+.hero--intro::before { display: none; }
+.hero--intro .hero__logo {
+  color: var(--sand); clip-path: none; opacity: 0;
+  animation: introFade 2.4s var(--ease) .3s forwards;
+}
+@keyframes introFade { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: none; } }
+.hero--intro .hero__claim { color: var(--sand); }
+.hero--intro .hero__foot { border-top-color: rgba(20,17,14,.1); color: var(--sand); }
+.hero--intro .hero__foot .scroll i { background: rgba(165,140,115,.3); }
+.hero--intro .hero__foot .scroll i::after { background: var(--sand); }
+.home-intro .site-header:not(.is-scrolled) { color: var(--night); }
+.home-intro .site-header:not(.is-scrolled) .brand { opacity: 0; pointer-events: none; }
+.home-intro .menu-open .site-header { color: var(--ivory); }
+body.home-intro.menu-open .site-header { color: var(--ivory); }
+@media (prefers-reduced-motion: reduce) { .hero--intro .hero__logo { opacity: 1; } }
+.cat-corp .lede { margin: 0 0 26px; }
+.cat-corp .cat-keys { margin: 0 0 40px; line-height: 2; }
