@@ -1219,3 +1219,18 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
   .steps--icons h3, .theme-night .steps--icons h3 { font-size: 22px; margin: 0 0 4px; }
   .steps--icons p { font-size: 13.5px; line-height: 1.5; margin: 0; }
 }
+
+/* ---------- CATERING: aziende + preventivo, un unico blocco nero → blu ---------- */
+.theme-night .cat-flow {
+  background: linear-gradient(180deg, var(--night) 0%, var(--night) 18%, var(--navy) 62%, var(--navy) 100%);
+}
+.theme-night .cat-flow .section, .theme-night .cat-flow .section:nth-of-type(odd):not([class*="bg-"]), .theme-night .cat-flow #preventivo { background: transparent; border-top: 0; }
+.theme-night .cat-flow .cat-corp { padding-bottom: clamp(50px, 6vw, 90px); }
+.theme-night .cat-flow #preventivo { padding-top: clamp(50px, 6vw, 90px); }
+.cat-flow #preventivo { position: relative; }
+.cat-flow #preventivo::before {
+  content: ""; position: absolute; top: 0; height: 1px; background: var(--line-light);
+  left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  right: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+}
+.cat-corp .cat-keys { margin-bottom: 0; }

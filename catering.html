@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=46">
+  <link rel="stylesheet" href="assets/css/style.css?v=48">
 </head>
 <body class="page-catering theme-night">
   <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
@@ -124,21 +124,6 @@
       </div>
     </section>
 
-    <!-- ================= AZIENDE: proposta corporate ================= -->
-    <section class="section on-dark cat-corp" id="aziende" aria-labelledby="cat-corp-title">
-      <div class="wrap concept">
-        <div class="reveal">
-          <p class="label"><span data-i18n="cat.corp.label">Per le aziende</span></p>
-          <h2 class="title" id="cat-corp-title" data-i18n="cat.corp.title">Feste aziendali <em>con il ritmo di Alegre.</em></h2>
-        </div>
-        <div class="reveal" data-delay="1">
-          <p class="lede" data-i18n="cat.corp.body">La cucina e l'atmosfera delle nostre serate, portate nel tuo evento o accolte negli spazi di MOYSA.</p>
-          <p class="cat-keys" data-i18n="cat.corp.keys">Feste aziendali · Cene di gala · Lanci di prodotto · Eventi per brand</p>
-          <a class="btn btn--solid" href="#preventivo"><span data-i18n="cat.cta">Richiedi un preventivo</span><i class="arrow"></i></a>
-        </div>
-      </div>
-    </section>
-
     <!-- ================= COME LAVORIAMO (compatto, con icone) ================= -->
     <section class="section on-dark cat-steps" aria-labelledby="cat-steps-title">
       <div class="wrap">
@@ -153,9 +138,25 @@
       </div>
     </section>
 
+    <!-- ================= AZIENDE: proposta corporate ================= -->
+    <!-- Aziende e preventivo: un unico blocco, dal nero al blu con un gradiente -->
+    <div class="cat-flow">
+    <section class="section on-dark cat-corp" id="aziende" aria-labelledby="cat-corp-title">
+      <div class="wrap concept">
+        <div class="reveal">
+          <p class="label"><span data-i18n="cat.corp.label">Per le aziende</span></p>
+          <h2 class="title" id="cat-corp-title" data-i18n="cat.corp.title">Feste aziendali <em>con il ritmo di Alegre.</em></h2>
+        </div>
+        <div class="reveal" data-delay="1">
+          <p class="lede" data-i18n="cat.corp.body">La cucina e l'atmosfera delle nostre serate, portate nel tuo evento o accolte negli spazi di MOYSA.</p>
+          <p class="cat-keys" data-i18n="cat.corp.keys">Feste aziendali · Cene di gala · Lanci di prodotto · Eventi per brand</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= PREVENTIVO ================= -->
     <!-- Modulo gestito da Netlify Forms: le richieste arrivano nel pannello Netlify (sezione Forms). -->
-    <section class="section bg-navy on-dark" id="preventivo" aria-labelledby="quote-title">
+    <section class="section on-dark" id="preventivo" aria-labelledby="quote-title">
       <div class="wrap quote-grid">
         <div class="reveal">
           <p class="label"><span data-i18n="cat.q.label">Preventivo</span></p>
@@ -190,6 +191,7 @@
         </form>
       </div>
     </section>
+    </div>
 
     <!-- Reel: si apre al clic sul nome di un artista; il nome "scende" nella parte bassa del video -->
     <div class="reel" id="reel" role="dialog" aria-modal="true" aria-label="Video" hidden>
@@ -234,6 +236,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=46"></script>
+  <script src="assets/js/main.js?v=48"></script>
 </body>
 </html>
