@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=42">
+  <link rel="stylesheet" href="assets/css/style.css?v=44">
 </head>
 <body class="page-moysa">
   <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
@@ -58,14 +58,8 @@
   <main id="main">
 
     <!-- ================= MOYSA ================= -->
-    <section class="moysa page-hero--moysa on-dark" id="moysa" aria-labelledby="moysa-title">
-      <div class="moysa__bg" aria-hidden="true">
-        <picture>
-          <source srcset="assets/img/club.webp" type="image/webp">
-          <img src="assets/img/club.jpg" alt="" data-parallax>
-        </picture>
-      </div>
-      <div class="wrap">
+    <section class="moysa-hero on-dark" id="moysa" aria-labelledby="moysa-title">
+      <div class="wrap moysa-hero__grid">
         <div class="moysa__text reveal">
           <p class="label">MOYSA</p>
           <h1 class="title" id="moysa-title" data-i18n="moysa.title">Born inside <em>MOYSA.</em></h1>
@@ -76,6 +70,13 @@
             <span>Mixology</span>
           </div>
         </div>
+        <!-- Foto intera, proporzioni originali; sfumata in alto nel fondo nero -->
+        <figure class="moysa-photo img-reveal">
+          <picture>
+            <source srcset="assets/img/moysa-dj.webp" type="image/webp">
+            <img src="assets/img/moysa-dj.jpg" alt="Una DJ con le cuffie dietro la consolle con la scritta MOYSA, davanti alla scala a spirale" width="1440" height="1800">
+          </picture>
+        </figure>
       </div>
     </section>
 
@@ -126,6 +127,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=42"></script>
+  <script src="assets/js/main.js?v=44"></script>
 </body>
 </html>
