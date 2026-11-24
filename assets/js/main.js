@@ -766,6 +766,23 @@
     }, { passive: false });
   })();
 
+  /* ---------- HOME: la frase sotto il logo, su una riga, larga quanto il logo ---------- */
+  (function () {
+    var logo = document.querySelector(".hero--intro .hero__logo");
+    var claim = document.querySelector(".hero--intro .hero__claim");
+    if (!logo || !claim) return;
+    function fit() {
+      claim.style.fontSize = "";
+      var target = logo.getBoundingClientRect().width;
+      var base = parseFloat(getComputedStyle(claim).fontSize);
+      var w = claim.scrollWidth || 1;
+      claim.style.fontSize = (base * target / w).toFixed(2) + "px";
+    }
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
+    window.addEventListener("resize", fit);
+    document.addEventListener("click", function (e) { if (e.target.closest(".lang-toggle")) setTimeout(fit, 30); });
+  })();
+
   /* ---------- Reveal on scroll ---------- */
   function observeReveals() {
     var els = document.querySelectorAll(".reveal:not(.is-in), .img-reveal:not(.is-in)");
