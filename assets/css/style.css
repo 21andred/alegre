@@ -1433,8 +1433,8 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 @media (min-width: 961px) {
   .cat-hero__video { left: 50%; width: 50%; opacity: 1; }
   .cat-hero::before {
-    background: linear-gradient(90deg, var(--night) 0%, var(--night) 50%, rgba(20,17,14,.75) 60%, rgba(20,17,14,.15) 82%, rgba(20,17,14,.25) 100%),
-                linear-gradient(0deg, rgba(20,17,14,.7), transparent 30%);
+    background: linear-gradient(90deg, var(--night) 0%, var(--night) 50%, rgba(20,17,14,.6) 55%, rgba(20,17,14,.15) 62%, transparent 70%),
+                linear-gradient(0deg, rgba(20,17,14,.55), transparent 16%);
   }
   .cat-hero .title { font-size: clamp(44px, 4.6vw, 80px); max-width: none; }
   .cat-hero .title em { display: block; }
