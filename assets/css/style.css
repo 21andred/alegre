@@ -1413,3 +1413,14 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 /* Barra nascosta che riappare scendendo dall'alto quando il mouse va in cima */
 .site-header.is-hidden.is-peek { transform: none; background: rgba(20,17,14,.92); color: var(--ivory); border-bottom-color: var(--line-light); }
 .site-header.is-hidden.is-peek .btn--solid { background: var(--wheat); border-color: var(--wheat); color: var(--night); }
+
+/* ---------- Barra del menu: stessa altezza su tutte le pagine e in ogni stato ---------- */
+@media (min-width: 961px) {
+  .site-header .wrap, .site-header.is-scrolled .wrap { height: 72px; transition: none; }
+}
+
+/* ---------- HOME mobile: logo più in basso, frase nascosta ---------- */
+@media (max-width: 760px) {
+  .hero--intro .hero__inner { margin-top: 38svh; }
+  .hero__book .hero__claim { display: none; }
+}
