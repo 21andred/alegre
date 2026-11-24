@@ -16,6 +16,8 @@ Sito statico (HTML/CSS/JS, nessuna build), pubblicato su Netlify dal branch
   Niente stili colorati/psichedelici.
 - **Palette: solo sei colori** (e loro trasparenze): nero legno `#14110E`, avorio `#F2ECE2`,
   bianco `#FFFFFF`, sabbia `#A58C73`, grano `#D6B88A`, blu notte `#2E3A70`. Non aggiungerne altri.
+  Unica eccezione: verde MOYSA `#B6FB52` (colore del logotipo MOYSA), da usare solo quando ci si
+  riferisce a MOYSA (logotipo, la parola MOYSA, accenti della pagina MOYSA).
 - Caratteri: Instrument Serif (titoli, frasi), Manrope (testi, menu, pulsanti), Patrick Hand SC
   (etichette). Nella home: menu e Prenota in Manrope, frase in Instrument Serif.
 - Non inventare fatti (premi, orari, ruoli, primati): segnarli come "da confermare".

@@ -22,6 +22,19 @@
       "cat.b.keys": "Stampa · Party privati · MOYSA",
       "cat.a.keys": "Concerti · Tour · Stadi · Crew",
       "skip": "Vai al contenuto",
+      "my.claim": "Due piani, <em>una sola serata.</em>",
+      "my.foot1": "Ristorante · Club",
+      "my.scene.label": "Al piano di sopra",
+      "my.scene.title": "Sotto si cena. <em>Sopra, la serata continua.</em>",
+      "my.scene.body": "Al piano terra c'è Alegre. Al piano di sopra c'è il club di <span class=\"moysa-word\">MOYSA</span>: un altro locale, un'altra atmosfera, senza dover cambiare indirizzo. Basta una rampa di scale per passare dal dessert al primo drink.",
+      "my.floors.title": "I due piani",
+      "my.f1.n": "Primo piano",
+      "my.f1": "Mixology, musica e DJ set, tra le sale e il giardino interno.",
+      "my.f0.n": "Piano terra",
+      "my.f0.t": "Ristorante",
+      "my.f0": "Il fun dining: pranzo, aperitivo e cena.",
+      "my.hub.label": "Music hub",
+      "my.hub.title": "Dove nasce <em>la musica.</em>",
       "cat.corp.label": "Per le aziende",
       "cat.corp.title": "Feste aziendali <em>con il ritmo di Alegre.</em>",
       "cat.corp.body": "La cucina e l'atmosfera delle nostre serate, portate nel tuo evento o accolte negli spazi di MOYSA.",
@@ -185,6 +198,19 @@
       "cat.b.keys": "Press · Private parties · MOYSA",
       "cat.a.keys": "Concerts · Tours · Stadiums · Crew",
       "skip": "Skip to content",
+      "my.claim": "Two floors, <em>one night.</em>",
+      "my.foot1": "Restaurant · Club",
+      "my.scene.label": "Upstairs",
+      "my.scene.title": "Dinner downstairs. <em>Upstairs, the night goes on.</em>",
+      "my.scene.body": "Alegre is on the ground floor. Upstairs is the <span class=\"moysa-word\">MOYSA</span> club: another venue, another atmosphere, without changing address. One flight of stairs takes you from dessert to the first drink.",
+      "my.floors.title": "The two floors",
+      "my.f1.n": "First floor",
+      "my.f1": "Mixology, music and DJ sets, across the rooms and the inner garden.",
+      "my.f0.n": "Ground floor",
+      "my.f0.t": "Restaurant",
+      "my.f0": "Fun dining: lunch, aperitivo and dinner.",
+      "my.hub.label": "Music hub",
+      "my.hub.title": "Where music <em>is made.</em>",
       "cat.corp.label": "For companies",
       "cat.corp.title": "Corporate parties <em>with Alegre's rhythm.</em>",
       "cat.corp.body": "The food and atmosphere of our evenings, brought to your event or hosted in the MOYSA spaces.",
@@ -372,7 +398,7 @@
   var header = document.querySelector(".site-header");
   var bookBar = document.querySelector(".book-bar");
   var isMenuPage = document.body.classList.contains("page-menu");
-  var hero = document.querySelector(".hero, .cat-hero, .page-hero, .page-hero--moysa");
+  var hero = document.querySelector(".hero, .cat-hero, .page-hero, .my-hero");
 
   // Soglie calcolate solo al caricamento e al ridimensionamento, non a ogni scroll
   var headerLimit = 40, barLimit = 400, lastScrolled = null, lastBar = null;

@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>MOYSA — Alegre Milano</title>
-  <meta name="description" content="Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano, in Via Giacomo Watt 32.">
+  <meta name="description" content="MOYSA, al piano di sopra di Alegre: il club dove la serata continua dopo cena, dentro l'hub musicale e studio di registrazione di Milano. Via Giacomo Watt 32.">
   <meta name="theme-color" content="#14110e">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232e3a70'/%3E%3Ctext x='50' y='70' font-family='Georgia' font-size='60' text-anchor='middle' fill='%23a58c73'%3EA%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=54">
+  <link rel="stylesheet" href="assets/css/style.css?v=56">
 </head>
-<body class="page-moysa">
+<body class="page-moysa theme-moysa">
   <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
 
   <header class="site-header">
@@ -57,31 +57,82 @@
 
   <main id="main">
 
-    <!-- ================= MOYSA ================= -->
-    <section class="moysa-hero on-dark" id="moysa" aria-labelledby="moysa-title">
+    <!-- ================= APERTURA: logotipo MOYSA su video neon ================= -->
+    <section class="my-hero on-dark" aria-labelledby="my-title">
+      <video class="my-hero__video" autoplay muted loop playsinline preload="auto" poster="assets/video/moysa-neon-poster.jpg" aria-hidden="true">
+        <source src="assets/video/moysa-neon.mp4" type="video/mp4">
+      </video>
+      <div class="wrap my-hero__inner">
+        <h1 id="my-title" class="my-logo"><span class="moysa-mark" role="img" aria-label="MOYSA"></span></h1>
+        <p class="my-hero__claim" data-i18n="my.claim">Due piani, <em>una sola serata.</em></p>
+      </div>
+      <div class="hero__foot"><div class="wrap"><span class="hide-sm" data-i18n="my.foot1">Ristorante · Club</span><a class="scroll" href="#due-piani"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Scopri</span></a><span class="hide-sm">Via Watt 32</span></div></div>
+    </section>
+
+    <!-- ================= DUE PIANI: scena video guidata dallo scroll ================= -->
+    <section class="scene scene--reverse on-dark my-scene" id="due-piani" aria-labelledby="my-scene-title">
+      <div class="scene__sticky">
+        <div class="scene__media">
+          <video muted playsinline loop preload="metadata" poster="assets/video/moysa-club-poster.jpg" aria-label="Video: il club MOYSA al piano di sopra, tra bancone, poltrone in velluto e giardino interno">
+            <source src="assets/video/moysa-club.mp4" type="video/mp4">
+          </video>
+        </div>
+        <span class="scene__divider" aria-hidden="true"></span>
+        <div class="scene__text">
+          <p class="label"><span data-i18n="my.scene.label">Al piano di sopra</span></p>
+          <h2 class="title" id="my-scene-title" data-i18n="my.scene.title">Sotto si cena. <em>Sopra, la serata continua.</em></h2>
+          <p class="body" data-i18n="my.scene.body">Al piano terra c'è Alegre. Al piano di sopra c'è il club di <span class="moysa-word">MOYSA</span>: un altro locale, un'altra atmosfera, senza dover cambiare indirizzo. Basta una rampa di scale per passare dal dessert al primo drink.</p>
+          <button class="scene__sound" type="button" aria-pressed="false">
+            <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span data-i18n="scene.soundOn">Attiva l'audio</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= I DUE PIANI ================= -->
+    <section class="section on-dark my-floors" aria-labelledby="my-floors-title">
+      <div class="wrap">
+        <h2 class="sr-only" id="my-floors-title" data-i18n="my.floors.title">I due piani</h2>
+        <ol class="floors">
+          <li class="floor floor--up reveal">
+            <span class="floor__n" data-i18n="my.f1.n">Primo piano</span>
+            <h3><span class="moysa-mark moysa-mark--inline" role="img" aria-label="MOYSA"></span> <em>Club</em></h3>
+            <p data-i18n="my.f1">Mixology, musica e DJ set, tra le sale e il giardino interno.</p>
+          </li>
+          <li class="floor floor--down reveal" data-delay="1">
+            <span class="floor__n" data-i18n="my.f0.n">Piano terra</span>
+            <h3>Alegre <em data-i18n="my.f0.t">Ristorante</em></h3>
+            <p data-i18n="my.f0">Il fun dining: pranzo, aperitivo e cena.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= MUSIC HUB ================= -->
+    <section class="section on-dark my-hub" aria-labelledby="my-hub-title">
       <div class="wrap moysa-hero__grid">
         <div class="moysa__text reveal">
-          <p class="label">MOYSA</p>
-          <h1 class="title" id="moysa-title" data-i18n="moysa.title">Born inside <em>MOYSA.</em></h1>
+          <p class="label"><span data-i18n="my.hub.label">Music hub</span></p>
+          <h2 class="title" id="my-hub-title" data-i18n="my.hub.title">Dove nasce <em>la musica.</em></h2>
           <p class="body" data-i18n="moysa.body">Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano: un luogo dove si incontrano artisti e produttori e dove si sperimenta. Lo stesso spirito arriva in tavola, con ritmo, improvvisazione e un pizzico di imprevedibilità.</p>
           <div class="moysa__tags">
             <span><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Music hub</span>
             <span data-i18n="moysa.tag2">Studio di registrazione</span>
-            <span>Mixology</span>
+            <span>Club</span>
           </div>
         </div>
-        <!-- Foto intera, proporzioni originali; sfumata in alto nel fondo nero -->
         <figure class="moysa-photo img-reveal">
           <picture>
             <source srcset="assets/img/moysa-dj.webp" type="image/webp">
-            <img src="assets/img/moysa-dj.jpg" alt="Una DJ con le cuffie dietro la consolle con la scritta MOYSA, davanti alla scala a spirale" width="1440" height="1800">
+            <img src="assets/img/moysa-dj.jpg" alt="Una DJ con le cuffie dietro la consolle con la scritta MOYSA, davanti alla scala a spirale" width="1440" height="1800" loading="lazy">
           </picture>
         </figure>
       </div>
     </section>
 
-
-    <section class="section bg-night on-dark" aria-labelledby="moysa-links-title">
+    <!-- ================= CATERING ================= -->
+    <section class="section on-dark my-cat" aria-labelledby="moysa-links-title">
       <div class="wrap concept">
         <div class="reveal">
           <p class="label"><span data-i18n="home.cat.label">Catering</span></p>
@@ -127,6 +178,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=54"></script>
+  <script src="assets/js/main.js?v=56"></script>
 </body>
 </html>
