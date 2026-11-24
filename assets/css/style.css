@@ -1400,8 +1400,12 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
   .hero__book:has(.btn--pill:focus-visible) .hero__claim { opacity: 1; transform: none; }
 }
 
-/* ---------- HOME: leggero bagliore sul logo al passaggio del mouse ---------- */
-.hero--intro .hero__logo { transition: filter .6s var(--ease); }
-@media (hover: hover) {
-  .hero--intro .hero__logo:hover { filter: drop-shadow(0 0 14px rgba(214,184,138,.75)) drop-shadow(0 0 36px rgba(214,184,138,.45)) brightness(1.08); }
+
+/* ---------- HOME: leggera luce bianca che segue il mouse ---------- */
+.hero--intro .hero__glow {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none; mix-blend-mode: normal;
+  background: radial-gradient(circle 320px at var(--gx, 50%) var(--gy, 45%), rgba(255,255,255,.55), rgba(255,255,255,.18) 40%, rgba(255,255,255,0) 72%);
+  opacity: 0; transition: opacity .6s var(--ease);
 }
+.hero--intro:hover .hero__glow { opacity: 1; }
+@media (hover: none) { .hero--intro .hero__glow { display: none; } }
