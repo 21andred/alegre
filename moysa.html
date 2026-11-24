@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=60">
+  <link rel="stylesheet" href="assets/css/style.css?v=61">
 </head>
 <body class="page-moysa theme-moysa">
   <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
@@ -60,13 +60,35 @@
     <!-- ================= APERTURA: logotipo MOYSA su video neon ================= -->
     <section class="my-hero on-dark" aria-labelledby="my-title">
       <video class="my-hero__video" autoplay muted loop playsinline preload="auto" poster="assets/video/moysa-neon-poster.jpg" aria-hidden="true">
-        <source src="assets/video/moysa-neon.mp4?v=60" type="video/mp4">
+        <source src="assets/video/moysa-neon.mp4?v=61" type="video/mp4">
       </video>
       <div class="wrap my-hero__inner">
         <h1 id="my-title" class="my-logo"><span class="moysa-mark" role="img" aria-label="MOYSA"></span></h1>
         <p class="my-hero__claim" data-i18n="my.claim">Due piani,<br><em>una sola serata.</em></p>
       </div>
-      <div class="hero__foot"><div class="wrap"><span class="hide-sm" data-i18n="my.foot1">Ristorante · Club</span><a class="scroll" href="#due-piani"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Scopri</span></a><span class="hide-sm">Via Watt 32</span></div></div>
+      <div class="hero__foot"><div class="wrap"><span class="hide-sm" data-i18n="my.foot1">Ristorante · Club</span><a class="scroll" href="#musica"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Scopri</span></a><span class="hide-sm">Via Watt 32</span></div></div>
+    </section>
+
+    <!-- ================= MUSIC HUB ================= -->
+    <section class="section on-dark my-hub" id="musica" aria-labelledby="my-hub-title">
+      <div class="wrap moysa-hero__grid">
+        <div class="moysa__text reveal">
+          <p class="label"><span data-i18n="my.hub.label">Music hub</span></p>
+          <h2 class="title" id="my-hub-title" data-i18n="my.hub.title">Dove nasce <em>la musica.</em></h2>
+          <p class="body" data-i18n="moysa.body">Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano: un luogo dove si incontrano artisti e produttori e dove si sperimenta. Lo stesso spirito arriva in tavola, con ritmo, improvvisazione e un pizzico di imprevedibilità.</p>
+          <div class="moysa__tags">
+            <span><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Music hub</span>
+            <span data-i18n="moysa.tag2">Studio di registrazione</span>
+            <span>Club</span>
+          </div>
+        </div>
+        <figure class="moysa-photo img-reveal">
+          <picture>
+            <source srcset="assets/img/moysa-dj.webp" type="image/webp">
+            <img src="assets/img/moysa-dj.jpg" alt="Una DJ con le cuffie dietro la consolle con la scritta MOYSA, davanti alla scala a spirale" width="1440" height="1800" loading="lazy">
+          </picture>
+        </figure>
+      </div>
     </section>
 
     <!-- ================= DUE PIANI: scena video guidata dallo scroll ================= -->
@@ -87,28 +109,6 @@
             <span data-i18n="scene.soundOn">Attiva l'audio</span>
           </button>
         </div>
-      </div>
-    </section>
-
-    <!-- ================= MUSIC HUB ================= -->
-    <section class="section on-dark my-hub" aria-labelledby="my-hub-title">
-      <div class="wrap moysa-hero__grid">
-        <div class="moysa__text reveal">
-          <p class="label"><span data-i18n="my.hub.label">Music hub</span></p>
-          <h2 class="title" id="my-hub-title" data-i18n="my.hub.title">Dove nasce <em>la musica.</em></h2>
-          <p class="body" data-i18n="moysa.body">Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano: un luogo dove si incontrano artisti e produttori e dove si sperimenta. Lo stesso spirito arriva in tavola, con ritmo, improvvisazione e un pizzico di imprevedibilità.</p>
-          <div class="moysa__tags">
-            <span><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Music hub</span>
-            <span data-i18n="moysa.tag2">Studio di registrazione</span>
-            <span>Club</span>
-          </div>
-        </div>
-        <figure class="moysa-photo img-reveal">
-          <picture>
-            <source srcset="assets/img/moysa-dj.webp" type="image/webp">
-            <img src="assets/img/moysa-dj.jpg" alt="Una DJ con le cuffie dietro la consolle con la scritta MOYSA, davanti alla scala a spirale" width="1440" height="1800" loading="lazy">
-          </picture>
-        </figure>
       </div>
     </section>
 
@@ -178,6 +178,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=60"></script>
+  <script src="assets/js/main.js?v=61"></script>
 </body>
 </html>
