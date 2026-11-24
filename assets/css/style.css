@@ -1309,7 +1309,7 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 .my-hub .title em { color: var(--moysa); }
 .my-hub .moysa__tags { color: var(--moysa); }
 .my-hub .moysa__tags .eq i { background: var(--moysa); }
-.my-hub, .my-cat { border-top: 1px solid var(--line-light); }
+.my-hub, .my-cat, .my-floors { border-top: 1px solid var(--line-light); }
 @media (max-width: 760px) { .floor { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .my-hero__video { display: none; } .my-logo, .my-hero__claim { opacity: 1; } }
 .moysa-mark--inline { display: inline-block; height: .72em; width: auto; aspect-ratio: 238.326 / 46.870; vertical-align: baseline; margin-right: .12em; }
