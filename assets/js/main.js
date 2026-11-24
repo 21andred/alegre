@@ -44,7 +44,7 @@
       "cuc.cta.title": "La carta completa <em>ti aspetta.</em>",
       "cat.cta.short": "Preventivo",
       "cat.title": "Dal nostro tavolo <em>al backstage.</em>",
-      "cat.lead": "Cuciniamo ogni giorno per artisti e crew dentro MOYSA. Quando la musica va in tour, veniamo con lei.",
+      "cat.lead": "Ogni giorno, ad Alegre, cuciniamo per gli artisti e le crew che passano da MOYSA. Quando la musica va in tour, veniamo con lei.",
       "cat.cta": "Richiedi un preventivo",
       "cat.cta2": "Per chi abbiamo cucinato",
       "cat.intro.label": "Perché Alegre",
@@ -98,7 +98,7 @@
       "thanks.home": "Torna al sito",
       "home.cat.label": "Catering",
       "home.cat.title": "Dal nostro tavolo <em>al backstage.</em>",
-      "home.cat.body": "Cuciniamo per artisti, produzioni e crew dentro MOYSA e li seguiamo fuori: dai concerti negli stadi alle presentazioni e agli eventi privati.",
+      "home.cat.body": "Ad Alegre cuciniamo ogni giorno per artisti, produzioni e crew di MOYSA, e li seguiamo fuori: dai concerti negli stadi alle presentazioni e agli eventi privati.",
       "home.cat.cta": "Scopri il catering",
       "nav.concept": "Concept", "nav.space": "Spazi", "nav.food": "Cucina",
       "nav.menu": "Menu", "nav.contact": "Contatti",
@@ -139,7 +139,7 @@
       "space.d.note": "Aperitivo all'aperto",
       "space.d.title": "Natura e tecnologia, <em>all'aperto.</em>",
       "space.c.t": "Il Club",
-      "space.c": "Uno spazio riservato, dove mixology, musica e le nostre tapas si uniscono tra le sale e i giardini.",
+      "space.c": "Al piano di sopra c'è il club di MOYSA: mixology, musica e le nostre tapas, tra le sale e i giardini. La serata continua senza cambiare indirizzo.",
       "space.c.note": "Club privato",
       "space.c.title": "Quando la cena <em>diventa serata.</em>",
 
@@ -220,7 +220,7 @@
       "cuc.cta.title": "The full menu <em>is waiting.</em>",
       "cat.cta.short": "Quote",
       "cat.title": "From our table <em>to the backstage.</em>",
-      "cat.lead": "Every day we cook for artists and crews inside MOYSA. When the music goes on tour, we go with it.",
+      "cat.lead": "Every day at Alegre we cook for the artists and crews who pass through MOYSA. When the music goes on tour, we go with it.",
       "cat.cta": "Request a quote",
       "cat.cta2": "Who we've cooked for",
       "cat.intro.label": "Why Alegre",
@@ -274,7 +274,7 @@
       "thanks.home": "Back to the site",
       "home.cat.label": "Catering",
       "home.cat.title": "From our table <em>to the backstage.</em>",
-      "home.cat.body": "We cook for artists, productions and crews inside MOYSA and follow them outside: from stadium concerts to presentations and private events.",
+      "home.cat.body": "At Alegre we cook every day for MOYSA's artists, productions and crews, and follow them outside: from stadium concerts to presentations and private events.",
       "home.cat.cta": "Discover our catering",
       "nav.concept": "Concept", "nav.space": "Spaces", "nav.food": "Food",
       "nav.menu": "Menu", "nav.contact": "Contact",
@@ -315,7 +315,7 @@
       "space.d.note": "Open-air aperitivo",
       "space.d.title": "Nature and technology, <em>open air.</em>",
       "space.c.t": "The Club",
-      "space.c": "A private space where mixology, music and our tapas come together across the rooms and gardens.",
+      "space.c": "Upstairs is the MOYSA club: mixology, music and our tapas, across the rooms and gardens. The night goes on without changing address.",
       "space.c.note": "Private club",
       "space.c.title": "When dinner <em>becomes the night.</em>",
 
@@ -725,7 +725,10 @@
       var vh = window.innerHeight, y = window.scrollY, pts = [];
       list.forEach(function (s) {
         var top = s.getBoundingClientRect().top + y;
-        pts.push(s.classList.contains("scene") ? top + (s.offsetHeight - vh) * 0.45 : top);
+        if (s.classList.contains("scene")) { pts.push(top + (s.offsetHeight - vh) * 0.45); return; }
+        pts.push(top);
+        // sezione più alta dello schermo: seconda tappa con il fondo della sezione allineato
+        if (s.offsetHeight > vh * 1.08) pts.push(top + s.offsetHeight - vh);
       });
       var first = list[0].getBoundingClientRect().top + y;
       var last = list[list.length - 1]; var lastEnd = last.getBoundingClientRect().top + y + last.offsetHeight;

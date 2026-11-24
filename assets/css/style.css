@@ -1362,3 +1362,14 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 .floors--compact .floor h3 { font-size: clamp(26px, 2.3vw, 36px); }
 .floors--compact .floor p { font-size: 14.5px; max-width: 42ch; }
 @media (max-width: 760px) { .floors--compact .floor { grid-template-columns: 1fr; } .floors--compact .floor__n { grid-row: auto; padding-top: 0; } }
+
+/* =========================================================
+   A CAPO PIÙ CURATI
+   - la parte in corsivo dei titoli resta unita: va a capo tutta insieme
+     ("Dal nostro tavolo / al backstage.") invece di spezzarsi a metà;
+   - titoli e frasi bilanciati sulle righe, paragrafi senza parole orfane.
+   ========================================================= */
+.title, .lede, .quote, .hero__claim, .my-hero__claim, .fun-line, .cat-trio__item h3, .floor h3, .space h3, .moment h3 { text-wrap: balance; }
+.title em { display: inline-block; }
+.body, .lede, p { text-wrap: pretty; }
+@media (max-width: 600px) { .title em { display: inline; } }
