@@ -1271,8 +1271,8 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
    ========================================================= */
 :root { --moysa: #b6fb52; }
 .moysa-mark {
-  display: block; aspect-ratio: 634 / 136; background: var(--moysa);
-  -webkit-mask: url("../img/moysa-logo.png") center / contain no-repeat; mask: url("../img/moysa-logo.png") center / contain no-repeat;
+  display: block; aspect-ratio: 238.326 / 46.870; background: var(--moysa);
+  -webkit-mask: url("../img/moysa-logo.svg") center / contain no-repeat; mask: url("../img/moysa-logo.svg") center / contain no-repeat;
 }
 .moysa-word { color: var(--moysa); font-style: normal; letter-spacing: .02em; }
 
@@ -1312,7 +1312,28 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 .my-hub, .my-cat { border-top: 1px solid var(--line-light); }
 @media (max-width: 760px) { .floor { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .my-hero__video { display: none; } .my-logo, .my-hero__claim { opacity: 1; } }
-.moysa-mark--inline { display: inline-block; height: .72em; width: auto; aspect-ratio: 634 / 136; vertical-align: baseline; margin-right: .12em; }
+.moysa-mark--inline { display: inline-block; height: .72em; width: auto; aspect-ratio: 238.326 / 46.870; vertical-align: baseline; margin-right: .12em; }
 .theme-moysa .site-header .btn--solid { background: var(--wheat); border-color: var(--wheat); color: var(--night); }
 .theme-moysa .site-header .btn--solid::before { background: var(--ivory); }
 .theme-moysa .site-header .btn--solid:hover span { color: var(--night); }
+
+/* ---------- MOYSA desktop: video nella metà destra, sfumato a sinistra; logo e claim a sinistra ---------- */
+@media (min-width: 961px) {
+  .my-hero { place-items: center start; text-align: left; }
+  .my-hero__video { left: 50%; width: 50%; filter: saturate(1.15); transform: none; }
+  .my-hero::before {
+    background: linear-gradient(90deg, var(--night) 0%, var(--night) 50%, rgba(20,17,14,.75) 60%, rgba(20,17,14,.15) 82%, rgba(20,17,14,.25) 100%);
+  }
+  .my-hero__inner { width: 100%; }
+  .my-logo { margin: 0; width: min(520px, 38vw); }
+  .my-hero__claim { max-width: 14ch; }
+}
+
+/* ---------- HOME: Prenota centrato ---------- */
+.hero__book { justify-content: center; }
+@media (max-height: 760px) and (min-width: 761px) {
+  .hero--intro .hero__logo { width: min(480px, 60vw); }
+}
+
+.my-hero__claim { line-height: 1.1; }
+@media (min-width: 961px) { .my-hero__claim { max-width: 16ch; } }

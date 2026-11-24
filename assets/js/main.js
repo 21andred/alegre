@@ -712,6 +712,56 @@
     }
   }
 
+  /* ---------- Desktop: scorrimento "ancorato" alle scene video ----------
+     Nella zona delle scene, un solo gesto della rotella porta alla scena successiva (o precedente)
+     già aperta, invece di dover scorrere molte volte. Solo mouse/trackpad su schermi > 960px. */
+  (function () {
+    var list = Array.prototype.slice.call(document.querySelectorAll(".scene"));
+    if (!list.length || reduceMotion) return;
+    var desk = window.matchMedia("(min-width: 961px) and (pointer: fine)");
+    var busy = false, raf = null;
+    function anchors() {
+      var vh = window.innerHeight, y = window.scrollY, pts = [];
+      list.forEach(function (s) {
+        var top = s.getBoundingClientRect().top + y;
+        pts.push(top + (s.offsetHeight - vh) * 0.45);
+      });
+      var first = list[0].getBoundingClientRect().top + y;
+      var last = list[list.length - 1]; var lastEnd = last.getBoundingClientRect().top + y + last.offsetHeight;
+      return { pts: pts, before: Math.max(0, first - vh), after: lastEnd, first: first, lastEnd: lastEnd };
+    }
+    function go(to) {
+      busy = true;
+      var from = window.scrollY, t0 = performance.now(), ms = 1100;
+      var ease = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+      document.documentElement.style.scrollBehavior = "auto";
+      var step = function (now) {
+        var k = Math.min(1, (now - t0) / ms);
+        window.scrollTo(0, from + (to - from) * ease(k));
+        if (k < 1) raf = requestAnimationFrame(step);
+        else { document.documentElement.style.scrollBehavior = ""; setTimeout(function () { busy = false; }, 450); }
+      };
+      raf = requestAnimationFrame(step);
+    }
+    window.addEventListener("wheel", function (e) {
+      if (!desk.matches || Math.abs(e.deltaY) < 2) return;
+      var a = anchors(), y = window.scrollY, vh = window.innerHeight;
+      // attivo solo tra poco prima della prima scena e la fine dell'ultima
+      if (y < a.first - vh * 0.6 || y > a.lastEnd - vh * 0.4) return;
+      e.preventDefault();
+      if (busy) return;
+      var down = e.deltaY > 0, target;
+      if (down) {
+        target = a.pts.filter(function (p) { return p > y + 8; })[0];
+        if (target === undefined) target = a.after;
+      } else {
+        var prev = a.pts.filter(function (p) { return p < y - 8; });
+        target = prev.length ? prev[prev.length - 1] : a.before;
+      }
+      go(target);
+    }, { passive: false });
+  })();
+
   /* ---------- Reveal on scroll ---------- */
   function observeReveals() {
     var els = document.querySelectorAll(".reveal:not(.is-in), .img-reveal:not(.is-in)");
