@@ -1475,3 +1475,7 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
   .cat-hero__ctas .btn { font-size: 12px; letter-spacing: .16em; }
   .cat-hero .title { font-size: clamp(38px, 12vw, 64px); }
 }
+@media (max-width: 960px) {
+  .theme-night .cat-hero .lede, .cat-hero .lede { max-width: none; font-size: clamp(14px, 3.9vw, 18px); line-height: 1.45; margin-top: 14px; }
+  .cat-hero::before { background: radial-gradient(ellipse 120% 70% at 0% 100%, rgba(20,17,14,.78) 0%, rgba(20,17,14,.45) 40%, rgba(20,17,14,0) 75%); }
+}
