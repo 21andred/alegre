@@ -735,7 +735,13 @@
       var last = list[list.length - 1];
       var lastEnd = last.getBoundingClientRect().top + y + last.offsetHeight;
       var firstTop = list[0].getBoundingClientRect().top + y;
-      return { pts: pts, first: firstTop, lastEnd: lastEnd };
+      // dopo l'ultima scena si va diretti alla sezione successiva (niente fine scena nera da attraversare)
+      var exit = lastEnd - vh;
+      if (last.classList.contains("scene")) {
+        var box = last.closest("section") || last, nx = box.nextElementSibling;
+        if (nx) exit = nx.getBoundingClientRect().top + y;
+      }
+      return { pts: pts, first: firstTop, lastEnd: lastEnd, exit: exit };
     }
     function go(to) {
       animating = true;
@@ -759,7 +765,7 @@
       var a = anchors(), y = window.scrollY, vh = window.innerHeight;
       var down = e.deltaY > 0;
       // fuori dalla zona ancorata: scorrimento normale
-      if ((down && y >= a.lastEnd - vh - 4) || (!down && y > a.lastEnd - vh + 4) || y < a.first - 4) {
+      if ((down && y >= a.lastEnd - vh - 4) || (!down && y > a.exit + 4) || y < a.first - 4) {
         if (!(down && y < a.first - 4 && y >= a.first - vh)) return;
       }
       e.preventDefault();
@@ -768,7 +774,7 @@
       var target;
       if (down) {
         target = a.pts.filter(function (p) { return p > y + 8; })[0];
-        if (target === undefined) target = a.lastEnd - vh;
+        if (target === undefined) target = a.exit;
       } else {
         var prev = a.pts.filter(function (p) { return p < y - 8; });
         target = prev.length ? prev[prev.length - 1] : Math.max(0, a.first);
