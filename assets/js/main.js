@@ -713,75 +713,77 @@
   }
 
   /* ---------- Desktop: scorrimento "ancorato" alle scene video ----------
-     Nella zona delle scene, un solo gesto della rotella porta alla scena successiva (o precedente)
-     già aperta, invece di dover scorrere molte volte. Solo mouse/trackpad su schermi > 960px. */
+     Un gesto della rotella = una tappa (scena successiva già aperta, o sezione con data-snap).
+     Un "gesto" finisce dopo una breve pausa negli eventi: così l'inerzia dei trackpad non fa
+     saltare più tappe. Solo mouse/trackpad su schermi > 960px. */
   (function () {
-    // scene video + sezioni marcate con data-snap (agganciate al loro inizio)
     var list = Array.prototype.slice.call(document.querySelectorAll(".scene, [data-snap]"));
     if (!list.length || reduceMotion) return;
     var desk = window.matchMedia("(min-width: 961px) and (pointer: fine)");
-    var busy = false, raf = null;
+    var animating = false, gestureUsed = false, lastWheel = 0, raf = null;
     function anchors() {
       var vh = window.innerHeight, y = window.scrollY, pts = [];
       list.forEach(function (s) {
         var top = s.getBoundingClientRect().top + y;
         if (s.classList.contains("scene")) { pts.push(top + (s.offsetHeight - vh) * 0.45); return; }
         pts.push(top);
-        // sezione più alta dello schermo: seconda tappa con il fondo della sezione allineato
         if (s.offsetHeight > vh * 1.08) pts.push(top + s.offsetHeight - vh);
       });
-      var first = list[0].getBoundingClientRect().top + y;
-      var last = list[list.length - 1]; var lastEnd = last.getBoundingClientRect().top + y + last.offsetHeight;
-      return { pts: pts, before: Math.max(0, first - vh), after: lastEnd, first: first, lastEnd: lastEnd };
+      pts.sort(function (x, z) { return x - z; });
+      var last = list[list.length - 1];
+      var lastEnd = last.getBoundingClientRect().top + y + last.offsetHeight;
+      var firstTop = list[0].getBoundingClientRect().top + y;
+      return { pts: pts, first: firstTop, lastEnd: lastEnd };
     }
     function go(to) {
-      busy = true;
-      var from = window.scrollY, t0 = performance.now(), ms = 1100;
+      animating = true;
+      var from = window.scrollY, t0 = performance.now(), ms = 850;
       var ease = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
       document.documentElement.style.scrollBehavior = "auto";
       var step = function (now) {
         var k = Math.min(1, (now - t0) / ms);
         window.scrollTo(0, from + (to - from) * ease(k));
         if (k < 1) raf = requestAnimationFrame(step);
-        else { document.documentElement.style.scrollBehavior = ""; setTimeout(function () { busy = false; }, 450); }
+        else { document.documentElement.style.scrollBehavior = ""; animating = false; }
       };
       raf = requestAnimationFrame(step);
     }
     window.addEventListener("wheel", function (e) {
-      if (!desk.matches || Math.abs(e.deltaY) < 2) return;
+      if (!desk.matches) return;
+      var now = performance.now();
+      var newGesture = now - lastWheel > 220;   // pausa = nuovo gesto
+      lastWheel = now;
+      if (newGesture && !animating) gestureUsed = false;
       var a = anchors(), y = window.scrollY, vh = window.innerHeight;
-      // attivo solo tra poco prima della prima scena e la fine dell'ultima
-      if (y < a.first - vh * 0.6 || y > a.lastEnd - vh * 0.4) return;
+      var down = e.deltaY > 0;
+      // fuori dalla zona ancorata: scorrimento normale
+      if ((down && y >= a.lastEnd - vh - 4) || (!down && y > a.lastEnd - vh + 4) || y < a.first - 4) {
+        if (!(down && y < a.first - 4 && y >= a.first - vh)) return;
+      }
       e.preventDefault();
-      if (busy) return;
-      var down = e.deltaY > 0, target;
+      if (animating || gestureUsed || Math.abs(e.deltaY) < 1) return;
+      gestureUsed = true;
+      var target;
       if (down) {
         target = a.pts.filter(function (p) { return p > y + 8; })[0];
-        if (target === undefined) target = a.after;
+        if (target === undefined) target = a.lastEnd - vh;
       } else {
         var prev = a.pts.filter(function (p) { return p < y - 8; });
-        target = prev.length ? prev[prev.length - 1] : a.before;
+        target = prev.length ? prev[prev.length - 1] : Math.max(0, a.first);
       }
-      go(target);
+      go(Math.max(0, target));
     }, { passive: false });
   })();
 
-  /* ---------- HOME: la frase sotto il logo, su una riga, larga quanto il logo ---------- */
+  /* ---------- Barra del menu nascosta: riappare portando il mouse in alto ---------- */
   (function () {
-    var logo = document.querySelector(".hero--intro .hero__logo");
-    var claim = document.querySelector(".hero--intro .hero__claim");
-    var milano = 0.65; // larghezza della riga "MILANO" rispetto al logo: la frase sta a metà tra le due
-    if (!logo || !claim) return;
-    function fit() {
-      claim.style.fontSize = "";
-      var target = logo.getBoundingClientRect().width * (1 + milano) / 2;
-      var base = parseFloat(getComputedStyle(claim).fontSize);
-      var w = claim.scrollWidth || 1;
-      claim.style.fontSize = (base * target / w).toFixed(2) + "px";
-    }
-    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
-    window.addEventListener("resize", fit);
-    document.addEventListener("click", function (e) { if (e.target.closest(".lang-toggle")) setTimeout(fit, 30); });
+    if (!header || !window.matchMedia("(pointer: fine)").matches) return;
+    document.addEventListener("mousemove", function (e) {
+      if (!header.classList.contains("is-hidden") && !header.classList.contains("is-peek")) return;
+      if (e.clientY < 70) header.classList.add("is-peek");
+      else if (e.clientY > 110) header.classList.remove("is-peek");
+    });
+    document.addEventListener("mouseleave", function () { header.classList.remove("is-peek"); });
   })();
 
   /* ---------- Reveal on scroll ---------- */

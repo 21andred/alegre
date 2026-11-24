@@ -1409,3 +1409,7 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 }
 .hero--intro:hover .hero__glow { opacity: 1; }
 @media (hover: none) { .hero--intro .hero__glow { display: none; } }
+
+/* Barra nascosta che riappare scendendo dall'alto quando il mouse va in cima */
+.site-header.is-hidden.is-peek { transform: none; background: rgba(20,17,14,.92); color: var(--ivory); border-bottom-color: var(--line-light); }
+.site-header.is-hidden.is-peek .btn--solid { background: var(--wheat); border-color: var(--wheat); color: var(--night); }
