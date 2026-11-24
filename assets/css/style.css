@@ -1453,3 +1453,25 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
   .cat-artists .title { font-size: clamp(38px, min(4.2vw, 6.2vh), 72px); }
   .cat-artists .label { margin-bottom: 1.6vh; }
 }
+
+/* ---------- CATERING mobile: video pieno senza sfumatura, testi in basso, pulsanti affiancati ---------- */
+@media (max-width: 960px) {
+  .cat-hero__video { opacity: 1; }
+  .cat-hero::before { background: none; }
+  .cat-hero__inner { margin-top: auto; margin-bottom: 0; padding-bottom: 28px; }
+  .cat-hero__inner > .label { display: none; }
+  .cat-hero .title, .cat-hero .lede { text-shadow: 0 1px 18px rgba(20,17,14,.75), 0 0 2px rgba(20,17,14,.5); }
+  .cat-hero .lede { color: var(--ivory); }
+  .cat-hero__ctas { flex-wrap: nowrap; gap: 10px; margin-top: 26px; }
+  .cat-hero__ctas .btn { width: auto; flex: 1 1 0; min-width: 0; padding-left: 10px; padding-right: 10px; font-size: 11px; letter-spacing: .1em; white-space: nowrap; justify-content: center; }
+  .cat-hero__ctas .btn .arrow { display: none; }
+  .cat-hero__ctas .btn--light { background: rgba(20,17,14,.35); }
+  .cat-marquee { background: rgba(20,17,14,.55); }
+}
+.cat-hero__ctas .sm-only { display: none; }
+@media (max-width: 960px) {
+  .cat-hero__ctas .lg-only { display: none; }
+  .cat-hero__ctas .sm-only { display: inline; }
+  .cat-hero__ctas .btn { font-size: 12px; letter-spacing: .16em; }
+  .cat-hero .title { font-size: clamp(38px, 12vw, 64px); }
+}
