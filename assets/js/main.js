@@ -716,7 +716,8 @@
      Nella zona delle scene, un solo gesto della rotella porta alla scena successiva (o precedente)
      già aperta, invece di dover scorrere molte volte. Solo mouse/trackpad su schermi > 960px. */
   (function () {
-    var list = Array.prototype.slice.call(document.querySelectorAll(".scene"));
+    // scene video + sezioni marcate con data-snap (agganciate al loro inizio)
+    var list = Array.prototype.slice.call(document.querySelectorAll(".scene, [data-snap]"));
     if (!list.length || reduceMotion) return;
     var desk = window.matchMedia("(min-width: 961px) and (pointer: fine)");
     var busy = false, raf = null;
@@ -724,7 +725,7 @@
       var vh = window.innerHeight, y = window.scrollY, pts = [];
       list.forEach(function (s) {
         var top = s.getBoundingClientRect().top + y;
-        pts.push(top + (s.offsetHeight - vh) * 0.45);
+        pts.push(s.classList.contains("scene") ? top + (s.offsetHeight - vh) * 0.45 : top);
       });
       var first = list[0].getBoundingClientRect().top + y;
       var last = list[list.length - 1]; var lastEnd = last.getBoundingClientRect().top + y + last.offsetHeight;

@@ -1337,3 +1337,17 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 
 .my-hero__claim { line-height: 1.1; }
 @media (min-width: 961px) { .my-hero__claim { max-width: 16ch; } }
+/* Sezione agganciata: occupa lo schermo e centra il contenuto */
+.theme-moysa .my-hub[data-snap] { min-height: 100svh; display: flex; align-items: center; }
+.theme-moysa .my-hub[data-snap] > .wrap { width: 100%; }
+@media (min-width: 961px) { .theme-moysa .my-hub .moysa-photo { max-height: calc(100svh - 140px); width: auto; } .theme-moysa .my-hub .moysa-photo img { height: 100%; width: auto; } }
+@media (min-width: 961px) {
+  .theme-moysa .my-hub[data-snap] { padding: 100px 0 40px; }
+  .theme-moysa .my-hub .moysa-photo { height: calc(100svh - 170px); max-height: none; width: auto; max-width: 100%; }
+  .theme-moysa .my-hub .moysa-photo img { height: 100%; width: 100%; object-fit: cover; object-position: 50% 50%; }
+}
+@media (min-width: 961px) {
+  /* proporzioni originali, senza tagli: larghezza limitata dall'altezza dello schermo */
+  .theme-moysa .my-hub .moysa-photo { height: auto; width: min(100%, calc((100svh - 170px) * 0.8)); aspect-ratio: 1440 / 1800; }
+  .theme-moysa .my-hub .moysa-photo img { height: auto; object-fit: initial; }
+}
