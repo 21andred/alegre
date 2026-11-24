@@ -38,7 +38,7 @@ usato in maschera, quindi si ricolora via CSS.
 - [ ] Fotografie ad alta risoluzione (le attuali sono ricavate da screenshot, max 1170px) e ritratto dello chef
 - [ ] Logo ufficiale in SVG vettoriale
 - [ ] Modalità di accesso al club
-- [ ] Bio dello chef approvata
+- [x] Bio dello chef (Francesco Vitale)
 - [ ] Verifica allergeni e indicazioni SG/SL con la cucina (vedi nota in `menu-data.js`)
 - [ ] Traduzione EN delle descrizioni dei piatti
 

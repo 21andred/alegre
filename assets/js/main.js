@@ -14,6 +14,10 @@
   /* ---------- Traduzioni ---------- */
   var I18N = {
     it: {
+      "cat.secondi": "Secondi",
+      "cat.primi": "Primi",
+      "cat.antipasti": "Antipasti",
+      "chef.role": "Lo chef",
       "cat.c.keys": "Cene · Brand · Incontri",
       "cat.b.keys": "Stampa · Party privati · MOYSA",
       "cat.a.keys": "Concerti · Tour · Stadi · Crew",
@@ -133,8 +137,8 @@
 
       "chef.label": "Lo chef",
       "chef.ph": "Ritratto in arrivo",
-      "chef.quote": "Culture diverse, combinazioni inattese, una sola visione.",
-      "chef.body": "Esperienze internazionali e un percorso fuori dagli schemi. La cucina di Matteo Gritti mette in dialogo tecniche e ingredienti di mondi lontani con sapori che riconosci al primo assaggio.",
+      "chef.quote": "Tecnica, ricerca e rispetto per la materia prima.",
+      "chef.body": "Pugliese di origine, Francesco Vitale si è formato in alcune delle cucine internazionali più prestigiose, accanto a chef come Heston Blumenthal e Simon Rogan, prima di arrivare a Milano al Mandarin Oriental. Ad Alegre porta una cucina contemporanea che segue le stagioni e rilegge i sapori della tradizione con creatività, senza perdere di vista l'essenza del gusto.",
 
       "moysa.title": "Born inside <em>MOYSA.</em>",
       "moysa.body": "Alegre vive dentro MOYSA, hub musicale e studio di registrazione di Milano: un luogo dove si incontrano artisti e produttori e dove si sperimenta. Lo stesso spirito arriva in tavola, con ritmo, improvvisazione e un pizzico di imprevedibilità.",
@@ -173,6 +177,10 @@
     },
 
     en: {
+      "cat.secondi": "Mains",
+      "cat.primi": "Pasta & risotto",
+      "cat.antipasti": "Starters",
+      "chef.role": "Chef",
       "cat.c.keys": "Dinners · Brands · Meetings",
       "cat.b.keys": "Press · Private parties · MOYSA",
       "cat.a.keys": "Concerts · Tours · Stadiums · Crew",
@@ -292,8 +300,8 @@
 
       "chef.label": "The chef",
       "chef.ph": "Portrait coming soon",
-      "chef.quote": "Different cultures, unexpected combinations, one distinctive vision.",
-      "chef.body": "International experience and an unconventional path. Matteo Gritti's cooking brings techniques and ingredients from distant worlds into conversation with flavours you recognise from the first bite.",
+      "chef.quote": "Technique, research and respect for the ingredient.",
+      "chef.body": "Born in Puglia, Francesco Vitale trained in some of the world's most prestigious kitchens, alongside chefs such as Heston Blumenthal and Simon Rogan, before arriving in Milan at the Mandarin Oriental. At Alegre he brings a contemporary cuisine that follows the seasons and reinterprets traditional flavours with creativity, never losing sight of the essence of taste.",
 
       "moysa.title": "Born inside <em>MOYSA.</em>",
       "moysa.body": "Alegre lives inside MOYSA, a music hub and recording studio in Milan: a place where artists and producers meet and ideas get tested. The same spirit reaches the table, with rhythm, improvisation and a touch of the unexpected.",
