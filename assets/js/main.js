@@ -770,10 +770,11 @@
   (function () {
     var logo = document.querySelector(".hero--intro .hero__logo");
     var claim = document.querySelector(".hero--intro .hero__claim");
+    var milano = 0.65; // larghezza della riga "MILANO" rispetto al logo: la frase sta a metà tra le due
     if (!logo || !claim) return;
     function fit() {
       claim.style.fontSize = "";
-      var target = logo.getBoundingClientRect().width;
+      var target = logo.getBoundingClientRect().width * (1 + milano) / 2;
       var base = parseFloat(getComputedStyle(claim).fontSize);
       var w = claim.scrollWidth || 1;
       claim.style.fontSize = (base * target / w).toFixed(2) + "px";

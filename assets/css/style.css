@@ -1384,7 +1384,24 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 
 /* ---------- HOME: frase su una riga, larga quanto il logo; video più luminoso ---------- */
 .hero--intro .hero__claim { white-space: nowrap; max-width: none; }
-.hero__video { filter: brightness(1.1); }
 .hero--intro .hero__claim { display: block; width: max-content; left: 50%; right: auto; transform: translateX(-50%); }
 /* centrata senza transform (l'animazione d'ingresso usa già transform) */
 .hero--intro .hero__claim { left: 0; right: 0; transform: none; margin-left: auto; margin-right: auto; }
+
+/* ---------- HOME: frase sopra Prenota; su desktop compare passando su Prenota ---------- */
+.hero__book { flex-direction: column; align-items: center; gap: 18px; }
+.hero__book .hero__claim {
+  position: static; margin: 0; transform: none; animation: none; opacity: 1;
+  white-space: nowrap; width: max-content; color: var(--sand);
+}
+@media (hover: hover) and (min-width: 961px) {
+  .hero__book .hero__claim { opacity: 0; transform: translateY(8px); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
+  .hero__book:has(.btn--pill:hover) .hero__claim,
+  .hero__book:has(.btn--pill:focus-visible) .hero__claim { opacity: 1; transform: none; }
+}
+
+/* ---------- HOME: leggero bagliore sul logo al passaggio del mouse ---------- */
+.hero--intro .hero__logo { transition: filter .6s var(--ease); }
+@media (hover: hover) {
+  .hero--intro .hero__logo:hover { filter: drop-shadow(0 0 14px rgba(214,184,138,.75)) drop-shadow(0 0 36px rgba(214,184,138,.45)) brightness(1.08); }
+}
