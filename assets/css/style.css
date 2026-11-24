@@ -1477,5 +1477,5 @@ body.home-intro.menu-open .site-header { color: var(--ivory); }
 }
 @media (max-width: 960px) {
   .theme-night .cat-hero .lede, .cat-hero .lede { max-width: none; font-size: clamp(17px, 4.7vw, 21px); line-height: 1.4; margin-top: 16px; }
-  .cat-hero::before { background: radial-gradient(ellipse 120% 70% at 0% 100%, rgba(20,17,14,.78) 0%, rgba(20,17,14,.45) 40%, rgba(20,17,14,0) 75%); }
+  .cat-hero::before { background: radial-gradient(ellipse 150% 75% at 0% 100%, rgba(20,17,14,.88) 0%, rgba(20,17,14,.7) 35%, rgba(20,17,14,.35) 60%, rgba(20,17,14,0) 85%), linear-gradient(0deg, rgba(20,17,14,.45) 0%, rgba(20,17,14,0) 55%); }
 }
